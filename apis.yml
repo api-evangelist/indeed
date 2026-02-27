@@ -1,0 +1,84 @@
+name: Indeed
+description: Indeed is the world's
+image: https://www.indeed.com/images/indeed-logo.png
+url: https://www.indeed.com
+created: '2025'
+modified: '2025'
+tags:
+- jobs
+- employment
+- recruiting
+- careers
+- job search
+- hiring
+apis:
+- name: Indeed Job Search API
+  description: Search for jobs by keyword, location, and other criteria. Returns job listings with details including title, company, location, and description.
+  image: https://www.indeed.com/images/indeed-logo.png
+  humanURL: https://opensource.indeedeng.io/api-documentation/
+  baseURL: https://api.indeed.com
+  tags:
+  - jobs
+  - search
+  - listings
+  properties:
+  - type: Documentation
+    url: https://opensource.indeedeng.io/api-documentation/docs/job-search/
+  - type: OpenAPI
+    url: https://api.indeed.com/openapi.json
+  contact:
+  - FN: Indeed API Support
+    email: opensource@indeed.com
+    url: https://opensource.indeedeng.io/
+- name: Indeed Publisher API
+  description: Monetize your website by displaying Indeed job listings. Earn revenue through cost-per-click advertising.
+  image: https://www.indeed.com/images/indeed-logo.png
+  humanURL: https://www.indeed.com/publisher
+  baseURL: https://api.indeed.com/ads
+  tags:
+  - publisher
+  - advertising
+  - monetization
+  properties:
+  - type: Documentation
+    url: https://www.indeed.com/publisher/docs
+  - type: Sign Up
+    url: https://www.indeed.com/publisher/signup
+- name: Indeed Apply API
+  description: Allow job seekers to apply to your jobs directly through Indeed with a streamlined application process.
+  image: https://www.indeed.com/images/indeed-logo.png
+  humanURL: https://www.indeed.com/hire/indeed-apply
+  baseURL: https://api.indeed.com/apply
+  tags:
+  - applications
+  - apply
+  - hiring
+  properties:
+  - type: Documentation
+    url: https://www.indeed.com/hire/indeed-apply-integration
+  - type: Integration Guide
+    url: https://www.indeed.com/hire/docs/apply-api
+common:
+- type: Developer Portal
+  url: https://opensource.indeedeng.io/
+- type: Terms of Service
+  url: https://www.indeed.com/legal/terms-of-service
+- type: Privacy Policy
+  url: https://www.indeed.com/legal/privacy
+- type: API Terms
+  url: https://www.indeed.com/legal/api-terms
+- type: Status Page
+  url: https://status.indeed.com
+- type: Support
+  url: https://support.indeed.com/hc/en-us
+- type: Blog
+  url: https://engineering.indeedblog.com/
+- type: GitHub
+  url: https://github.com/indeedeng
+- type: Twitter
+  url: https://twitter.com/indeedeng
+- type: Rate Limits
+  url: https://opensource.indeedeng.io/api-documentation/docs/rate-limits
+maintainers:
+- FN: APIs.json Maintainer
+  email: info@example.com
