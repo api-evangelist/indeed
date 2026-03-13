@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/indeed/refs/heads/main/json-schema/indeed-candidate-schema.json",
+  "title": "Indeed Candidate",
+  "description": "A candidate object from the Indeed Employer API, representing a job applicant who has applied to a position through Indeed or Indeed Apply. Contains personal details, resume, application status, and responses to screener and EEO questions.",
+  "type": "object",
+  "required": ["id", "name", "email"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A unique candidate application identifier. For Indeed Apply applications, this is a 64-character string (apply_id) that uniquely connects the employer, candidate, and job posting."
+    },
+    "name": {
+      "type": "string",
+      "description": "The candidate's full name as provided in their application."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "The candidate's first (given) name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "The candidate's last (family) name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The candidate's email address."
+    },
+    "phoneNumber": {
+      "type": "string",
+      "description": "The candidate's phone number, typically in E.164 or national format."
+    },
+    "location": {
+      "type": "string",
+      "description": "The candidate's location as a freeform text string, such as city and state."
+    },
+    "resume": {
+      "type": "object",
+      "description": "The candidate's resume in multiple formats. Not all formats are always available; use a robust parser that treats missing fields as empty.",
+      "properties": {
+        "file": {
+          "type": "object",
+          "description": "The uploaded resume file.",
+          "properties": {
+            "fileName": {
+              "type": "string",
+              "description": "The original filename of the uploaded resume document."
+            },
+            "contentType": {
+              "type": "string",
+              "description": "The MIME type of the resume file, such as application/pdf or application/msword."
+            },
+            "data": {
+              "type": "string",
+              "contentEncoding": "base64",
+              "description": "The raw binary content of the resume file, Base64-encoded."
+            }
+          }
+        },
+        "text": {
+          "type": "string",
+          "description": "Plain text representation of the resume content."
+        },
+        "html": {
+          "type": "string",
+          "description": "HTML-formatted representation of the resume content."
+        },
+        "json": {
+          "type": "object",
+          "description": "Structured JSON representation of the parsed resume data from Indeed Resume.",
+          "properties": {
+            "workExperience": {
+              "type": "array",
+              "description": "The candidate's work experience history.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Job title held by the candidate."
+                  },
+                  "company": {
+                    "type": "string",
+                    "description": "Name of the employer or company."
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "Location of the position."
+                  },
+                  "startDate": {
+                    "type": "string",
+                    "description": "Start date of employment."
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "End date of employment. Null or absent if currently employed."
+                  },
+                  "current": {
+                    "type": "boolean",
+                    "description": "Whether this is the candidate's current position."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of responsibilities and achievements."
+                  }
+                }
+              }
+            },
+            "education": {
+              "type": "array",
+              "description": "The candidate's educational background.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "institution": {
+                    "type": "string",
+                    "description": "Name of the educational institution."
+                  },
+                  "degree": {
+                    "type": "string",
+                    "description": "Degree or certification obtained."
+                  },
+                  "fieldOfStudy": {
+                    "type": "string",
+                    "description": "Field of study or major."
+                  },
+                  "startDate": {
+                    "type": "string",
+                    "description": "Start date of attendance."
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "End date or graduation date."
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "Location of the institution."
+                  }
+                }
+              }
+            },
+            "skills": {
+              "type": "array",
+              "description": "List of skills from the candidate's resume.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "certifications": {
+              "type": "array",
+              "description": "Professional certifications held by the candidate.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the certification."
+                  },
+                  "issuer": {
+                    "type": "string",
+                    "description": "Organization that issued the certification."
+                  },
+                  "dateObtained": {
+                    "type": "string",
+                    "description": "Date the certification was obtained."
+                  },
+                  "expirationDate": {
+                    "type": "string",
+                    "description": "Expiration date of the certification, if applicable."
+                  }
+                }
+              }
+            },
+            "summary": {
+              "type": "string",
+              "description": "Professional summary or objective from the resume."
+            }
+          }
+        }
+      }
+    },
+    "coverLetter": {
+      "type": "string",
+      "description": "The candidate's cover letter text, if provided with the application."
+    },
+    "applicationStatus": {
+      "type": "string",
+      "description": "The current disposition status of the candidate's application within the hiring pipeline. Must map to one of Indeed's six predefined categories.",
+      "enum": ["NEW", "CONTACTED", "INTERVIEWED", "OFFERED", "HIRED", "REJECTED"]
+    },
+    "screenerQuestionResponses": {
+      "type": "array",
+      "description": "The candidate's responses to screener questions configured on the job posting.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "string",
+            "description": "The unique identifier of the screener question."
+          },
+          "question": {
+            "type": "string",
+            "description": "The text of the screener question presented to the candidate."
+          },
+          "answer": {
+            "type": "string",
+            "description": "The candidate's response to the screener question."
+          }
+        }
+      }
+    },
+    "eeoResponses": {
+      "type": "object",
+      "description": "Equal Employment Opportunity (EEO) compliance responses provided by the candidate. Only available for US employers that have EEO questions enabled on their job postings.",
+      "properties": {
+        "gender": {
+          "type": "string",
+          "description": "The candidate's self-reported gender identity."
+        },
+        "race": {
+          "type": "string",
+          "description": "The candidate's self-reported race or ethnicity."
+        },
+        "veteranStatus": {
+          "type": "string",
+          "description": "The candidate's self-reported veteran status."
+        },
+        "disabilityStatus": {
+          "type": "string",
+          "description": "The candidate's self-reported disability status."
+        }
+      }
+    },
+    "appliedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the candidate submitted their application."
+    },
+    "source": {
+      "type": "string",
+      "description": "The channel through which the candidate submitted their application, such as indeed_apply, organic, or other integration sources."
+    },
+    "jobPostingId": {
+      "type": "string",
+      "description": "The unique identifier of the job posting the candidate applied to."
+    },
+    "jobTitle": {
+      "type": "string",
+      "description": "The title of the job posting the candidate applied to."
+    },
+    "employerId": {
+      "type": "string",
+      "description": "The unique identifier of the employer who posted the job."
+    },
+    "acknowledged": {
+      "type": "boolean",
+      "description": "Whether this candidate application has been acknowledged by the ATS. Unacknowledged applications are returned first in Retrieve Candidates API queries."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the candidate record was last updated."
+    }
+  }
+}

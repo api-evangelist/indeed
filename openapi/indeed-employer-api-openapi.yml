@@ -1,0 +1,1459 @@
+openapi: 3.1.0
+info:
+  title: Indeed Employer API
+  description: >-
+    The Indeed Employer API provides a RESTful interface for managing employers,
+    candidates, and job postings on the Indeed platform. This API enables ATS
+    partners and hiring platforms to programmatically create and update employer
+    profiles, retrieve and manage candidate applications, and synchronize job
+    postings with Indeed's employment ecosystem.
+
+
+    Indeed's native APIs use GraphQL via the `https://apis.indeed.com/graphql`
+    endpoint. This OpenAPI specification represents a RESTful abstraction of the
+    key employer-facing operations available through Indeed's partner APIs,
+    covering the Employer Data API, Retrieve Candidates API, and Job Sync API.
+
+
+    **Authentication**: All API requests require OAuth 2.0 Bearer Token
+    authentication. Partners must register through the Indeed Partner Console
+    to obtain client credentials.
+
+
+    **Rate Limits**: API calls are subject to rate limiting. Consult the Indeed
+    Partner documentation for current rate limit policies.
+  version: 1.0.0
+  contact:
+    name: Indeed API Support
+    url: https://docs.indeed.com/support/
+    email: opensource@indeed.com
+  license:
+    name: Proprietary
+    url: https://docs.indeed.com/legal-terms/developer-agreement
+  termsOfService: https://www.indeed.com/legal/api-terms
+  x-logo:
+    url: https://www.indeed.com/images/indeed-logo.png
+
+externalDocs:
+  description: Indeed Partner Documentation
+  url: https://docs.indeed.com/
+
+servers:
+  - url: https://apis.indeed.com
+    description: Indeed Production API Server
+
+tags:
+  - name: Employers
+    description: >-
+      Operations for creating and managing employer profiles on Indeed. Employer
+      entities must be created before job postings can be associated with them.
+      Supports global attributes such as employer name and type, as well as
+      country-specific attributes like website URL and phone number.
+  - name: Candidates
+    description: >-
+      Operations for retrieving and managing candidate applications. Part of the
+      Candidate Sync APIs, these endpoints enable ATS partners to fetch candidate
+      and application data from Indeed on behalf of registered employers.
+  - name: Jobs
+    description: >-
+      Operations for creating, updating, expiring, and retrieving job postings on
+      Indeed. Supports qualifications, working hours, salary, benefits, employer
+      information, and Indeed Apply configuration.
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 Bearer Token authentication. Obtain access tokens through
+        the Indeed OAuth 2.0 authorization flow using your partner client
+        credentials.
+
+    OAuth2:
+      type: oauth2
+      description: Indeed OAuth 2.0 authentication for partner applications.
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.indeed.com/oauth/v2/tokens
+          scopes:
+            employer_access: Access and manage employer data
+            candidate_read: Read candidate and application data
+            job_posting_write: Create and manage job postings
+
+  schemas:
+    Employer:
+      type: object
+      description: >-
+        An employer entity on Indeed representing a company or organization
+        that posts jobs and manages candidates.
+      required:
+        - id
+        - employerName
+      properties:
+        id:
+          type: string
+          description: >-
+            A globally unique employer identifier. For ATS partners, this
+            typically combines the ATS system identifier with the employer's
+            internal ID.
+          example: "ats-partner_employer-12345"
+        employerName:
+          type: string
+          description: >-
+            The display name of the employer as it appears on Indeed job
+            listings and company pages.
+          example: "Acme Corporation"
+        employerType:
+          type: string
+          description: The type of employer entity.
+          enum:
+            - DIRECT_EMPLOYER
+            - STAFFING_AGENCY
+            - RECRUITING_FIRM
+          example: "DIRECT_EMPLOYER"
+        employerAttributes:
+          $ref: '#/components/schemas/EmployerAttributes'
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the employer was created on Indeed.
+        updatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the employer was last updated.
+
+    EmployerAttributes:
+      type: object
+      description: >-
+        Additional attributes for an employer, including both global and
+        country-specific settings.
+      properties:
+        employerType:
+          type: string
+          description: The type classification of the employer.
+          enum:
+            - DIRECT_EMPLOYER
+            - STAFFING_AGENCY
+            - RECRUITING_FIRM
+        countrySpecificAttributes:
+          type: array
+          description: >-
+            Attributes that vary by country, such as website URLs, phone
+            numbers, and locale-specific information.
+          items:
+            $ref: '#/components/schemas/CountrySpecificAttributes'
+        localeSpecificAttributes:
+          type: array
+          description: Locale-specific employer attributes.
+          items:
+            $ref: '#/components/schemas/LocaleSpecificAttributes'
+
+    CountrySpecificAttributes:
+      type: object
+      description: >-
+        Country-scoped employer attributes. Provide an ISO 3166-1 two-letter
+        country code to specify the country.
+      required:
+        - country
+      properties:
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          pattern: "^[A-Z]{2}$"
+          example: "US"
+        websiteUrl:
+          type: string
+          format: uri
+          description: The employer's website URL for this country.
+          example: "https://www.acmecorp.com"
+        phoneNumber:
+          type: string
+          description: The employer's contact phone number for this country.
+          example: "+1-555-123-4567"
+        address:
+          $ref: '#/components/schemas/Address'
+
+    LocaleSpecificAttributes:
+      type: object
+      description: Locale-specific employer attributes for multilingual support.
+      properties:
+        locale:
+          type: string
+          description: IETF BCP 47 language tag.
+          example: "en-US"
+        employerName:
+          type: string
+          description: Localized employer name.
+        employerDescription:
+          type: string
+          description: Localized employer description.
+
+    Address:
+      type: object
+      description: A physical address.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address line.
+          example: "123 Main Street"
+        streetAddress2:
+          type: string
+          description: Additional street address information.
+          example: "Suite 400"
+        city:
+          type: string
+          description: City name.
+          example: "Austin"
+        state:
+          type: string
+          description: State, province, or region.
+          example: "TX"
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+          example: "78701"
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: "US"
+
+    PatchEmployerInput:
+      type: object
+      description: Input for creating or updating an employer on Indeed.
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: >-
+            A globally unique employer identifier composed of the ATS
+            identifier and the employer's ID within that system.
+          example: "ats-partner_employer-12345"
+        employerName:
+          type: string
+          description: >-
+            The employer's display name. Required when creating a new employer,
+            optional when updating an existing one.
+          example: "Acme Corporation"
+        employerAttributes:
+          $ref: '#/components/schemas/EmployerAttributes'
+
+    PatchEmployerPayload:
+      type: object
+      description: Response payload from a successful employer create or update operation.
+      properties:
+        employer:
+          $ref: '#/components/schemas/Employer'
+        success:
+          type: boolean
+          description: Whether the operation succeeded.
+        errors:
+          type: array
+          description: Any errors encountered during the operation.
+          items:
+            $ref: '#/components/schemas/ApiError'
+
+    Candidate:
+      type: object
+      description: >-
+        A job candidate with personal details, resume information, and
+        application data retrieved from Indeed.
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: string
+          description: >-
+            A unique candidate identifier. For Indeed Apply applications, this
+            corresponds to the apply_id, a unique 64-character identifier
+            linking the employer, candidate, and job posting.
+          example: "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2"
+        name:
+          type: string
+          description: The candidate's full name.
+          example: "Jane Smith"
+        firstName:
+          type: string
+          description: The candidate's first name.
+          example: "Jane"
+        lastName:
+          type: string
+          description: The candidate's last name.
+          example: "Smith"
+        email:
+          type: string
+          format: email
+          description: The candidate's email address.
+          example: "jane.smith@example.com"
+        phoneNumber:
+          type: string
+          description: The candidate's phone number.
+          example: "+1-555-987-6543"
+        location:
+          type: string
+          description: The candidate's location as a freeform string.
+          example: "Austin, TX"
+        resume:
+          $ref: '#/components/schemas/Resume'
+        coverLetter:
+          type: string
+          description: The candidate's cover letter text, if provided.
+        applicationStatus:
+          type: string
+          description: >-
+            The current status of the candidate's application. Must map to
+            one of Indeed's predefined disposition categories.
+          enum:
+            - NEW
+            - CONTACTED
+            - INTERVIEWED
+            - OFFERED
+            - HIRED
+            - REJECTED
+          example: "NEW"
+        screenerQuestionResponses:
+          type: array
+          description: >-
+            Responses to screener questions configured on the job posting.
+          items:
+            $ref: '#/components/schemas/ScreenerQuestionResponse'
+        eeoResponses:
+          $ref: '#/components/schemas/EeoResponses'
+        appliedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the candidate submitted the application.
+        source:
+          type: string
+          description: >-
+            The source of the application, such as Indeed Apply, organic
+            application, or other channels.
+          example: "indeed_apply"
+        jobPostingId:
+          type: string
+          description: The identifier of the job posting the candidate applied to.
+
+    Resume:
+      type: object
+      description: >-
+        A candidate's resume in multiple formats. The file field contains
+        the uploaded resume document, while text, html, and json fields
+        provide parsed representations.
+      properties:
+        file:
+          $ref: '#/components/schemas/ResumeFile'
+        text:
+          type: string
+          description: Plain text representation of the resume content.
+        html:
+          type: string
+          description: HTML-formatted representation of the resume content.
+        json:
+          type: object
+          description: >-
+            Structured JSON representation of the parsed resume, including
+            sections for work experience, education, skills, and other fields.
+          additionalProperties: true
+
+    ResumeFile:
+      type: object
+      description: An uploaded resume file.
+      properties:
+        fileName:
+          type: string
+          description: The original filename of the uploaded resume.
+          example: "jane_smith_resume.pdf"
+        contentType:
+          type: string
+          description: The MIME type of the resume file.
+          example: "application/pdf"
+        data:
+          type: string
+          format: byte
+          description: >-
+            The raw binary content of the resume file, Base64-encoded.
+
+    ScreenerQuestionResponse:
+      type: object
+      description: A candidate's response to a screener question on the job posting.
+      properties:
+        questionId:
+          type: string
+          description: The unique identifier of the screener question.
+        question:
+          type: string
+          description: The text of the screener question.
+          example: "Do you have a valid driver's license?"
+        answer:
+          type: string
+          description: The candidate's answer to the question.
+          example: "Yes"
+
+    EeoResponses:
+      type: object
+      description: >-
+        Equal Employment Opportunity (EEO) compliance responses provided by
+        the candidate. Available only for US employers with EEO questions
+        enabled.
+      properties:
+        gender:
+          type: string
+          description: The candidate's self-reported gender identity.
+        race:
+          type: string
+          description: The candidate's self-reported race or ethnicity.
+        veteranStatus:
+          type: string
+          description: The candidate's veteran status.
+        disabilityStatus:
+          type: string
+          description: The candidate's disability status.
+
+    CandidateList:
+      type: object
+      description: A paginated list of candidates.
+      properties:
+        candidates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Candidate'
+        totalCount:
+          type: integer
+          description: Total number of candidates matching the query.
+          example: 42
+        pageInfo:
+          $ref: '#/components/schemas/PageInfo'
+
+    JobPosting:
+      type: object
+      description: >-
+        A job posting on Indeed with all associated metadata including
+        title, description, location, salary, benefits, qualifications,
+        and application configuration.
+      required:
+        - jobPostingId
+        - title
+        - description
+        - location
+      properties:
+        jobPostingId:
+          type: string
+          description: >-
+            A unique identifier for the job posting within the source system.
+            Used in combination with sourceName for upsert operations.
+          example: "JOB-2024-001"
+        title:
+          type: string
+          description: >-
+            The title of the job posting. Maximum length of 75 characters.
+          maxLength: 75
+          example: "Senior Software Engineer"
+        description:
+          type: string
+          description: >-
+            The full description of the job posting including responsibilities,
+            requirements, and other details. Must be between 30 and 20,000
+            characters.
+          minLength: 30
+          maxLength: 20000
+          example: "We are looking for a Senior Software Engineer to join our growing team..."
+        location:
+          $ref: '#/components/schemas/JobLocation'
+        salary:
+          $ref: '#/components/schemas/Salary'
+        benefits:
+          type: array
+          description: Benefits offered with the position.
+          items:
+            $ref: '#/components/schemas/Benefit'
+        qualifications:
+          type: array
+          description: Required or preferred qualifications for the position.
+          items:
+            $ref: '#/components/schemas/Qualification'
+        workingHours:
+          $ref: '#/components/schemas/WorkingHours'
+        employmentType:
+          type: string
+          description: The type of employment.
+          enum:
+            - FULL_TIME
+            - PART_TIME
+            - CONTRACT
+            - TEMPORARY
+            - INTERNSHIP
+            - VOLUNTEER
+          example: "FULL_TIME"
+        remoteWorkPolicy:
+          type: string
+          description: The remote work policy for the position.
+          enum:
+            - ON_SITE
+            - REMOTE
+            - HYBRID
+          example: "HYBRID"
+        employer:
+          type: object
+          description: Reference to the employer posting this job.
+          properties:
+            id:
+              type: string
+              description: The employer's unique identifier on Indeed.
+            employerName:
+              type: string
+              description: The employer's display name.
+        source:
+          $ref: '#/components/schemas/JobSource'
+        indeedApply:
+          $ref: '#/components/schemas/IndeedApplyConfig'
+        status:
+          type: string
+          description: The current status of the job posting on Indeed.
+          enum:
+            - ACTIVE
+            - PAUSED
+            - EXPIRED
+            - CLOSED
+          example: "ACTIVE"
+        applicationUrl:
+          type: string
+          format: uri
+          description: The URL where candidates can apply for the position.
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the job posting was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the job posting was last updated.
+        expiresAt:
+          type: string
+          format: date-time
+          description: The timestamp when the job posting expires.
+
+    JobLocation:
+      type: object
+      description: The location of the job.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address of the job location.
+        city:
+          type: string
+          description: City where the job is located.
+          example: "Austin"
+        state:
+          type: string
+          description: State, province, or region.
+          example: "TX"
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+          example: "78701"
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: "US"
+        formattedAddress:
+          type: string
+          description: A human-readable formatted address string.
+          example: "Austin, TX 78701, US"
+
+    Salary:
+      type: object
+      description: Salary or compensation details for the job posting.
+      properties:
+        minimumAmount:
+          type: number
+          format: double
+          description: The minimum salary amount.
+          example: 120000
+        maximumAmount:
+          type: number
+          format: double
+          description: The maximum salary amount.
+          example: 180000
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          example: "USD"
+        period:
+          type: string
+          description: The pay period for the salary.
+          enum:
+            - HOURLY
+            - DAILY
+            - WEEKLY
+            - BIWEEKLY
+            - MONTHLY
+            - YEARLY
+          example: "YEARLY"
+
+    Benefit:
+      type: object
+      description: A benefit offered with the job position.
+      properties:
+        type:
+          type: string
+          description: The type of benefit.
+          enum:
+            - HEALTH_INSURANCE
+            - DENTAL_INSURANCE
+            - VISION_INSURANCE
+            - RETIREMENT_401K
+            - PAID_TIME_OFF
+            - PARENTAL_LEAVE
+            - TUITION_REIMBURSEMENT
+            - LIFE_INSURANCE
+            - DISABILITY_INSURANCE
+            - FLEXIBLE_SCHEDULE
+            - REMOTE_WORK
+            - RELOCATION_ASSISTANCE
+            - EMPLOYEE_DISCOUNT
+            - COMMUTER_BENEFITS
+            - OTHER
+          example: "HEALTH_INSURANCE"
+        description:
+          type: string
+          description: Additional details about the benefit.
+
+    Qualification:
+      type: object
+      description: >-
+        A qualification required or preferred for the job position, such as
+        education level, years of experience, certifications, or skills.
+      properties:
+        type:
+          type: string
+          description: The category of the qualification.
+          enum:
+            - EDUCATION
+            - EXPERIENCE
+            - CERTIFICATION
+            - SKILL
+            - LICENSE
+          example: "EXPERIENCE"
+        description:
+          type: string
+          description: Description of the qualification.
+          example: "5+ years of software development experience"
+        required:
+          type: boolean
+          description: Whether this qualification is required or preferred.
+          example: true
+
+    WorkingHours:
+      type: object
+      description: Working hours and schedule information for the position.
+      properties:
+        hoursPerWeek:
+          type: number
+          format: double
+          description: Expected number of hours per week.
+          example: 40
+        schedule:
+          type: string
+          description: Description of the work schedule.
+          example: "Monday through Friday, 9 AM to 5 PM"
+        shiftType:
+          type: string
+          description: The type of shift.
+          enum:
+            - DAY
+            - NIGHT
+            - EVENING
+            - ROTATING
+            - FLEXIBLE
+          example: "DAY"
+
+    JobSource:
+      type: object
+      description: >-
+        Information about the source system for the job posting, used to
+        identify the originating ATS or job board.
+      required:
+        - sourceName
+      properties:
+        sourceName:
+          type: string
+          description: >-
+            The name of the source system. Must remain consistent across all
+            job postings from the same source.
+          example: "my-ats-platform"
+        sourceUrl:
+          type: string
+          format: uri
+          description: The URL of the original job posting on the source system.
+
+    IndeedApplyConfig:
+      type: object
+      description: Configuration for Indeed Apply integration on the job posting.
+      properties:
+        enabled:
+          type: boolean
+          description: Whether Indeed Apply is enabled for this job posting.
+          example: true
+        postUrl:
+          type: string
+          format: uri
+          description: >-
+            The URL where Indeed sends application data when a candidate
+            applies through Indeed Apply.
+        screenerQuestions:
+          type: array
+          description: Screener questions to present to candidates during application.
+          items:
+            $ref: '#/components/schemas/ScreenerQuestion'
+        eeoEnabled:
+          type: boolean
+          description: >-
+            Whether EEO compliance questions are enabled. Available for
+            US employers only.
+
+    ScreenerQuestion:
+      type: object
+      description: A screener question configured on a job posting.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the screener question.
+        question:
+          type: string
+          description: The text of the question.
+          example: "Are you authorized to work in the United States?"
+        type:
+          type: string
+          description: The type of expected response.
+          enum:
+            - TEXT
+            - BOOLEAN
+            - SINGLE_SELECT
+            - MULTI_SELECT
+            - NUMERIC
+          example: "BOOLEAN"
+        required:
+          type: boolean
+          description: Whether the candidate must answer this question.
+          example: true
+        options:
+          type: array
+          description: Available options for select-type questions.
+          items:
+            type: string
+
+    CreateJobPostingInput:
+      type: object
+      description: >-
+        Input for creating one or more job postings on Indeed via the Job
+        Sync API.
+      required:
+        - jobPostings
+      properties:
+        jobPostings:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobPosting'
+          description: Array of job posting objects to create.
+
+    CreateJobPostingPayload:
+      type: object
+      description: Response payload from a job posting creation operation.
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              jobPostingId:
+                type: string
+                description: The ID of the created or updated job posting.
+              status:
+                type: string
+                enum:
+                  - CREATED
+                  - UPDATED
+                  - FAILED
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiError'
+        totalCreated:
+          type: integer
+          description: Total number of job postings successfully created.
+        totalFailed:
+          type: integer
+          description: Total number of job postings that failed to create.
+
+    DispositionUpdate:
+      type: object
+      description: >-
+        An update to the disposition (application status) of a candidate
+        for a specific job posting. Used to sync hiring pipeline status
+        changes back to Indeed.
+      required:
+        - applicationId
+        - status
+      properties:
+        applicationId:
+          type: string
+          description: The unique identifier for the application.
+        status:
+          type: string
+          description: >-
+            The new disposition status for the application. Must be one of
+            Indeed's predefined categories.
+          enum:
+            - NEW
+            - CONTACTED
+            - INTERVIEWED
+            - OFFERED
+            - HIRED
+            - REJECTED
+        statusUpdatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the status change occurred.
+        rejectionReason:
+          type: string
+          description: The reason for rejection, if the status is REJECTED.
+
+    PageInfo:
+      type: object
+      description: Pagination information for list responses.
+      properties:
+        hasNextPage:
+          type: boolean
+          description: Whether there are more results available.
+        hasPreviousPage:
+          type: boolean
+          description: Whether there are previous results available.
+        startCursor:
+          type: string
+          description: Cursor for the first item in the current page.
+        endCursor:
+          type: string
+          description: Cursor for the last item in the current page.
+
+    ApiError:
+      type: object
+      description: An error returned by the Indeed API.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: "INVALID_INPUT"
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: "The employer name field is required."
+        field:
+          type: string
+          description: The field that caused the error, if applicable.
+          example: "employerName"
+
+    JobPostingList:
+      type: object
+      description: A paginated list of job postings.
+      properties:
+        jobPostings:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobPosting'
+        totalCount:
+          type: integer
+          description: Total number of job postings matching the query.
+        pageInfo:
+          $ref: '#/components/schemas/PageInfo'
+
+    EmployerRegistration:
+      type: object
+      description: >-
+        Registration of an employer for Candidate Sync integration, enabling
+        candidate data synchronization between the ATS and Indeed.
+      properties:
+        employerId:
+          type: string
+          description: The employer's unique identifier.
+        registrationStatus:
+          type: string
+          description: The current registration status.
+          enum:
+            - ACTIVE
+            - PENDING
+            - INACTIVE
+        features:
+          type: array
+          description: Enabled Candidate Sync features for this employer.
+          items:
+            type: string
+            enum:
+              - RETRIEVE_CANDIDATES
+              - DISPOSITION_SYNC
+              - INDEED_APPLY
+        registeredAt:
+          type: string
+          format: date-time
+          description: When the employer was registered for Candidate Sync.
+
+security:
+  - BearerAuth: []
+
+paths:
+  /v1/employers:
+    post:
+      operationId: createEmployer
+      summary: Create an employer
+      description: >-
+        Creates a new employer entity on Indeed. The employer name is required
+        when creating a new employer. An employer must be created before job
+        postings can be associated with it. Uses the patchEmployer mutation
+        internally.
+      tags:
+        - Employers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEmployerInput'
+            example:
+              id: "ats-partner_employer-12345"
+              employerName: "Acme Corporation"
+              employerAttributes:
+                employerType: "DIRECT_EMPLOYER"
+                countrySpecificAttributes:
+                  - country: "US"
+                    websiteUrl: "https://www.acmecorp.com"
+                    phoneNumber: "+1-555-123-4567"
+      responses:
+        '201':
+          description: Employer created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '400':
+          description: Invalid input. Check the errors array for details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to create employers.
+        '409':
+          description: An employer with the given ID already exists.
+        '429':
+          description: Rate limit exceeded. Retry after the specified delay.
+
+  /v1/employers/{employerId}:
+    get:
+      operationId: getEmployer
+      summary: Retrieve an employer
+      description: >-
+        Retrieves the details of an existing employer by their unique
+        identifier.
+      tags:
+        - Employers
+      parameters:
+        - name: employerId
+          in: path
+          required: true
+          description: The unique identifier of the employer.
+          schema:
+            type: string
+          example: "ats-partner_employer-12345"
+      responses:
+        '200':
+          description: Employer retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employer'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to access this employer.
+        '404':
+          description: Employer not found.
+
+    patch:
+      operationId: updateEmployer
+      summary: Update an employer
+      description: >-
+        Updates an existing employer entity on Indeed. Only the fields
+        included in the request body are modified. The employer name is
+        optional when updating.
+      tags:
+        - Employers
+      parameters:
+        - name: employerId
+          in: path
+          required: true
+          description: The unique identifier of the employer to update.
+          schema:
+            type: string
+          example: "ats-partner_employer-12345"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEmployerInput'
+      responses:
+        '200':
+          description: Employer updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '400':
+          description: Invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to update this employer.
+        '404':
+          description: Employer not found.
+        '429':
+          description: Rate limit exceeded.
+
+  /v1/employers/{employerId}/registration:
+    put:
+      operationId: registerEmployerForCandidateSync
+      summary: Register employer for Candidate Sync
+      description: >-
+        Registers an employer for Candidate Sync integration, enabling
+        the retrieval of candidate data and disposition synchronization
+        between the ATS and Indeed.
+      tags:
+        - Employers
+      parameters:
+        - name: employerId
+          in: path
+          required: true
+          description: The unique identifier of the employer to register.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                features:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - RETRIEVE_CANDIDATES
+                      - DISPOSITION_SYNC
+                      - INDEED_APPLY
+      responses:
+        '200':
+          description: Employer registration updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerRegistration'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: Employer not found.
+
+  /v1/employers/{employerId}/candidates:
+    get:
+      operationId: listCandidates
+      summary: List candidates for an employer
+      description: >-
+        Retrieves a paginated list of candidates who have applied to jobs
+        posted by the specified employer. Part of the Candidate Sync APIs,
+        this endpoint returns candidate and application information
+        including the most recent unacknowledged applications.
+      tags:
+        - Candidates
+      parameters:
+        - name: employerId
+          in: path
+          required: true
+          description: The unique identifier of the employer.
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          description: Filter candidates by application status.
+          schema:
+            type: string
+            enum:
+              - NEW
+              - CONTACTED
+              - INTERVIEWED
+              - OFFERED
+              - HIRED
+              - REJECTED
+        - name: jobPostingId
+          in: query
+          required: false
+          description: Filter candidates by job posting ID.
+          schema:
+            type: string
+        - name: after
+          in: query
+          required: false
+          description: Cursor for forward pagination.
+          schema:
+            type: string
+        - name: first
+          in: query
+          required: false
+          description: Number of candidates to return (max 100).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 25
+        - name: since
+          in: query
+          required: false
+          description: >-
+            Return only candidates who applied after this timestamp.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Candidates retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CandidateList'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: >-
+            Insufficient permissions. The employer may not be registered
+            for Candidate Sync.
+        '404':
+          description: Employer not found.
+
+  /v1/employers/{employerId}/candidates/{candidateId}:
+    get:
+      operationId: getCandidate
+      summary: Retrieve a candidate
+      description: >-
+        Retrieves the full details of a specific candidate application,
+        including personal information, resume, screener question responses,
+        and EEO data if applicable.
+      tags:
+        - Candidates
+      parameters:
+        - name: employerId
+          in: path
+          required: true
+          description: The unique identifier of the employer.
+          schema:
+            type: string
+        - name: candidateId
+          in: path
+          required: true
+          description: The unique identifier of the candidate application.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Candidate retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Candidate'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to access this candidate.
+        '404':
+          description: Candidate or employer not found.
+
+  /v1/employers/{employerId}/candidates/{candidateId}/disposition:
+    put:
+      operationId: updateCandidateDisposition
+      summary: Update candidate disposition
+      description: >-
+        Updates the disposition (application status) of a candidate for a
+        specific job posting. This syncs the hiring pipeline status from
+        the ATS back to Indeed, enabling accurate reporting and analytics.
+      tags:
+        - Candidates
+      parameters:
+        - name: employerId
+          in: path
+          required: true
+          description: The unique identifier of the employer.
+          schema:
+            type: string
+        - name: candidateId
+          in: path
+          required: true
+          description: The unique identifier of the candidate application.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DispositionUpdate'
+            example:
+              applicationId: "app-123456"
+              status: "INTERVIEWED"
+              statusUpdatedAt: "2026-03-01T14:30:00Z"
+      responses:
+        '200':
+          description: Disposition updated successfully.
+        '400':
+          description: Invalid disposition status.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: Candidate or employer not found.
+
+  /v1/jobs:
+    post:
+      operationId: createJobPostings
+      summary: Create job postings
+      description: >-
+        Creates one or more job postings on Indeed. Requires a job title,
+        description, location, benefits, and job source details. The
+        underlying Indeed API uses the createSourcedJobPostings GraphQL
+        mutation. To update an existing job posting, submit the same
+        jobPostingId and sourceName values that were used at creation time.
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobPostingInput'
+            example:
+              jobPostings:
+                - jobPostingId: "JOB-2024-001"
+                  title: "Senior Software Engineer"
+                  description: "We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems..."
+                  location:
+                    city: "Austin"
+                    state: "TX"
+                    country: "US"
+                  salary:
+                    minimumAmount: 120000
+                    maximumAmount: 180000
+                    currency: "USD"
+                    period: "YEARLY"
+                  employmentType: "FULL_TIME"
+                  benefits:
+                    - type: "HEALTH_INSURANCE"
+                    - type: "PAID_TIME_OFF"
+                    - type: "RETIREMENT_401K"
+                  qualifications:
+                    - type: "EXPERIENCE"
+                      description: "5+ years of software development experience"
+                      required: true
+                    - type: "EDUCATION"
+                      description: "Bachelor's degree in Computer Science or related field"
+                      required: false
+                  source:
+                    sourceName: "my-ats-platform"
+                  employer:
+                    id: "ats-partner_employer-12345"
+      responses:
+        '201':
+          description: Job postings created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateJobPostingPayload'
+        '400':
+          description: >-
+            Invalid input. One or more job postings failed validation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateJobPostingPayload'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to create job postings.
+        '429':
+          description: Rate limit exceeded.
+
+  /v1/jobs/{jobPostingId}:
+    get:
+      operationId: getJobPosting
+      summary: Retrieve a job posting
+      description: >-
+        Retrieves the details of a specific job posting by its unique
+        identifier.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobPostingId
+          in: path
+          required: true
+          description: The unique identifier of the job posting.
+          schema:
+            type: string
+          example: "JOB-2024-001"
+        - name: sourceName
+          in: query
+          required: false
+          description: >-
+            The source name to scope the job posting lookup. Required when
+            job posting IDs are not globally unique.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job posting retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPosting'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: Job posting not found.
+
+    put:
+      operationId: updateJobPosting
+      summary: Update a job posting
+      description: >-
+        Updates an existing job posting on Indeed. The same jobPostingId
+        and sourceName that were used during creation must be provided.
+        Uses the createSourcedJobPostings mutation with updated fields.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobPostingId
+          in: path
+          required: true
+          description: The unique identifier of the job posting to update.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobPosting'
+      responses:
+        '200':
+          description: Job posting updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPosting'
+        '400':
+          description: Invalid input.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: Job posting not found.
+        '429':
+          description: Rate limit exceeded.
+
+    delete:
+      operationId: expireJobPosting
+      summary: Expire a job posting
+      description: >-
+        Expires (closes) a job posting on Indeed, removing it from active
+        search results. This operation cannot be undone; a new job posting
+        must be created to relist the position.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobPostingId
+          in: path
+          required: true
+          description: The unique identifier of the job posting to expire.
+          schema:
+            type: string
+        - name: sourceName
+          in: query
+          required: true
+          description: >-
+            The source name used when the job posting was created.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Job posting expired successfully.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: Job posting not found.
+        '429':
+          description: Rate limit exceeded.
+
+  /v1/employers/{employerId}/jobs:
+    get:
+      operationId: listEmployerJobPostings
+      summary: List job postings for an employer
+      description: >-
+        Retrieves a paginated list of job postings associated with a
+        specific employer.
+      tags:
+        - Jobs
+      parameters:
+        - name: employerId
+          in: path
+          required: true
+          description: The unique identifier of the employer.
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          description: Filter job postings by status.
+          schema:
+            type: string
+            enum:
+              - ACTIVE
+              - PAUSED
+              - EXPIRED
+              - CLOSED
+        - name: after
+          in: query
+          required: false
+          description: Cursor for forward pagination.
+          schema:
+            type: string
+        - name: first
+          in: query
+          required: false
+          description: Number of job postings to return (max 100).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 25
+      responses:
+        '200':
+          description: Job postings retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPostingList'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: Employer not found.

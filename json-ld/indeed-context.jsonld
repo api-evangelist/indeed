@@ -1,0 +1,280 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "indeed": "https://docs.indeed.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Employer": {
+      "@id": "indeed:Employer",
+      "@context": {
+        "id": "schema:identifier",
+        "employerName": "schema:name",
+        "employerType": "indeed:employerType",
+        "websiteUrl": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "phoneNumber": "schema:telephone",
+        "address": "schema:address",
+        "countrySpecificAttributes": {
+          "@id": "indeed:countrySpecificAttributes",
+          "@container": "@set"
+        },
+        "localeSpecificAttributes": {
+          "@id": "indeed:localeSpecificAttributes",
+          "@container": "@set"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Candidate": {
+      "@id": "indeed:Candidate",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "email": "schema:email",
+        "phoneNumber": "schema:telephone",
+        "location": "schema:homeLocation",
+        "resume": "indeed:resume",
+        "coverLetter": "indeed:coverLetter",
+        "applicationStatus": "indeed:applicationStatus",
+        "screenerQuestionResponses": {
+          "@id": "indeed:screenerQuestionResponses",
+          "@container": "@set"
+        },
+        "eeoResponses": "indeed:eeoResponses",
+        "appliedAt": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "source": "indeed:applicationSource",
+        "jobPostingId": {
+          "@id": "indeed:jobPostingId",
+          "@type": "@id"
+        },
+        "jobTitle": "schema:jobTitle",
+        "employerId": {
+          "@id": "indeed:employerId",
+          "@type": "@id"
+        },
+        "acknowledged": "indeed:isAcknowledged",
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "JobPosting": {
+      "@id": "schema:JobPosting",
+      "@context": {
+        "jobPostingId": "schema:identifier",
+        "title": "schema:title",
+        "description": "schema:description",
+        "location": "schema:jobLocation",
+        "salary": "schema:baseSalary",
+        "benefits": {
+          "@id": "schema:jobBenefits",
+          "@container": "@set"
+        },
+        "qualifications": {
+          "@id": "schema:qualifications",
+          "@container": "@set"
+        },
+        "workingHours": "schema:workHours",
+        "employmentType": "schema:employmentType",
+        "remoteWorkPolicy": "indeed:remoteWorkPolicy",
+        "employer": {
+          "@id": "schema:hiringOrganization",
+          "@type": "@id"
+        },
+        "source": "indeed:jobSource",
+        "indeedApply": "indeed:indeedApplyConfig",
+        "status": "indeed:jobPostingStatus",
+        "applicationUrl": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "expiresAt": {
+          "@id": "schema:validThrough",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Resume": {
+      "@id": "indeed:Resume",
+      "@context": {
+        "file": "indeed:resumeFile",
+        "text": "schema:text",
+        "html": "indeed:htmlContent",
+        "json": "indeed:structuredContent",
+        "workExperience": {
+          "@id": "indeed:workExperience",
+          "@container": "@set"
+        },
+        "education": {
+          "@id": "indeed:education",
+          "@container": "@set"
+        },
+        "skills": {
+          "@id": "schema:skills",
+          "@container": "@set"
+        },
+        "certifications": {
+          "@id": "indeed:certifications",
+          "@container": "@set"
+        },
+        "summary": "schema:abstract"
+      }
+    },
+
+    "WorkExperience": {
+      "@id": "indeed:WorkExperience",
+      "@context": {
+        "title": "schema:jobTitle",
+        "company": "schema:worksFor",
+        "location": "schema:location",
+        "startDate": {
+          "@id": "schema:startDate",
+          "@type": "xsd:date"
+        },
+        "endDate": {
+          "@id": "schema:endDate",
+          "@type": "xsd:date"
+        },
+        "current": "indeed:isCurrent",
+        "description": "schema:description"
+      }
+    },
+
+    "Education": {
+      "@id": "indeed:Education",
+      "@context": {
+        "institution": "schema:educationalCredentialAwarded",
+        "degree": "schema:credentialCategory",
+        "fieldOfStudy": "indeed:fieldOfStudy",
+        "startDate": {
+          "@id": "schema:startDate",
+          "@type": "xsd:date"
+        },
+        "endDate": {
+          "@id": "schema:endDate",
+          "@type": "xsd:date"
+        },
+        "location": "schema:location"
+      }
+    },
+
+    "Salary": {
+      "@id": "schema:MonetaryAmount",
+      "@context": {
+        "minimumAmount": "schema:minValue",
+        "maximumAmount": "schema:maxValue",
+        "currency": "schema:currency",
+        "period": "schema:unitText"
+      }
+    },
+
+    "Benefit": {
+      "@id": "indeed:Benefit",
+      "@context": {
+        "type": "indeed:benefitType",
+        "description": "schema:description"
+      }
+    },
+
+    "Qualification": {
+      "@id": "indeed:Qualification",
+      "@context": {
+        "type": "indeed:qualificationType",
+        "description": "schema:description",
+        "required": "indeed:isRequired"
+      }
+    },
+
+    "JobLocation": {
+      "@id": "schema:Place",
+      "@context": {
+        "streetAddress": "schema:streetAddress",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "postalCode": "schema:postalCode",
+        "country": "schema:addressCountry",
+        "formattedAddress": "schema:address"
+      }
+    },
+
+    "ScreenerQuestion": {
+      "@id": "indeed:ScreenerQuestion",
+      "@context": {
+        "id": "schema:identifier",
+        "question": "schema:text",
+        "type": "indeed:questionType",
+        "required": "indeed:isRequired",
+        "options": {
+          "@id": "indeed:options",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "ScreenerQuestionResponse": {
+      "@id": "indeed:ScreenerQuestionResponse",
+      "@context": {
+        "questionId": "schema:identifier",
+        "question": "schema:text",
+        "answer": "schema:acceptedAnswer"
+      }
+    },
+
+    "DispositionUpdate": {
+      "@id": "indeed:DispositionUpdate",
+      "@context": {
+        "applicationId": "schema:identifier",
+        "status": "indeed:dispositionStatus",
+        "statusUpdatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "rejectionReason": "indeed:rejectionReason"
+      }
+    },
+
+    "EmployerRegistration": {
+      "@id": "indeed:EmployerRegistration",
+      "@context": {
+        "employerId": "schema:identifier",
+        "registrationStatus": "indeed:registrationStatus",
+        "features": {
+          "@id": "indeed:enabledFeatures",
+          "@container": "@set"
+        },
+        "registeredAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}
