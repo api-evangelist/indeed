@@ -43,17 +43,17 @@ servers:
     description: Indeed Production API Server
 
 tags:
+  - name: Candidates
+    description: >-
+      Operations for retrieving and managing candidate applications. Part of the
+      Candidate Sync APIs, these endpoints enable ATS partners to fetch candidate
+      and application data from Indeed on behalf of registered employers.
   - name: Employers
     description: >-
       Operations for creating and managing employer profiles on Indeed. Employer
       entities must be created before job postings can be associated with them.
       Supports global attributes such as employer name and type, as well as
       country-specific attributes like website URL and phone number.
-  - name: Candidates
-    description: >-
-      Operations for retrieving and managing candidate applications. Part of the
-      Candidate Sync APIs, these endpoints enable ATS partners to fetch candidate
-      and application data from Indeed on behalf of registered employers.
   - name: Jobs
     description: >-
       Operations for creating, updating, expiring, and retrieving job postings on
