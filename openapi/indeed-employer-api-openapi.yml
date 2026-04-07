@@ -906,7 +906,7 @@ paths:
   /v1/employers:
     post:
       operationId: createEmployer
-      summary: Create an employer
+      summary: Indeed Create an employer
       description: >-
         Creates a new employer entity on Indeed. The employer name is required
         when creating a new employer. An employer must be created before job
@@ -954,7 +954,7 @@ paths:
   /v1/employers/{employerId}:
     get:
       operationId: getEmployer
-      summary: Retrieve an employer
+      summary: Indeed Retrieve an employer
       description: >-
         Retrieves the details of an existing employer by their unique
         identifier.
@@ -984,7 +984,7 @@ paths:
 
     patch:
       operationId: updateEmployer
-      summary: Update an employer
+      summary: Indeed Update an employer
       description: >-
         Updates an existing employer entity on Indeed. Only the fields
         included in the request body are modified. The employer name is
@@ -1030,7 +1030,7 @@ paths:
   /v1/employers/{employerId}/registration:
     put:
       operationId: registerEmployerForCandidateSync
-      summary: Register employer for Candidate Sync
+      summary: Indeed Register employer for Candidate Sync
       description: >-
         Registers an employer for Candidate Sync integration, enabling
         the retrieval of candidate data and disposition synchronization
@@ -1074,7 +1074,7 @@ paths:
   /v1/employers/{employerId}/candidates:
     get:
       operationId: listCandidates
-      summary: List candidates for an employer
+      summary: Indeed List candidates for an employer
       description: >-
         Retrieves a paginated list of candidates who have applied to jobs
         posted by the specified employer. Part of the Candidate Sync APIs,
@@ -1150,7 +1150,7 @@ paths:
   /v1/employers/{employerId}/candidates/{candidateId}:
     get:
       operationId: getCandidate
-      summary: Retrieve a candidate
+      summary: Indeed Retrieve a candidate
       description: >-
         Retrieves the full details of a specific candidate application,
         including personal information, resume, screener question responses,
@@ -1187,7 +1187,7 @@ paths:
   /v1/employers/{employerId}/candidates/{candidateId}/disposition:
     put:
       operationId: updateCandidateDisposition
-      summary: Update candidate disposition
+      summary: Indeed Update candidate disposition
       description: >-
         Updates the disposition (application status) of a candidate for a
         specific job posting. This syncs the hiring pipeline status from
@@ -1230,7 +1230,7 @@ paths:
   /v1/jobs:
     post:
       operationId: createJobPostings
-      summary: Create job postings
+      summary: Indeed Create job postings
       description: >-
         Creates one or more job postings on Indeed. Requires a job title,
         description, location, benefits, and job source details. The
@@ -1299,7 +1299,7 @@ paths:
   /v1/jobs/{jobPostingId}:
     get:
       operationId: getJobPosting
-      summary: Retrieve a job posting
+      summary: Indeed Retrieve a job posting
       description: >-
         Retrieves the details of a specific job posting by its unique
         identifier.
@@ -1335,7 +1335,7 @@ paths:
 
     put:
       operationId: updateJobPosting
-      summary: Update a job posting
+      summary: Indeed Update a job posting
       description: >-
         Updates an existing job posting on Indeed. The same jobPostingId
         and sourceName that were used during creation must be provided.
@@ -1373,7 +1373,7 @@ paths:
 
     delete:
       operationId: expireJobPosting
-      summary: Expire a job posting
+      summary: Indeed Expire a job posting
       description: >-
         Expires (closes) a job posting on Indeed, removing it from active
         search results. This operation cannot be undone; a new job posting
@@ -1407,7 +1407,7 @@ paths:
   /v1/employers/{employerId}/jobs:
     get:
       operationId: listEmployerJobPostings
-      summary: List job postings for an employer
+      summary: Indeed List job postings for an employer
       description: >-
         Retrieves a paginated list of job postings associated with a
         specific employer.
