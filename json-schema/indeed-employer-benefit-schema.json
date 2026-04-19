@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Benefit",
+  "type": "object",
+  "description": "A benefit offered with the job position.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of benefit."
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional details about the benefit."
+    }
+  }
+}

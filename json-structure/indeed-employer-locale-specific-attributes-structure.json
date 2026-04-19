@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "LocaleSpecificAttributes",
+  "type": "object",
+  "properties": {
+    "locale": {
+      "type": "string"
+    },
+    "employerName": {
+      "type": "string"
+    },
+    "employerDescription": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Salary",
+  "type": "object",
+  "description": "Salary or compensation details for the job posting.",
+  "properties": {
+    "minimumAmount": {
+      "type": "number",
+      "description": "The minimum salary amount."
+    },
+    "maximumAmount": {
+      "type": "number",
+      "description": "The maximum salary amount."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code."
+    },
+    "period": {
+      "type": "string",
+      "description": "The pay period for the salary."
+    }
+  }
+}

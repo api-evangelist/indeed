@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CreateJobPostingPayload",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array"
+    },
+    "totalCreated": {
+      "type": "integer"
+    },
+    "totalFailed": {
+      "type": "integer"
+    }
+  }
+}

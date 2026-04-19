@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DispositionUpdate",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "statusUpdatedAt": {
+      "type": "string"
+    },
+    "rejectionReason": {
+      "type": "string"
+    }
+  }
+}

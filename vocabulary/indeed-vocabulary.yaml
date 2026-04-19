@@ -1,0 +1,10 @@
+name: indeed API Vocabulary
+provider: indeed
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 12
+schemas: 29
+tags:
+- Candidates
+- Employers
+- Jobs

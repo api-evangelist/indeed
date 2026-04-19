@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobPosting",
+  "type": "object",
+  "description": "A job posting on Indeed with all associated metadata including title, description, location, salary, benefits, qualifications, and application configuration.",
+  "properties": {
+    "jobPostingId": {
+      "type": "string",
+      "description": "A unique identifier for the job posting within the source system. Used in combination with sourceName for upsert operations."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the job posting. Maximum length of 75 characters."
+    },
+    "description": {
+      "type": "string",
+      "description": "The full description of the job posting including responsibilities, requirements, and other details. Must be between 30 and 20,000 characters."
+    },
+    "benefits": {
+      "type": "array",
+      "description": "Benefits offered with the position."
+    },
+    "qualifications": {
+      "type": "array",
+      "description": "Required or preferred qualifications for the position."
+    },
+    "employmentType": {
+      "type": "string",
+      "description": "The type of employment."
+    },
+    "remoteWorkPolicy": {
+      "type": "string",
+      "description": "The remote work policy for the position."
+    },
+    "employer": {
+      "type": "object",
+      "description": "Reference to the employer posting this job."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the job posting on Indeed."
+    },
+    "applicationUrl": {
+      "type": "string",
+      "description": "The URL where candidates can apply for the position."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The timestamp when the job posting was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The timestamp when the job posting was last updated."
+    },
+    "expiresAt": {
+      "type": "string",
+      "description": "The timestamp when the job posting expires."
+    }
+  }
+}

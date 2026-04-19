@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Qualification",
+  "type": "object",
+  "description": "A qualification required or preferred for the job position, such as education level, years of experience, certifications, or skills.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The category of the qualification."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the qualification."
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether this qualification is required or preferred."
+    }
+  }
+}

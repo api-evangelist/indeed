@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreateJobPostingPayload",
+  "type": "object",
+  "description": "Response payload from a job posting creation operation.",
+  "properties": {
+    "results": {
+      "type": "array"
+    },
+    "totalCreated": {
+      "type": "integer",
+      "description": "Total number of job postings successfully created."
+    },
+    "totalFailed": {
+      "type": "integer",
+      "description": "Total number of job postings that failed to create."
+    }
+  }
+}

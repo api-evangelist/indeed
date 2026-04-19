@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EmployerRegistration",
+  "type": "object",
+  "properties": {
+    "employerId": {
+      "type": "string"
+    },
+    "registrationStatus": {
+      "type": "string"
+    },
+    "features": {
+      "type": "array"
+    },
+    "registeredAt": {
+      "type": "string"
+    }
+  }
+}

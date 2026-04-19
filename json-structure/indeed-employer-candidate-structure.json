@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Candidate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "coverLetter": {
+      "type": "string"
+    },
+    "applicationStatus": {
+      "type": "string"
+    },
+    "screenerQuestionResponses": {
+      "type": "array"
+    },
+    "appliedAt": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "jobPostingId": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "firstName": "example_value",
+  "lastName": "example_value",
+  "email": "user@example.com",
+  "phoneNumber": "example_value",
+  "location": "example_value",
+  "coverLetter": "example_value",
+  "applicationStatus": "example_value",
+  "screenerQuestionResponses": [],
+  "appliedAt": "example_value",
+  "source": "example_value",
+  "jobPostingId": "500123"
+}

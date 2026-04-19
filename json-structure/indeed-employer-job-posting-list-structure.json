@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "JobPostingList",
+  "type": "object",
+  "properties": {
+    "jobPostings": {
+      "type": "array"
+    },
+    "totalCount": {
+      "type": "integer"
+    }
+  }
+}

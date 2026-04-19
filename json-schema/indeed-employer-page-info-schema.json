@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PageInfo",
+  "type": "object",
+  "description": "Pagination information for list responses.",
+  "properties": {
+    "hasNextPage": {
+      "type": "boolean",
+      "description": "Whether there are more results available."
+    },
+    "hasPreviousPage": {
+      "type": "boolean",
+      "description": "Whether there are previous results available."
+    },
+    "startCursor": {
+      "type": "string",
+      "description": "Cursor for the first item in the current page."
+    },
+    "endCursor": {
+      "type": "string",
+      "description": "Cursor for the last item in the current page."
+    }
+  }
+}

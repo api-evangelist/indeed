@@ -1,0 +1,15 @@
+{
+  "jobPostingId": "500123",
+  "title": "Example Title",
+  "description": "A sample description.",
+  "benefits": [],
+  "qualifications": [],
+  "employmentType": "example_value",
+  "remoteWorkPolicy": "example_value",
+  "employer": "example_value",
+  "status": "example_value",
+  "applicationUrl": "https://www.example.com",
+  "createdAt": "example_value",
+  "updatedAt": "example_value",
+  "expiresAt": "example_value"
+}

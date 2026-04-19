@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Resume",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "html": {
+      "type": "string"
+    },
+    "json": {
+      "type": "object"
+    }
+  }
+}

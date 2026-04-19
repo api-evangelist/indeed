@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmployerAttributes",
+  "type": "object",
+  "description": "Additional attributes for an employer, including both global and country-specific settings.",
+  "properties": {
+    "employerType": {
+      "type": "string",
+      "description": "The type classification of the employer."
+    },
+    "countrySpecificAttributes": {
+      "type": "array",
+      "description": "Attributes that vary by country, such as website URLs, phone numbers, and locale-specific information."
+    },
+    "localeSpecificAttributes": {
+      "type": "array",
+      "description": "Locale-specific employer attributes."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "postUrl": "https://www.example.com",
+  "screenerQuestions": [],
+  "eeoEnabled": true
+}

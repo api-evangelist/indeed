@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EeoResponses",
+  "type": "object",
+  "description": "Equal Employment Opportunity (EEO) compliance responses provided by the candidate. Available only for US employers with EEO questions enabled.",
+  "properties": {
+    "gender": {
+      "type": "string",
+      "description": "The candidate's self-reported gender identity."
+    },
+    "race": {
+      "type": "string",
+      "description": "The candidate's self-reported race or ethnicity."
+    },
+    "veteranStatus": {
+      "type": "string",
+      "description": "The candidate's veteran status."
+    },
+    "disabilityStatus": {
+      "type": "string",
+      "description": "The candidate's disability status."
+    }
+  }
+}

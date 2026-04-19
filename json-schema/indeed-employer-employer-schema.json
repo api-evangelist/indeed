@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Employer",
+  "type": "object",
+  "description": "An employer entity on Indeed representing a company or organization that posts jobs and manages candidates.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A globally unique employer identifier. For ATS partners, this typically combines the ATS system identifier with the employer's internal ID."
+    },
+    "employerName": {
+      "type": "string",
+      "description": "The display name of the employer as it appears on Indeed job listings and company pages."
+    },
+    "employerType": {
+      "type": "string",
+      "description": "The type of employer entity."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The timestamp when the employer was created on Indeed."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The timestamp when the employer was last updated."
+    }
+  }
+}

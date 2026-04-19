@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CountrySpecificAttributes",
+  "type": "object",
+  "description": "Country-scoped employer attributes. Provide an ISO 3166-1 two-letter country code to specify the country.",
+  "properties": {
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    "websiteUrl": {
+      "type": "string",
+      "description": "The employer's website URL for this country."
+    },
+    "phoneNumber": {
+      "type": "string",
+      "description": "The employer's contact phone number for this country."
+    }
+  }
+}

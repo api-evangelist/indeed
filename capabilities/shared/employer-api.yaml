@@ -1,0 +1,305 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Indeed Employer API"
+  description: "Indeed Employer API for managing employers, candidates, and job postings on the Indeed platform."
+  tags:
+    - Indeed
+    - Employment
+    - Hiring
+    - Job Postings
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      INDEED_ACCESS_TOKEN: INDEED_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: indeed
+      baseUri: https://apis.indeed.com
+      description: "Indeed Employer REST API for managing employers, candidates, and jobs."
+      authentication:
+        type: bearer
+        token: "{{INDEED_ACCESS_TOKEN}}"
+      resources:
+        - name: employers
+          path: /v1/employers
+          description: "Employer management."
+          operations:
+            - name: create-employer
+              method: POST
+              description: "Create a new employer entity."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  type: "{{tools.type}}"
+        - name: employer-details
+          path: /v1/employers/{employerId}
+          description: "Individual employer management."
+          operations:
+            - name: get-employer
+              method: GET
+              description: "Get employer details."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-employer
+              method: PATCH
+              description: "Update employer details."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+        - name: employer-registration
+          path: /v1/employers/{employerId}/candidate-sync
+          description: "Candidate sync registration."
+          operations:
+            - name: register-employer-candidate-sync
+              method: POST
+              description: "Register employer for candidate sync."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: candidates
+          path: /v1/employers/{employerId}/candidates
+          description: "Candidate management."
+          operations:
+            - name: list-candidates
+              method: GET
+              description: "List candidates for an employer."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by status."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: candidate-details
+          path: /v1/employers/{employerId}/candidates/{candidateId}
+          description: "Individual candidate management."
+          operations:
+            - name: get-candidate
+              method: GET
+              description: "Get candidate details."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+                - name: candidateId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Candidate ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: candidate-disposition
+          path: /v1/employers/{employerId}/candidates/{candidateId}/disposition
+          description: "Candidate disposition tracking."
+          operations:
+            - name: update-candidate-disposition
+              method: PUT
+              description: "Update candidate disposition status."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+                - name: candidateId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Candidate ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  status: "{{tools.status}}"
+        - name: jobs
+          path: /v1/employers/{employerId}/jobs
+          description: "Job posting management."
+          operations:
+            - name: create-job-posting
+              method: POST
+              description: "Create a new job posting."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  description: "{{tools.description}}"
+            - name: list-employer-jobs
+              method: GET
+              description: "List job postings for an employer."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: job-details
+          path: /v1/employers/{employerId}/jobs/{jobId}
+          description: "Individual job posting management."
+          operations:
+            - name: get-job-posting
+              method: GET
+              description: "Get job posting details."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+                - name: jobId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Job ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-job-posting
+              method: PATCH
+              description: "Update a job posting."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+                - name: jobId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Job ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+            - name: expire-job-posting
+              method: DELETE
+              description: "Expire a job posting."
+              inputParameters:
+                - name: employerId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Employer ID."
+                - name: jobId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Job ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: indeed-rest-api
+      resources:
+        - path: /v1/employers
+          name: employers
+          description: "Employer management."
+          operations:
+            - method: POST
+              name: create-employer
+              description: "Create employer."
+              call: "indeed.create-employer"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: indeed-mcp
+      transport: http
+      tools:
+        - name: create-employer
+          description: "Create an employer entity on Indeed."
+          hints:
+            readOnly: false
+          call: "indeed.create-employer"
+          outputParameters:
+            - type: object
+              mapping: "$."

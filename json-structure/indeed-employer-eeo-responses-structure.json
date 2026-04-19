@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EeoResponses",
+  "type": "object",
+  "properties": {
+    "gender": {
+      "type": "string"
+    },
+    "race": {
+      "type": "string"
+    },
+    "veteranStatus": {
+      "type": "string"
+    },
+    "disabilityStatus": {
+      "type": "string"
+    }
+  }
+}

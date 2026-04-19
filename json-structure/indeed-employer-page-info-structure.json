@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PageInfo",
+  "type": "object",
+  "properties": {
+    "hasNextPage": {
+      "type": "boolean"
+    },
+    "hasPreviousPage": {
+      "type": "boolean"
+    },
+    "startCursor": {
+      "type": "string"
+    },
+    "endCursor": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobPostingList",
+  "type": "object",
+  "description": "A paginated list of job postings.",
+  "properties": {
+    "jobPostings": {
+      "type": "array"
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of job postings matching the query."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "IndeedApplyConfig",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "postUrl": {
+      "type": "string"
+    },
+    "screenerQuestions": {
+      "type": "array"
+    },
+    "eeoEnabled": {
+      "type": "boolean"
+    }
+  }
+}

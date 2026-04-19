@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "JobPosting",
+  "type": "object",
+  "properties": {
+    "jobPostingId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "benefits": {
+      "type": "array"
+    },
+    "qualifications": {
+      "type": "array"
+    },
+    "employmentType": {
+      "type": "string"
+    },
+    "remoteWorkPolicy": {
+      "type": "string"
+    },
+    "employer": {
+      "type": "object"
+    },
+    "status": {
+      "type": "string"
+    },
+    "applicationUrl": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "expiresAt": {
+      "type": "string"
+    }
+  }
+}

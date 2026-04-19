@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Salary",
+  "type": "object",
+  "properties": {
+    "minimumAmount": {
+      "type": "number"
+    },
+    "maximumAmount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    }
+  }
+}

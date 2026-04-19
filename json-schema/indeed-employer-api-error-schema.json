@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApiError",
+  "type": "object",
+  "description": "An error returned by the Indeed API.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "A machine-readable error code."
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable description of the error."
+    },
+    "field": {
+      "type": "string",
+      "description": "The field that caused the error, if applicable."
+    }
+  }
+}

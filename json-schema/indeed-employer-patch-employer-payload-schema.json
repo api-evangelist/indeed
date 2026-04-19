@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PatchEmployerPayload",
+  "type": "object",
+  "description": "Response payload from a successful employer create or update operation.",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the operation succeeded."
+    },
+    "errors": {
+      "type": "array",
+      "description": "Any errors encountered during the operation."
+    }
+  }
+}

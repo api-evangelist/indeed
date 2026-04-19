@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ResumeFile",
+  "type": "object",
+  "properties": {
+    "fileName": {
+      "type": "string"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "data": {
+      "type": "string"
+    }
+  }
+}

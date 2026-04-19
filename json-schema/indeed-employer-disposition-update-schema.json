@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DispositionUpdate",
+  "type": "object",
+  "description": "An update to the disposition (application status) of a candidate for a specific job posting. Used to sync hiring pipeline status changes back to Indeed.",
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "description": "The unique identifier for the application."
+    },
+    "status": {
+      "type": "string",
+      "description": "The new disposition status for the application. Must be one of Indeed's predefined categories."
+    },
+    "statusUpdatedAt": {
+      "type": "string",
+      "description": "The timestamp when the status change occurred."
+    },
+    "rejectionReason": {
+      "type": "string",
+      "description": "The reason for rejection, if the status is REJECTED."
+    }
+  }
+}

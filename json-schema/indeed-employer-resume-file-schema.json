@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResumeFile",
+  "type": "object",
+  "description": "An uploaded resume file.",
+  "properties": {
+    "fileName": {
+      "type": "string",
+      "description": "The original filename of the uploaded resume."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The MIME type of the resume file."
+    },
+    "data": {
+      "type": "string",
+      "description": "The raw binary content of the resume file, Base64-encoded."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmployerRegistration",
+  "type": "object",
+  "description": "Registration of an employer for Candidate Sync integration, enabling candidate data synchronization between the ATS and Indeed.",
+  "properties": {
+    "employerId": {
+      "type": "string",
+      "description": "The employer's unique identifier."
+    },
+    "registrationStatus": {
+      "type": "string",
+      "description": "The current registration status."
+    },
+    "features": {
+      "type": "array",
+      "description": "Enabled Candidate Sync features for this employer."
+    },
+    "registeredAt": {
+      "type": "string",
+      "description": "When the employer was registered for Candidate Sync."
+    }
+  }
+}

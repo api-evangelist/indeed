@@ -1,0 +1,232 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Indeed Talent Acquisition"
+  description: "Unified workflow for managing the hiring pipeline including employer setup, job posting, candidate retrieval, and disposition tracking. Used by ATS partners and hiring platform developers."
+  tags:
+    - Indeed
+    - Talent Acquisition
+    - Hiring
+    - Job Postings
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      INDEED_ACCESS_TOKEN: INDEED_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: indeed
+      location: ./shared/employer-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: indeed-talent-api
+      description: "Unified REST API for Indeed talent acquisition workflows."
+      resources:
+        - path: /v1/employers
+          name: employers
+          description: "Employer management."
+          operations:
+            - method: POST
+              name: create-employer
+              description: "Create an employer entity."
+              call: "indeed.create-employer"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employers/{id}
+          name: employer-details
+          description: "Individual employer management."
+          operations:
+            - method: GET
+              name: get-employer
+              description: "Get employer details."
+              call: "indeed.get-employer"
+              with:
+                employerId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PATCH
+              name: update-employer
+              description: "Update employer details."
+              call: "indeed.update-employer"
+              with:
+                employerId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employers/{id}/candidates
+          name: candidates
+          description: "Candidate management."
+          operations:
+            - method: GET
+              name: list-candidates
+              description: "List candidates for an employer."
+              call: "indeed.list-candidates"
+              with:
+                employerId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employers/{id}/jobs
+          name: jobs
+          description: "Job posting management."
+          operations:
+            - method: GET
+              name: list-jobs
+              description: "List job postings."
+              call: "indeed.list-employer-jobs"
+              with:
+                employerId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-job
+              description: "Create a job posting."
+              call: "indeed.create-job-posting"
+              with:
+                employerId: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: indeed-talent-mcp
+      transport: http
+      description: "MCP server for AI-assisted Indeed talent acquisition."
+      tools:
+        - name: create-employer
+          description: "Create an employer entity on Indeed."
+          hints:
+            readOnly: false
+          call: "indeed.create-employer"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-employer
+          description: "Get employer details."
+          hints:
+            readOnly: true
+          call: "indeed.get-employer"
+          with:
+            employerId: "tools.employerId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-employer
+          description: "Update employer details."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "indeed.update-employer"
+          with:
+            employerId: "tools.employerId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: register-candidate-sync
+          description: "Register employer for candidate sync."
+          hints:
+            readOnly: false
+          call: "indeed.register-employer-candidate-sync"
+          with:
+            employerId: "tools.employerId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-candidates
+          description: "List candidates for an employer."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "indeed.list-candidates"
+          with:
+            employerId: "tools.employerId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-candidate
+          description: "Get candidate details."
+          hints:
+            readOnly: true
+          call: "indeed.get-candidate"
+          with:
+            employerId: "tools.employerId"
+            candidateId: "tools.candidateId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-disposition
+          description: "Update candidate disposition status."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "indeed.update-candidate-disposition"
+          with:
+            employerId: "tools.employerId"
+            candidateId: "tools.candidateId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-job-posting
+          description: "Create a job posting on Indeed."
+          hints:
+            readOnly: false
+          call: "indeed.create-job-posting"
+          with:
+            employerId: "tools.employerId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-employer-jobs
+          description: "List job postings for an employer."
+          hints:
+            readOnly: true
+          call: "indeed.list-employer-jobs"
+          with:
+            employerId: "tools.employerId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-job-posting
+          description: "Get job posting details."
+          hints:
+            readOnly: true
+          call: "indeed.get-job-posting"
+          with:
+            employerId: "tools.employerId"
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-job-posting
+          description: "Update a job posting."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "indeed.update-job-posting"
+          with:
+            employerId: "tools.employerId"
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: expire-job-posting
+          description: "Expire a job posting."
+          hints:
+            destructive: true
+            idempotent: true
+          call: "indeed.expire-job-posting"
+          with:
+            employerId: "tools.employerId"
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."

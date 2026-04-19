@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ScreenerQuestion",
+  "type": "object",
+  "description": "A screener question configured on a job posting.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the screener question."
+    },
+    "question": {
+      "type": "string",
+      "description": "The text of the question."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of expected response."
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether the candidate must answer this question."
+    },
+    "options": {
+      "type": "array",
+      "description": "Available options for select-type questions."
+    }
+  }
+}

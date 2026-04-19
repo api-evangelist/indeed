@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WorkingHours",
+  "type": "object",
+  "description": "Working hours and schedule information for the position.",
+  "properties": {
+    "hoursPerWeek": {
+      "type": "number",
+      "description": "Expected number of hours per week."
+    },
+    "schedule": {
+      "type": "string",
+      "description": "Description of the work schedule."
+    },
+    "shiftType": {
+      "type": "string",
+      "description": "The type of shift."
+    }
+  }
+}
