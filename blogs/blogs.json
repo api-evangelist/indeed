@@ -1,0 +1,13 @@
+{
+  "repo": "indeed",
+  "feeds": [
+    {
+      "source": "https://engineering.indeedblog.com/",
+      "feed_url": "https://engineering.indeedblog.com/feed/",
+      "saved": 10,
+      "title": "Indeed Engineering Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:29:31Z"
+}
