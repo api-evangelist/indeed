@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,34 +9,40 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Indeed
 providerId: indeed
-publisherName: Indeed
-serviceCategory: API
+publisherName: Indeed, Inc.
+serviceCategory: Recruiting + Job Advertising
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Careers
   - Employment
   - Hiring
-  - Job Search
-  - Jobs
   - Recruiting
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Indeed API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+description: FOCUS-aligned FinOps shape for Indeed. The dominant cost line is sponsored-job advertising
+  spend (cost-per-click or pay-per-applicant) consumed through the auction; API access for partners is
+  bundled into partner agreements rather than separately metered. FinOps practice for Indeed therefore
+  focuses on advertising-spend governance, not API-call accounting.
+notes: API itself is not separately billed; the FinOps focus is the advertising auction (CPC/PPA) and
+  the per-applicant economics it produces.
+sources:
+  - https://www.indeed.com/hire/how-indeed-works
+  - https://partners.indeed.com/
 principles:
   - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+    description: Use the Indeed Employer dashboard and Conversion Tracking / Apply API events to see
+      sponsored-job spend, clicks, applies, and hires per requisition.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Tag sponsored campaigns by department, requisition, and recruiter so spend can be charged
+      back to the hiring team.
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: Tune daily budgets and bids based on cost-per-applicant and quality-of-applicant signal;
+      pause low-performing campaigns automatically via the Sponsored Jobs API.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Designate a recruiting-marketing owner with monthly Indeed-spend budget; review cost-per-hire
+      and cost-per-quality-applicant in monthly hiring reviews.
 domains:
   - name: Understand Usage and Cost
     capabilities:
@@ -52,198 +59,84 @@ domains:
       - Unit Economics
   - name: Optimize Usage and Cost
     capabilities:
-      - Architecting for Cloud
       - Rate Optimization
       - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
   - name: Manage the FinOps Practice
     capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
       - Invoicing and Chargeback
       - Onboarding Workloads
-      - Intersecting Disciplines
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Auction-Priced Advertising
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
-    - Purchase
     - Tax
-    - Credit
     - Adjustment
+    - Credit
   chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Indeed
-  ServiceCategory: Developer Tools / API
+  ServiceName: Indeed Sponsored Jobs
+  ServiceCategory: Recruiting + Job Advertising
   ProviderName: Indeed
-  PublisherName: Indeed
-  InvoiceIssuerName: Indeed
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Indeed, Inc.
+  InvoiceIssuerName: Indeed, Inc.
+  PricingCategory: Pay-As-You-Go
+  PricingUnit: click
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: sponsored_clicks
+    description: Clicks on sponsored job postings (CPC model)
+    unit: click
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - requisition
+      - department
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: sponsored_applicants
+    description: Applicants attributed to sponsored placement (PPA model)
+    unit: applicant
     aggregation: sum
     dimensions:
-      - api
+      - requisition
+      - department
       - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
+  - name: campaign_budget
+    description: Daily / monthly campaign budgets configured
+    unit: USD-day
+    aggregation: max
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - campaign
+      - department
 apis:
-  - name: Indeed Job Search API
-    baseURL: https://api.indeed.com
-    tags:
-      - Deprecated
-      - Jobs
-      - Listings
-      - Search
-    serviceName: Indeed Job Search API
-    serviceCategory: API
-  - name: Indeed Publisher API
-    baseURL: https://api.indeed.com/ads
-    tags:
-      - Advertising
-      - Monetization
-      - Publisher
-    serviceName: Indeed Publisher API
-    serviceCategory: API
-  - name: Indeed Apply API
-    baseURL: https://api.indeed.com/apply
-    tags:
-      - Applications
-      - Apply
-      - Hiring
-    serviceName: Indeed Apply API
-    serviceCategory: API
   - name: Indeed Job Sync API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - ATS
-      - GraphQL
-      - Jobs
-      - Postings
-    serviceName: Indeed Job Sync API
+    baseURL: https://apis.indeed.com
     serviceCategory: API
   - name: Indeed Disposition Sync API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - Applications
-      - ATS
-      - Disposition
-      - GraphQL
-      - Tracking
-    serviceName: Indeed Disposition Sync API
+    baseURL: https://apis.indeed.com
     serviceCategory: API
   - name: Indeed Sponsored Jobs API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - Advertising
-      - Campaigns
-      - GraphQL
-      - Sponsored
-    serviceName: Indeed Sponsored Jobs API
+    baseURL: https://apis.indeed.com
     serviceCategory: API
-  - name: Indeed Job Update API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - GraphQL
-      - Jobs
-      - Updates
-      - Webhooks
-    serviceName: Indeed Job Update API
+  - name: Indeed Apply API
+    baseURL: https://apis.indeed.com
     serviceCategory: API
   - name: Indeed Real-time API
     baseURL: https://apis.indeed.com
-    tags:
-      - Events
-      - Real-Time
-      - SSE
-      - Streaming
-    serviceName: Indeed Real-time API
-    serviceCategory: API
-  - name: Indeed Interview API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - Deprecated
-      - GraphQL
-      - Interviews
-      - Scheduling
-      - Virtual
-    serviceName: Indeed Interview API
     serviceCategory: API
   - name: Indeed Employer API
     baseURL: https://apis.indeed.com
-    tags:
-      - ATS
-      - Candidates
-      - Employers
-      - Jobs
-    serviceName: Indeed Employer API
-    serviceCategory: API
-  - name: Indeed Employer Data API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - ATS
-      - Employers
-      - GraphQL
-    serviceName: Indeed Employer Data API
     serviceCategory: API
   - name: Indeed Conversion Tracking API
     baseURL: https://apis.indeed.com
-    tags:
-      - Analytics
-      - Conversion
-      - Reporting
-      - Tracking
-    serviceName: Indeed Conversion Tracking API
-    serviceCategory: API
-  - name: Indeed Employer Registration API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - ATS
-      - Candidate Sync
-      - Employers
-      - Registration
-    serviceName: Indeed Employer Registration API
-    serviceCategory: API
-  - name: Indeed Retrieve Candidates API
-    baseURL: https://apis.indeed.com/graphql
-    tags:
-      - Applications
-      - ATS
-      - Candidate Sync
-      - Candidates
-    serviceName: Indeed Retrieve Candidates API
     serviceCategory: API
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
+  - name: Cost per Applicant
+    metric: sponsored_spend / sponsored_applicants
     target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
+  - name: Cost per Hire
+    metric: sponsored_spend / hires
     target: TBD
 maintainers:
   - FN: Kin Lane
