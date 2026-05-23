@@ -1,0 +1,15 @@
+name: Indeed Domain Vocabulary
+provider: Indeed
+providerId: indeed
+description: Tag-derived vocabulary for the Indeed API surface; sourced from openapi/ tags.
+terms:
+- term: Candidates
+  description: Operations for retrieving and managing candidate applications. Part of the Candidate Sync APIs, these endpoints
+    enable ATS partners to fetch candidate and application data from Indeed on behalf of registered employers.
+- term: Employers
+  description: Operations for creating and managing employer profiles on Indeed. Employer entities must be created before
+    job postings can be associated with them. Supports global attributes such as employer name and type, as well as country-specific
+    attributes like website URL and phone number.
+- term: Jobs
+  description: Operations for creating, updating, expiring, and retrieving job postings on Indeed. Supports qualifications,
+    working hours, salary, benefits, employer information, and Indeed Apply configuration.

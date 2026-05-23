@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Resume",
+  "title": "Resume",
+  "type": "object",
+  "description": "A candidate's resume in multiple formats. The file field contains the uploaded resume document, while text, html, and json fields provide parsed representations.",
+  "properties": {
+    "file": {
+      "$ref": "#/components/schemas/ResumeFile"
+    },
+    "text": {
+      "type": "string",
+      "description": "Plain text representation of the resume content.",
+      "example": "example_value"
+    },
+    "html": {
+      "type": "string",
+      "description": "HTML-formatted representation of the resume content.",
+      "example": "example_value"
+    },
+    "json": {
+      "type": "object",
+      "description": "Structured JSON representation of the parsed resume, including sections for work experience, education, skills, and other fields.",
+      "additionalProperties": true,
+      "example": "example_value"
+    }
+  }
+}

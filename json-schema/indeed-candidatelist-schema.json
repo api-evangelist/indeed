@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CandidateList",
+  "title": "CandidateList",
+  "type": "object",
+  "description": "A paginated list of candidates.",
+  "properties": {
+    "candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Candidate"
+      },
+      "example": []
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of candidates matching the query.",
+      "example": 42
+    },
+    "pageInfo": {
+      "$ref": "#/components/schemas/PageInfo"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScreenerQuestionResponse",
+  "title": "ScreenerQuestionResponse",
+  "type": "object",
+  "description": "A candidate's response to a screener question on the job posting.",
+  "properties": {
+    "questionId": {
+      "type": "string",
+      "description": "The unique identifier of the screener question.",
+      "example": "500123"
+    },
+    "question": {
+      "type": "string",
+      "description": "The text of the screener question.",
+      "example": "Do you have a valid driver's license?"
+    },
+    "answer": {
+      "type": "string",
+      "description": "The candidate's answer to the question.",
+      "example": "Yes"
+    }
+  }
+}

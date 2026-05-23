@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobPosting",
+  "title": "JobPosting",
+  "type": "object",
+  "description": "A job posting on Indeed with all associated metadata including title, description, location, salary, benefits, qualifications, and application configuration.",
+  "required": [
+    "jobPostingId",
+    "title",
+    "description",
+    "location"
+  ],
+  "properties": {
+    "jobPostingId": {
+      "type": "string",
+      "description": "A unique identifier for the job posting within the source system. Used in combination with sourceName for upsert operations.",
+      "example": "JOB-2024-001"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the job posting. Maximum length of 75 characters.",
+      "maxLength": 75,
+      "example": "Senior Software Engineer"
+    },
+    "description": {
+      "type": "string",
+      "description": "The full description of the job posting including responsibilities, requirements, and other details. Must be between 30 and 20,000 characters.",
+      "minLength": 30,
+      "maxLength": 20000,
+      "example": "We are looking for a Senior Software Engineer to join our growing team..."
+    },
+    "location": {
+      "$ref": "#/components/schemas/JobLocation"
+    },
+    "salary": {
+      "$ref": "#/components/schemas/Salary"
+    },
+    "benefits": {
+      "type": "array",
+      "description": "Benefits offered with the position.",
+      "items": {
+        "$ref": "#/components/schemas/Benefit"
+      },
+      "example": []
+    },
+    "qualifications": {
+      "type": "array",
+      "description": "Required or preferred qualifications for the position.",
+      "items": {
+        "$ref": "#/components/schemas/Qualification"
+      },
+      "example": []
+    },
+    "workingHours": {
+      "$ref": "#/components/schemas/WorkingHours"
+    },
+    "employmentType": {
+      "type": "string",
+      "description": "The type of employment.",
+      "enum": [
+        "FULL_TIME",
+        "PART_TIME",
+        "CONTRACT",
+        "TEMPORARY",
+        "INTERNSHIP",
+        "VOLUNTEER"
+      ],
+      "example": "FULL_TIME"
+    },
+    "remoteWorkPolicy": {
+      "type": "string",
+      "description": "The remote work policy for the position.",
+      "enum": [
+        "ON_SITE",
+        "REMOTE",
+        "HYBRID"
+      ],
+      "example": "HYBRID"
+    },
+    "employer": {
+      "type": "object",
+      "description": "Reference to the employer posting this job.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The employer's unique identifier on Indeed."
+        },
+        "employerName": {
+          "type": "string",
+          "description": "The employer's display name."
+        }
+      },
+      "example": "example_value"
+    },
+    "source": {
+      "$ref": "#/components/schemas/JobSource"
+    },
+    "indeedApply": {
+      "$ref": "#/components/schemas/IndeedApplyConfig"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the job posting on Indeed.",
+      "enum": [
+        "ACTIVE",
+        "PAUSED",
+        "EXPIRED",
+        "CLOSED"
+      ],
+      "example": "ACTIVE"
+    },
+    "applicationUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL where candidates can apply for the position.",
+      "example": "https://www.example.com"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the job posting was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the job posting was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the job posting expires.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

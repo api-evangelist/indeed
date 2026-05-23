@@ -1,0 +1,317 @@
+{
+  "provider": "Indeed",
+  "providerId": "indeed",
+  "kind": "json-structure",
+  "description": "Structural overview of the Indeed API surface; extracted from openapi/.",
+  "schemaCount": 29,
+  "operationCount": 12,
+  "schemas": [
+    {
+      "name": "Employer",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "employerName"
+      ]
+    },
+    {
+      "name": "EmployerAttributes",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CountrySpecificAttributes",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "country"
+      ]
+    },
+    {
+      "name": "LocaleSpecificAttributes",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Address",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "PatchEmployerInput",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "PatchEmployerPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Candidate",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "id",
+        "name",
+        "email"
+      ]
+    },
+    {
+      "name": "Resume",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ResumeFile",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ScreenerQuestionResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "EeoResponses",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CandidateList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "JobPosting",
+      "type": "object",
+      "propertyCount": 18,
+      "required": [
+        "jobPostingId",
+        "title",
+        "description",
+        "location"
+      ]
+    },
+    {
+      "name": "JobLocation",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Salary",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Benefit",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Qualification",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "WorkingHours",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "JobSource",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "sourceName"
+      ]
+    },
+    {
+      "name": "IndeedApplyConfig",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ScreenerQuestion",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CreateJobPostingInput",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "jobPostings"
+      ]
+    },
+    {
+      "name": "CreateJobPostingPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "DispositionUpdate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "applicationId",
+        "status"
+      ]
+    },
+    {
+      "name": "PageInfo",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ApiError",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "JobPostingList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "EmployerRegistration",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/v1/employers",
+      "operationId": "createEmployer",
+      "summary": "Indeed Create an Employer",
+      "tags": [
+        "Employers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/employers/{employerId}",
+      "operationId": "getEmployer",
+      "summary": "Indeed Retrieve an Employer",
+      "tags": [
+        "Employers"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/v1/employers/{employerId}",
+      "operationId": "updateEmployer",
+      "summary": "Indeed Update an Employer",
+      "tags": [
+        "Employers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/employers/{employerId}/registration",
+      "operationId": "registerEmployerForCandidateSync",
+      "summary": "Indeed Register Employer for Candidate Sync",
+      "tags": [
+        "Employers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/employers/{employerId}/candidates",
+      "operationId": "listCandidates",
+      "summary": "Indeed List Candidates for an Employer",
+      "tags": [
+        "Candidates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/employers/{employerId}/candidates/{candidateId}",
+      "operationId": "getCandidate",
+      "summary": "Indeed Retrieve a Candidate",
+      "tags": [
+        "Candidates"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/employers/{employerId}/candidates/{candidateId}/disposition",
+      "operationId": "updateCandidateDisposition",
+      "summary": "Indeed Update Candidate Disposition",
+      "tags": [
+        "Candidates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/jobs",
+      "operationId": "createJobPostings",
+      "summary": "Indeed Create Job Postings",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/jobs/{jobPostingId}",
+      "operationId": "getJobPosting",
+      "summary": "Indeed Retrieve a Job Posting",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/v1/jobs/{jobPostingId}",
+      "operationId": "updateJobPosting",
+      "summary": "Indeed Update a Job Posting",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/jobs/{jobPostingId}",
+      "operationId": "expireJobPosting",
+      "summary": "Indeed Expire a Job Posting",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v1/employers/{employerId}/jobs",
+      "operationId": "listEmployerJobPostings",
+      "summary": "Indeed List Job Postings for an Employer",
+      "tags": [
+        "Jobs"
+      ]
+    }
+  ]
+}

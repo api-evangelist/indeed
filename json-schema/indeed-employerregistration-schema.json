@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployerRegistration",
+  "title": "EmployerRegistration",
+  "type": "object",
+  "description": "Registration of an employer for Candidate Sync integration, enabling candidate data synchronization between the ATS and Indeed.",
+  "properties": {
+    "employerId": {
+      "type": "string",
+      "description": "The employer's unique identifier.",
+      "example": "500123"
+    },
+    "registrationStatus": {
+      "type": "string",
+      "description": "The current registration status.",
+      "enum": [
+        "ACTIVE",
+        "PENDING",
+        "INACTIVE"
+      ],
+      "example": "ACTIVE"
+    },
+    "features": {
+      "type": "array",
+      "description": "Enabled Candidate Sync features for this employer.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "RETRIEVE_CANDIDATES",
+          "DISPOSITION_SYNC",
+          "INDEED_APPLY"
+        ]
+      },
+      "example": []
+    },
+    "registeredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the employer was registered for Candidate Sync.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

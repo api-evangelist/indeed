@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateJobPostingInput",
+  "title": "CreateJobPostingInput",
+  "type": "object",
+  "description": "Input for creating one or more job postings on Indeed via the Job Sync API.",
+  "required": [
+    "jobPostings"
+  ],
+  "properties": {
+    "jobPostings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JobPosting"
+      },
+      "description": "Array of job posting objects to create.",
+      "example": []
+    }
+  }
+}

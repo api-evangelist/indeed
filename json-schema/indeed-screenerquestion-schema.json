@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScreenerQuestion",
+  "title": "ScreenerQuestion",
+  "type": "object",
+  "description": "A screener question configured on a job posting.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the screener question.",
+      "example": "abc123"
+    },
+    "question": {
+      "type": "string",
+      "description": "The text of the question.",
+      "example": "Are you authorized to work in the United States?"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of expected response.",
+      "enum": [
+        "TEXT",
+        "BOOLEAN",
+        "SINGLE_SELECT",
+        "MULTI_SELECT",
+        "NUMERIC"
+      ],
+      "example": "BOOLEAN"
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether the candidate must answer this question.",
+      "example": true
+    },
+    "options": {
+      "type": "array",
+      "description": "Available options for select-type questions.",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    }
+  }
+}

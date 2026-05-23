@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Employer",
+  "title": "Employer",
+  "type": "object",
+  "description": "An employer entity on Indeed representing a company or organization that posts jobs and manages candidates.",
+  "required": [
+    "id",
+    "employerName"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A globally unique employer identifier. For ATS partners, this typically combines the ATS system identifier with the employer's internal ID.",
+      "example": "ats-partner_employer-12345"
+    },
+    "employerName": {
+      "type": "string",
+      "description": "The display name of the employer as it appears on Indeed job listings and company pages.",
+      "example": "Acme Corporation"
+    },
+    "employerType": {
+      "type": "string",
+      "description": "The type of employer entity.",
+      "enum": [
+        "DIRECT_EMPLOYER",
+        "STAFFING_AGENCY",
+        "RECRUITING_FIRM"
+      ],
+      "example": "DIRECT_EMPLOYER"
+    },
+    "employerAttributes": {
+      "$ref": "#/components/schemas/EmployerAttributes"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the employer was created on Indeed.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the employer was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

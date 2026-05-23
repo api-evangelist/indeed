@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LocaleSpecificAttributes",
+  "title": "LocaleSpecificAttributes",
+  "type": "object",
+  "description": "Locale-specific employer attributes for multilingual support.",
+  "properties": {
+    "locale": {
+      "type": "string",
+      "description": "IETF BCP 47 language tag.",
+      "example": "en-US"
+    },
+    "employerName": {
+      "type": "string",
+      "description": "Localized employer name.",
+      "example": "example_value"
+    },
+    "employerDescription": {
+      "type": "string",
+      "description": "Localized employer description.",
+      "example": "example_value"
+    }
+  }
+}

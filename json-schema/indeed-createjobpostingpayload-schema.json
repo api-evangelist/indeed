@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateJobPostingPayload",
+  "title": "CreateJobPostingPayload",
+  "type": "object",
+  "description": "Response payload from a job posting creation operation.",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "jobPostingId": {
+            "type": "string",
+            "description": "The ID of the created or updated job posting."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "UPDATED",
+              "FAILED"
+            ]
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "example": []
+    },
+    "totalCreated": {
+      "type": "integer",
+      "description": "Total number of job postings successfully created.",
+      "example": 10
+    },
+    "totalFailed": {
+      "type": "integer",
+      "description": "Total number of job postings that failed to create.",
+      "example": 10
+    }
+  }
+}

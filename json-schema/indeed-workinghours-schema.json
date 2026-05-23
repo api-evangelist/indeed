@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkingHours",
+  "title": "WorkingHours",
+  "type": "object",
+  "description": "Working hours and schedule information for the position.",
+  "properties": {
+    "hoursPerWeek": {
+      "type": "number",
+      "format": "double",
+      "description": "Expected number of hours per week.",
+      "example": 40
+    },
+    "schedule": {
+      "type": "string",
+      "description": "Description of the work schedule.",
+      "example": "Monday through Friday, 9 AM to 5 PM"
+    },
+    "shiftType": {
+      "type": "string",
+      "description": "The type of shift.",
+      "enum": [
+        "DAY",
+        "NIGHT",
+        "EVENING",
+        "ROTATING",
+        "FLEXIBLE"
+      ],
+      "example": "DAY"
+    }
+  }
+}

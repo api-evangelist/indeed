@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Benefit",
+  "title": "Benefit",
+  "type": "object",
+  "description": "A benefit offered with the job position.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of benefit.",
+      "enum": [
+        "HEALTH_INSURANCE",
+        "DENTAL_INSURANCE",
+        "VISION_INSURANCE",
+        "RETIREMENT_401K",
+        "PAID_TIME_OFF",
+        "PARENTAL_LEAVE",
+        "TUITION_REIMBURSEMENT",
+        "LIFE_INSURANCE",
+        "DISABILITY_INSURANCE",
+        "FLEXIBLE_SCHEDULE",
+        "REMOTE_WORK",
+        "RELOCATION_ASSISTANCE",
+        "EMPLOYEE_DISCOUNT",
+        "COMMUTER_BENEFITS",
+        "OTHER"
+      ],
+      "example": "HEALTH_INSURANCE"
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional details about the benefit.",
+      "example": "A sample description."
+    }
+  }
+}

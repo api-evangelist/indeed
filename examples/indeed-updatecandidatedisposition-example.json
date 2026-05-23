@@ -1,0 +1,17 @@
+{
+  "operationId": "updateCandidateDisposition",
+  "method": "PUT",
+  "path": "/v1/employers/{employerId}/candidates/{candidateId}/disposition",
+  "summary": "Indeed Update Candidate Disposition",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "applicationId": "app-123456",
+        "status": "INTERVIEWED",
+        "statusUpdatedAt": "2026-03-01T14:30:00Z"
+      }
+    }
+  ],
+  "responseExamples": []
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchEmployerPayload",
+  "title": "PatchEmployerPayload",
+  "type": "object",
+  "description": "Response payload from a successful employer create or update operation.",
+  "properties": {
+    "employer": {
+      "$ref": "#/components/schemas/Employer"
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the operation succeeded.",
+      "example": true
+    },
+    "errors": {
+      "type": "array",
+      "description": "Any errors encountered during the operation.",
+      "items": {
+        "$ref": "#/components/schemas/ApiError"
+      },
+      "example": []
+    }
+  }
+}

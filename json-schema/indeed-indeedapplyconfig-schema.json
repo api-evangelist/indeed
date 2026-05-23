@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndeedApplyConfig",
+  "title": "IndeedApplyConfig",
+  "type": "object",
+  "description": "Configuration for Indeed Apply integration on the job posting.",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether Indeed Apply is enabled for this job posting.",
+      "example": true
+    },
+    "postUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL where Indeed sends application data when a candidate applies through Indeed Apply.",
+      "example": "https://www.example.com"
+    },
+    "screenerQuestions": {
+      "type": "array",
+      "description": "Screener questions to present to candidates during application.",
+      "items": {
+        "$ref": "#/components/schemas/ScreenerQuestion"
+      },
+      "example": []
+    },
+    "eeoEnabled": {
+      "type": "boolean",
+      "description": "Whether EEO compliance questions are enabled. Available for US employers only.",
+      "example": true
+    }
+  }
+}

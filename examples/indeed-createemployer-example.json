@@ -1,0 +1,26 @@
+{
+  "operationId": "createEmployer",
+  "method": "POST",
+  "path": "/v1/employers",
+  "summary": "Indeed Create an Employer",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "id": "ats-partner_employer-12345",
+        "employerName": "Acme Corporation",
+        "employerAttributes": {
+          "employerType": "DIRECT_EMPLOYER",
+          "countrySpecificAttributes": [
+            {
+              "country": "US",
+              "websiteUrl": "https://www.acmecorp.com",
+              "phoneNumber": "+1-555-123-4567"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

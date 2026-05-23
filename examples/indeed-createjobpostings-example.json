@@ -1,0 +1,62 @@
+{
+  "operationId": "createJobPostings",
+  "method": "POST",
+  "path": "/v1/jobs",
+  "summary": "Indeed Create Job Postings",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "jobPostings": [
+          {
+            "jobPostingId": "JOB-2024-001",
+            "title": "Senior Software Engineer",
+            "description": "We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...",
+            "location": {
+              "city": "Austin",
+              "state": "TX",
+              "country": "US"
+            },
+            "salary": {
+              "minimumAmount": 120000,
+              "maximumAmount": 180000,
+              "currency": "USD",
+              "period": "YEARLY"
+            },
+            "employmentType": "FULL_TIME",
+            "benefits": [
+              {
+                "type": "HEALTH_INSURANCE"
+              },
+              {
+                "type": "PAID_TIME_OFF"
+              },
+              {
+                "type": "RETIREMENT_401K"
+              }
+            ],
+            "qualifications": [
+              {
+                "type": "EXPERIENCE",
+                "description": "5+ years of software development experience",
+                "required": true
+              },
+              {
+                "type": "EDUCATION",
+                "description": "Bachelor's degree in Computer Science or related field",
+                "required": false
+              }
+            ],
+            "source": {
+              "sourceName": "my-ats-platform"
+            },
+            "employer": {
+              "id": "ats-partner_employer-12345"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

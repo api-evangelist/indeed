@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchEmployerInput",
+  "title": "PatchEmployerInput",
+  "type": "object",
+  "description": "Input for creating or updating an employer on Indeed.",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A globally unique employer identifier composed of the ATS identifier and the employer's ID within that system.",
+      "example": "ats-partner_employer-12345"
+    },
+    "employerName": {
+      "type": "string",
+      "description": "The employer's display name. Required when creating a new employer, optional when updating an existing one.",
+      "example": "Acme Corporation"
+    },
+    "employerAttributes": {
+      "$ref": "#/components/schemas/EmployerAttributes"
+    }
+  }
+}

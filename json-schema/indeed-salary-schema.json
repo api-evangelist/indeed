@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Salary",
+  "title": "Salary",
+  "type": "object",
+  "description": "Salary or compensation details for the job posting.",
+  "properties": {
+    "minimumAmount": {
+      "type": "number",
+      "format": "double",
+      "description": "The minimum salary amount.",
+      "example": 120000
+    },
+    "maximumAmount": {
+      "type": "number",
+      "format": "double",
+      "description": "The maximum salary amount.",
+      "example": 180000
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code.",
+      "example": "USD"
+    },
+    "period": {
+      "type": "string",
+      "description": "The pay period for the salary.",
+      "enum": [
+        "HOURLY",
+        "DAILY",
+        "WEEKLY",
+        "BIWEEKLY",
+        "MONTHLY",
+        "YEARLY"
+      ],
+      "example": "YEARLY"
+    }
+  }
+}

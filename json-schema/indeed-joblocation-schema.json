@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobLocation",
+  "title": "JobLocation",
+  "type": "object",
+  "description": "The location of the job.",
+  "properties": {
+    "streetAddress": {
+      "type": "string",
+      "description": "Street address of the job location.",
+      "example": "example_value"
+    },
+    "city": {
+      "type": "string",
+      "description": "City where the job is located.",
+      "example": "Austin"
+    },
+    "state": {
+      "type": "string",
+      "description": "State, province, or region.",
+      "example": "TX"
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal or ZIP code.",
+      "example": "78701"
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code.",
+      "example": "US"
+    },
+    "formattedAddress": {
+      "type": "string",
+      "description": "A human-readable formatted address string.",
+      "example": "Austin, TX 78701, US"
+    }
+  }
+}
