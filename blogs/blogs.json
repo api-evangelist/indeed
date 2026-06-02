@@ -2,12 +2,17 @@
   "repo": "indeed",
   "feeds": [
     {
-      "source": "https://engineering.indeedblog.com/",
+      "source": "https://engineering.indeedblog.com/feed/",
       "feed_url": "https://engineering.indeedblog.com/feed/",
-      "title": "Indeed Engineering Blog",
-      "saved": 4
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://support.indeed.com/hc/en-us",
+      "error": "HTTPError"
     }
   ],
   "post_count": 14,
-  "fetched": "2026-05-17T20:20:35Z"
+  "fetched": "2026-06-01T23:35:02Z"
 }
