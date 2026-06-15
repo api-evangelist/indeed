@@ -1,0 +1,3667 @@
+{
+  "item": [
+    {
+      "id": "37b2afff-8834-40d5-94f9-423773a13fb5",
+      "name": "Candidates",
+      "description": {
+        "content": "Operations for retrieving and managing candidate applications. Part of the Candidate Sync APIs, these endpoints enable ATS partners to fetch candidate and application data from Indeed on behalf of registered employers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13c474f1-b3f2-4e1e-b53f-b605d1cfb0df",
+          "name": "Indeed List Candidates for an Employer",
+          "request": {
+            "name": "Indeed List Candidates for an Employer",
+            "description": {
+              "content": "Retrieves a paginated list of candidates who have applied to jobs posted by the specified employer. Part of the Candidate Sync APIs, this endpoint returns candidate and application information including the most recent unacknowledged applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId",
+                "candidates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter candidates by application status."
+                },
+                {
+                  "disabled": false,
+                  "key": "jobPostingId",
+                  "value": "<string>",
+                  "description": "Filter candidates by job posting ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "25",
+                  "description": "Number of candidates to return (max 100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Return only candidates who applied after this timestamp."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17953f6c-334c-4d1b-ae14-0030383212e5",
+              "name": "Candidates retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobPostingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 42,\n  \"pageInfo\": {\n    \"hasNextPage\": true,\n    \"hasPreviousPage\": true,\n    \"startCursor\": \"example_value\",\n    \"endCursor\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "449624e2-7e5e-48c1-93bc-91222d430a80",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobPostingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "727c8c90-a1f6-463c-a217-0e07dcc01d8c",
+              "name": "Insufficient permissions. The employer may not be registered for Candidate Sync.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobPostingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72955a36-2159-4d2f-8a4e-491c26055152",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobPostingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "815340b9-8e27-4ea1-8d1d-b8991a73186a",
+          "name": "Indeed Retrieve a Candidate",
+          "request": {
+            "name": "Indeed Retrieve a Candidate",
+            "description": {
+              "content": "Retrieves the full details of a specific candidate application, including personal information, resume, screener question responses, and EEO data if applicable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId",
+                "candidates",
+                ":candidateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "candidateId",
+                  "description": "(Required) The unique identifier of the candidate application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cadd4818-a870-4595-8f40-93ab77337aa0",
+              "name": "Candidate retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2\",\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane.smith@example.com\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"phoneNumber\": \"+1-555-987-6543\",\n  \"location\": \"Austin, TX\",\n  \"resume\": {\n    \"file\": {\n      \"fileName\": \"jane_smith_resume.pdf\",\n      \"contentType\": \"application/pdf\",\n      \"data\": \"example_value\"\n    },\n    \"text\": \"example_value\",\n    \"html\": \"example_value\",\n    \"json\": {\n      \"key_0\": 4653,\n      \"key_1\": \"string\"\n    }\n  },\n  \"coverLetter\": \"example_value\",\n  \"applicationStatus\": \"NEW\",\n  \"eeoResponses\": {\n    \"gender\": \"example_value\",\n    \"race\": \"example_value\",\n    \"veteranStatus\": \"example_value\",\n    \"disabilityStatus\": \"example_value\"\n  },\n  \"appliedAt\": \"2026-01-15T10:30:00Z\",\n  \"source\": \"indeed_apply\",\n  \"jobPostingId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6598f78-8d2b-482f-bc32-8dd5e102f7b6",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "588d662b-be8d-4f61-b406-936ccdfcd126",
+              "name": "Insufficient permissions to access this candidate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39640afa-6b62-4f24-863b-5025de3cc70d",
+              "name": "Candidate or employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b93e434-a0b2-4810-ad32-4856230e4f47",
+          "name": "Indeed Update Candidate Disposition",
+          "request": {
+            "name": "Indeed Update Candidate Disposition",
+            "description": {
+              "content": "Updates the disposition (application status) of a candidate for a specific job posting. This syncs the hiring pipeline status from the ATS back to Indeed, enabling accurate reporting and analytics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId",
+                "candidates",
+                ":candidateId",
+                "disposition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "candidateId",
+                  "description": "(Required) The unique identifier of the candidate application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"statusUpdatedAt\": \"<dateTime>\",\n  \"rejectionReason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "50bc6b33-f4d0-4bb4-a52e-1559e0c1abfb",
+              "name": "Disposition updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId",
+                    "disposition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationId\": \"app-123456\",\n  \"status\": \"INTERVIEWED\",\n  \"statusUpdatedAt\": \"2026-03-01T14:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6880870e-2f54-43c1-b112-bc96e8733b57",
+              "name": "Invalid disposition status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId",
+                    "disposition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationId\": \"app-123456\",\n  \"status\": \"INTERVIEWED\",\n  \"statusUpdatedAt\": \"2026-03-01T14:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "af8e507e-5131-4e39-a829-a1c289b773f3",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId",
+                    "disposition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationId\": \"app-123456\",\n  \"status\": \"INTERVIEWED\",\n  \"statusUpdatedAt\": \"2026-03-01T14:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b48f7c0-792d-4ea4-a0f8-27466c3b1900",
+              "name": "Candidate or employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "candidates",
+                    ":candidateId",
+                    "disposition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "candidateId",
+                      "description": "(Required) The unique identifier of the candidate application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationId\": \"app-123456\",\n  \"status\": \"INTERVIEWED\",\n  \"statusUpdatedAt\": \"2026-03-01T14:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fd95742e-8850-48bc-b861-0f291f47d9c4",
+      "name": "Employers",
+      "description": {
+        "content": "Operations for creating and managing employer profiles on Indeed. Employer entities must be created before job postings can be associated with them. Supports global attributes such as employer name and type, as well as country-specific attributes like website URL and phone number.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4750ee7-b39b-4a68-9323-95657379e12c",
+          "name": "Indeed Create an Employer",
+          "request": {
+            "name": "Indeed Create an Employer",
+            "description": {
+              "content": "Creates a new employer entity on Indeed. The employer name is required when creating a new employer. An employer must be created before job postings can be associated with it. Uses the patchEmployer mutation internally.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"<string>\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91db2327-e6e6-49d5-a69c-70b7abe951bf",
+              "name": "Employer created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f29fa436-ed82-4929-807b-6a589fdd9793",
+              "name": "Invalid input. Check the errors array for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89939872-1592-4d4d-a33f-2cd88c9bb408",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4565d2f-854b-43bc-a931-d8f57de33c4d",
+              "name": "Insufficient permissions to create employers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8212ed39-196e-450b-8598-d6bb29879999",
+              "name": "An employer with the given ID already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "abf687d5-5c90-4c66-8b78-258c2e5f07a0",
+              "name": "Rate limit exceeded. Retry after the specified delay.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d346e091-5ed6-4c13-8dcb-1e268f3cdbd7",
+          "name": "Indeed Retrieve an Employer",
+          "request": {
+            "name": "Indeed Retrieve an Employer",
+            "description": {
+              "content": "Retrieves the details of an existing employer by their unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e230fbe4-f62e-4795-a390-713939cb1d35",
+              "name": "Employer retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerType\": \"DIRECT_EMPLOYER\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  },\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "181bb078-f33d-4bd2-8da3-bd2b288f3841",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de03aa12-1a20-4081-8691-67c3016a2e06",
+              "name": "Insufficient permissions to access this employer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59636d05-27ba-4f84-8590-0e5d612f52dd",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9d534f1-ddda-4f67-93d8-942677d71c99",
+          "name": "Indeed Update an Employer",
+          "request": {
+            "name": "Indeed Update an Employer",
+            "description": {
+              "content": "Updates an existing employer entity on Indeed. Only the fields included in the request body are modified. The employer name is optional when updating.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"<string>\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db5f6bae-1a35-41bd-8a86-6d73965c8bc8",
+              "name": "Employer updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b9f54dd-801f-4126-8bd2-fdd284761eeb",
+              "name": "Invalid input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40d81dd6-00ee-441f-9b32-57e065b19bdb",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3bf323a-0c75-4874-a2a7-f2864566e813",
+              "name": "Insufficient permissions to update this employer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ea415cf-baf6-43ec-b850-1df010a5041d",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0432252e-68ca-481e-a972-88aac54ec8e3",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5218f96-5e76-4201-95a4-f39f364569c6",
+          "name": "Indeed Register Employer for Candidate Sync",
+          "request": {
+            "name": "Indeed Register Employer for Candidate Sync",
+            "description": {
+              "content": "Registers an employer for Candidate Sync integration, enabling the retrieval of candidate data and disposition synchronization between the ATS and Indeed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId",
+                "registration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer to register."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3bc11902-2415-48a4-b1b6-388c22b29ab6",
+              "name": "Employer registration updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to register."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employerId\": \"500123\",\n  \"registrationStatus\": \"ACTIVE\",\n  \"registeredAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "858832c3-743b-4256-8146-efb89fb2cc2f",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to register."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3dca84cc-0dfe-48c2-a63c-12fd2d748677",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to register."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0ee51c2c-34e0-4515-9fb4-10ac11b353a7",
+      "name": "Jobs",
+      "description": {
+        "content": "Operations for creating, updating, expiring, and retrieving job postings on Indeed. Supports qualifications, working hours, salary, benefits, employer information, and Indeed Apply configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2319030-3fd9-42ea-b8c2-640d97b64bb0",
+          "name": "Indeed Create Job Postings",
+          "request": {
+            "name": "Indeed Create Job Postings",
+            "description": {
+              "content": "Creates one or more job postings on Indeed. Requires a job title, description, location, benefits, and job source details. The underlying Indeed API uses the createSourcedJobPostings GraphQL mutation. To update an existing job posting, submit the same jobPostingId and sourceName values that were used at creation time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"<string>\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"<string>\"\n      },\n      \"employmentType\": \"<string>\",\n      \"remoteWorkPolicy\": \"<string>\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"<string>\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"<string>\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"<string>\"\n      },\n      \"employmentType\": \"<string>\",\n      \"remoteWorkPolicy\": \"<string>\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"<string>\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46b159a8-5e09-4a94-9685-75bb73743ddd",
+              "name": "Job postings created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCreated\": 10,\n  \"totalFailed\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c10aeae6-9707-41ed-b721-1ada708bcac9",
+              "name": "Invalid input. One or more job postings failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCreated\": 10,\n  \"totalFailed\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17b4fd01-1d39-4aca-8773-add44f04d678",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4488ff2d-dd69-4128-a0a9-98ce364f5425",
+              "name": "Insufficient permissions to create job postings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7cdf986-40dd-4d78-a0e1-2162d5dfd328",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c2cbcf0-9044-4b92-83b5-546726ff85c9",
+          "name": "Indeed Retrieve a Job Posting",
+          "request": {
+            "name": "Indeed Retrieve a Job Posting",
+            "description": {
+              "content": "Retrieves the details of a specific job posting by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":jobPostingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sourceName",
+                  "value": "<string>",
+                  "description": "The source name to scope the job posting lookup. Required when job posting IDs are not globally unique."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobPostingId",
+                  "description": "(Required) The unique identifier of the job posting."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "798652e5-0242-40f5-9b10-06e2fd61a6d0",
+              "name": "Job posting retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"string\",\n    \"employerName\": \"string\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43dc5948-3795-4052-97b8-5f14dc6f790e",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15615728-3bef-4fb4-a8fb-eab4861fdcf3",
+              "name": "Job posting not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7129b94a-4186-415b-83c7-11656dcb71ff",
+          "name": "Indeed Update a Job Posting",
+          "request": {
+            "name": "Indeed Update a Job Posting",
+            "description": {
+              "content": "Updates an existing job posting on Indeed. The same jobPostingId and sourceName that were used during creation must be provided. Uses the createSourcedJobPostings mutation with updated fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":jobPostingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobPostingId",
+                  "description": "(Required) The unique identifier of the job posting to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"<string>\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"<string>\"\n  },\n  \"employmentType\": \"<string>\",\n  \"remoteWorkPolicy\": \"<string>\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"<string>\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3fb3adac-a94a-4c4e-ba0c-ea6607c93add",
+              "name": "Job posting updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"string\",\n    \"employerName\": \"string\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fd377c8-be92-41c5-8548-8c68e17e03e7",
+              "name": "Invalid input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34a34a09-127d-492b-bff5-e304e16d6970",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2b85c7c-f7e2-48be-bf28-9dc58383fd55",
+              "name": "Job posting not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03a1578f-066c-4052-8e64-8bc33fb06fdb",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3405934c-765b-4c5a-bc36-08ecf11c11f4",
+          "name": "Indeed Expire a Job Posting",
+          "request": {
+            "name": "Indeed Expire a Job Posting",
+            "description": {
+              "content": "Expires (closes) a job posting on Indeed, removing it from active search results. This operation cannot be undone; a new job posting must be created to relist the position.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":jobPostingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sourceName",
+                  "value": "<string>",
+                  "description": "(Required) The source name used when the job posting was created."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobPostingId",
+                  "description": "(Required) The unique identifier of the job posting to expire."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf5693ea-c1cf-4943-9172-8091379497ab",
+              "name": "Job posting expired successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68d6ccb2-b864-4098-85c8-e52968d3144b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09e4cf72-b43f-4cc8-8f0f-54db4ff7851a",
+              "name": "Job posting not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8575b9cd-b134-4bbc-9428-d6db32e6b545",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9046ab62-e5ef-4eae-aa72-78d6eb4f18d8",
+          "name": "Indeed List Job Postings for an Employer",
+          "request": {
+            "name": "Indeed List Job Postings for an Employer",
+            "description": {
+              "content": "Retrieves a paginated list of job postings associated with a specific employer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter job postings by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "25",
+                  "description": "Number of job postings to return (max 100)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "447fbeee-ea3d-4ab2-8808-cfbecfef1d22",
+              "name": "Job postings retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 10,\n  \"pageInfo\": {\n    \"hasNextPage\": true,\n    \"hasPreviousPage\": true,\n    \"startCursor\": \"example_value\",\n    \"endCursor\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9aa1772-6250-4cde-953f-f507f50b0fd7",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d6832fc4-9cc2-4876-bc4c-d70d7fa25d13",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.indeed.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5826a47d-24e4-438f-9616-a9c02a5471fb",
+    "name": "Indeed Employer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Indeed Employer API provides a RESTful interface for managing employers, candidates, and job postings on the Indeed platform. This API enables ATS partners and hiring platforms to programmatically create and update employer profiles, retrieve and manage candidate applications, and synchronize job postings with Indeed's employment ecosystem.\n\nIndeed's native APIs use GraphQL via the `https://apis.indeed.com/graphql` endpoint. This OpenAPI specification represents a RESTful abstraction of the key employer-facing operations available through Indeed's partner APIs, covering the Employer Data API, Retrieve Candidates API, and Job Sync API.\n\n**Authentication**: All API requests require OAuth 2.0 Bearer Token authentication. Partners must register through the Indeed Partner Console to obtain client credentials.\n\n**Rate Limits**: API calls are subject to rate limiting. Consult the Indeed Partner documentation for current rate limit policies.\n\nContact Support:\n Name: Indeed API Support\n Email: opensource@indeed.com",
+      "type": "text/plain"
+    }
+  }
+}

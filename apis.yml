@@ -1,8 +1,9 @@
 aid: indeed
 name: Indeed
-description: Indeed is the world's largest job site, connecting millions of job seekers with employers across industries and
-  locations worldwide. Indeed offers a suite of APIs for applicant tracking systems, job boards, and hiring platforms to integrate
-  with its employment ecosystem.
+description: >-
+  Indeed is the world's largest job site, connecting millions of job seekers with employers across industries and
+  locations worldwide. Indeed offers a suite of APIs for applicant tracking systems, job boards, and hiring platforms to
+  integrate with its employment ecosystem.
 image: https://www.indeed.com/images/indeed-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/indeed/refs/heads/main/apis.yml
 created: '2025-01-01'
@@ -20,7 +21,8 @@ tags:
 apis:
 - aid: indeed:job-search
   name: Indeed Job Search API
-  description: Search for jobs by keyword, location, and other criteria. Returns job listings with details including title,
+  description: >-
+    Search for jobs by keyword, location, and other criteria. Returns job listings with details including title,
     company, location, and description. This API is deprecated and not available for new integrations.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://developer.indeed.com/docs/publisher-jobs/job-search
@@ -54,7 +56,8 @@ apis:
     url: https://www.indeed.com/publisher/signup
 - aid: indeed:apply
   name: Indeed Apply API
-  description: Allow job seekers to apply to your jobs directly through Indeed with a streamlined application process. Supports
+  description: >-
+    Allow job seekers to apply to your jobs directly through Indeed with a streamlined application process. Supports
     screener questions, EEO compliance for US employers, and disposition data integration.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/indeed-apply
@@ -70,7 +73,8 @@ apis:
     url: https://docs.indeed.com/indeed-apply/add-indeed-apply
 - aid: indeed:job-sync
   name: Indeed Job Sync API
-  description: A GraphQL API that enables ATS partners to create, upsert, expire, and get status for job postings on Indeed.
+  description: >-
+    A GraphQL API that enables ATS partners to create, upsert, expire, and get status for job postings on Indeed.
     Supports qualifications, working hours, salary, benefits, and employer information.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/job-sync-api/
@@ -93,16 +97,13 @@ apis:
     url: openapi/indeed-employer-api-openapi.yml
   - type: JSONLD
     url: json-ld/indeed-context.jsonld
-  - type: NaftikoCapability
-    url: capabilities/employer-candidates.yaml
-  - type: NaftikoCapability
-    url: capabilities/employer-employers.yaml
-  - type: NaftikoCapability
-    url: capabilities/employer-jobs.yaml
+  - url: graphql/indeed-graphql.md
+    type: GraphQL
 - aid: indeed:disposition-sync
   name: Indeed Disposition Sync API
-  description: A GraphQL API that enables ATS partners to send disposition data for Indeed Apply and non-Indeed Apply jobs
-    to Indeed, tracking application status changes through various stages of the hiring process.
+  description: >-
+    A GraphQL API that enables ATS partners to send disposition data for Indeed Apply and non-Indeed Apply jobs to
+    Indeed, tracking application status changes through various stages of the hiring process.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/disposition-sync-api/
   baseURL: https://apis.indeed.com/graphql
@@ -119,7 +120,8 @@ apis:
     url: https://docs.indeed.com/disposition-sync-api/disposition-sync-api-guide
 - aid: indeed:sponsored-jobs
   name: Indeed Sponsored Jobs API
-  description: A GraphQL API used to get information about and manage an employer's sponsored job campaigns on Indeed, including
+  description: >-
+    A GraphQL API used to get information about and manage an employer's sponsored job campaigns on Indeed, including
     campaign creation, budget management, and performance insights.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/sponsored-jobs-api/
@@ -138,7 +140,8 @@ apis:
     url: https://docs.indeed.com/api/sponsored-jobs-api/sponsored-jobs-api-reference
 - aid: indeed:job-update
   name: Indeed Job Update API
-  description: Allows partners to list and update job postings on Indeed, including adding metadata to ATS-sourced jobs for
+  description: >-
+    Allows partners to list and update job postings on Indeed, including adding metadata to ATS-sourced jobs for
     improved quality and sponsorship grouping, and subscribing to jobs lifecycle events via webhooks.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/job-update-api/
@@ -153,8 +156,9 @@ apis:
     url: https://docs.indeed.com/job-update-api/
 - aid: indeed:real-time
   name: Indeed Real-time API
-  description: Stream real-time server-sent events (SSE) to enable front-end applications to update instantly, supporting
-    event filtering, deduplication, and latency tracking.
+  description: >-
+    Stream real-time server-sent events (SSE) to enable front-end applications to update instantly, supporting event
+    filtering, deduplication, and latency tracking.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/real-time-api/get-started
   baseURL: https://apis.indeed.com
@@ -170,8 +174,9 @@ apis:
     url: https://docs.indeed.com/real-time-api/get-started
 - aid: indeed:interview
   name: Indeed Interview API
-  description: A GraphQL API for scheduling, updating, retrieving information about, and canceling virtual interview events
-    with job candidates. This API is deprecated.
+  description: >-
+    A GraphQL API for scheduling, updating, retrieving information about, and canceling virtual interview events with
+    job candidates. This API is deprecated.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/indeed-interview-api
   baseURL: https://apis.indeed.com/graphql
@@ -190,7 +195,8 @@ apis:
     url: https://docs.indeed.com/dev/reference/indeed-interview-api
 - aid: indeed:employer
   name: Indeed Employer API
-  description: A RESTful abstraction of Indeed's employer-facing partner APIs, providing unified access to employer management,
+  description: >-
+    A RESTful abstraction of Indeed's employer-facing partner APIs, providing unified access to employer management,
     candidate retrieval, and job posting operations.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/employers/operations/create-employer
@@ -228,8 +234,9 @@ apis:
     url: https://docs.indeed.com/getstarted/simulated-graphql-environment
 - aid: indeed:conversion-tracking
   name: Indeed Conversion Tracking API
-  description: Tracks candidate events such as job application page visits and completed applications from Indeed to your
-    site. Provides data for reporting, analytics dashboards, and apply-based bidding algorithms.
+  description: >-
+    Tracks candidate events such as job application page visits and completed applications from Indeed to your site.
+    Provides data for reporting, analytics dashboards, and apply-based bidding algorithms.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/conversion-tracking-api/conversion-tracking-getting-started
   baseURL: https://apis.indeed.com
@@ -245,7 +252,9 @@ apis:
     url: https://docs.indeed.com/api/conversion-tracking-api/conversion-tracking-api
 - aid: indeed:employer-registration
   name: Indeed Employer Registration API
-  description: Part of the Candidate Sync APIs, this API allows ATS partners to register employers for Candidate Sync integration.
+  description: >-
+    Part of the Candidate Sync APIs, this API allows ATS partners to register employers for Candidate Sync
+    integration.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/candidate-sync-apis/employer-registration-api/
   baseURL: https://apis.indeed.com/graphql
@@ -259,8 +268,9 @@ apis:
     url: https://docs.indeed.com/candidate-sync-apis/employer-registration-api/
 - aid: indeed:retrieve-candidates
   name: Indeed Retrieve Candidates API
-  description: Part of the Candidate Sync APIs, this API enables ATS partners to get candidate and application information
-    from Indeed on behalf of employers.
+  description: >-
+    Part of the Candidate Sync APIs, this API enables ATS partners to get candidate and application information from
+    Indeed on behalf of employers.
   image: https://www.indeed.com/images/indeed-logo.png
   humanURL: https://docs.indeed.com/candidate-sync-apis/retrieve-candidates-api/
   baseURL: https://apis.indeed.com/graphql
@@ -324,7 +334,8 @@ common:
 - type: UseCases
   data:
   - name: ATS Job Distribution
-    description: Automatically distribute job postings from applicant tracking systems to Indeed's marketplace with real-time
+    description: >-
+      Automatically distribute job postings from applicant tracking systems to Indeed's marketplace with real-time
       synchronization.
   - name: Candidate Pipeline Management
     description: Retrieve and manage candidates through the hiring pipeline with disposition tracking and status updates.
