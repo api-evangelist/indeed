@@ -52,7 +52,7 @@ apis:
   properties:
   - type: Documentation
     url: https://www.indeed.com/publisher/docs
-  - type: SignUp
+  - type: Signup
     url: https://www.indeed.com/publisher/signup
 - aid: indeed:apply
   name: Indeed Apply API
