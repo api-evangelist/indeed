@@ -287,6 +287,10 @@ apis:
   - type: JSONLD
     url: json-ld/indeed-context.jsonld
 common:
+- type: DomainSecurity
+  url: security/indeed-domain-security.yml
+- type: Authentication
+  url: authentication/indeed-authentication.yml
 - type: OAuthScopes
   url: scopes/indeed-scopes.yml
 - type: DeveloperPortal

@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/indeed-employer-api-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 Bearer Token authentication. Obtain access tokens through the Indeed
+    OAuth 2.0 authorization flow using your partner client credentials.
+  sources:
+  - openapi/indeed-employer-api-openapi.yml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.indeed.com/oauth/v2/tokens
+    scopes: 3
+  description: Indeed OAuth 2.0 authentication for partner applications.
+  sources:
+  - openapi/indeed-employer-api-openapi.yml

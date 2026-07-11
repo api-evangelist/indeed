@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: developer.indeed.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 30 03:04:10 2026 GMT
+  hsts: null
+- host: api.indeed.com
+  https: false
+- host: www.indeed.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 15 01:33:20 2026 GMT
+  hsts: null
+domains:
+- domain: indeed.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
