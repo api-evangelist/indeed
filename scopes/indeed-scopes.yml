@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/indeed-employer-api-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/indeed-employer-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://apis.indeed.com/oauth/v2/tokens
+  description: Indeed OAuth 2.0 authentication for partner applications.
+scopes:
+- scope: candidate_read
+  description: Read candidate and application data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/indeed-employer-api-openapi.yml
+- scope: employer_access
+  description: Access and manage employer data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/indeed-employer-api-openapi.yml
+- scope: job_posting_write
+  description: Create and manage job postings
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/indeed-employer-api-openapi.yml

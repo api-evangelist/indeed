@@ -287,6 +287,8 @@ apis:
   - type: JSONLD
     url: json-ld/indeed-context.jsonld
 common:
+- type: OAuthScopes
+  url: scopes/indeed-scopes.yml
 - type: DeveloperPortal
   url: https://opensource.indeedeng.io/
 - type: TermsOfService
