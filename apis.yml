@@ -287,6 +287,8 @@ apis:
   - type: JSONLD
     url: json-ld/indeed-context.jsonld
 common:
+- type: AgenticAccess
+  url: agentic-access/indeed-agentic-access.yml
 - type: DomainSecurity
   url: security/indeed-domain-security.yml
 - type: Authentication
