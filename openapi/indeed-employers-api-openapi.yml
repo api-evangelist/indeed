@@ -1,0 +1,421 @@
+openapi: 3.1.0
+info:
+  title: Indeed Employer Candidates Employers API
+  description: 'The Indeed Employer API provides a RESTful interface for managing employers, candidates, and job postings on the Indeed platform. This API enables ATS partners and hiring platforms to programmatically create and update employer profiles, retrieve and manage candidate applications, and synchronize job postings with Indeed''s employment ecosystem.
+
+
+    Indeed''s native APIs use GraphQL via the `https://apis.indeed.com/graphql` endpoint. This OpenAPI specification represents a RESTful abstraction of the key employer-facing operations available through Indeed''s partner APIs, covering the Employer Data API, Retrieve Candidates API, and Job Sync API.
+
+
+    **Authentication**: All API requests require OAuth 2.0 Bearer Token authentication. Partners must register through the Indeed Partner Console to obtain client credentials.
+
+
+    **Rate Limits**: API calls are subject to rate limiting. Consult the Indeed Partner documentation for current rate limit policies.'
+  version: 1.0.0
+  contact:
+    name: Indeed API Support
+    url: https://docs.indeed.com/support/
+    email: opensource@indeed.com
+  license:
+    name: Proprietary
+    url: https://docs.indeed.com/legal-terms/developer-agreement
+  termsOfService: https://www.indeed.com/legal/api-terms
+  x-logo:
+    url: https://www.indeed.com/images/indeed-logo.png
+servers:
+- url: https://apis.indeed.com
+  description: Indeed Production API Server
+security:
+- BearerAuth: []
+tags:
+- name: Employers
+  description: Operations for creating and managing employer profiles on Indeed. Employer entities must be created before job postings can be associated with them. Supports global attributes such as employer name and type, as well as country-specific attributes like website URL and phone number.
+paths:
+  /v1/employers:
+    post:
+      operationId: createEmployer
+      summary: Indeed Create an Employer
+      description: Creates a new employer entity on Indeed. The employer name is required when creating a new employer. An employer must be created before job postings can be associated with it. Uses the patchEmployer mutation internally.
+      tags:
+      - Employers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEmployerInput'
+            example:
+              id: ats-partner_employer-12345
+              employerName: Acme Corporation
+              employerAttributes:
+                employerType: DIRECT_EMPLOYER
+                countrySpecificAttributes:
+                - country: US
+                  websiteUrl: https://www.acmecorp.com
+                  phoneNumber: +1-555-123-4567
+      responses:
+        '201':
+          description: Employer created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '400':
+          description: Invalid input. Check the errors array for details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to create employers.
+        '409':
+          description: An employer with the given ID already exists.
+        '429':
+          description: Rate limit exceeded. Retry after the specified delay.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/employers/{employerId}:
+    get:
+      operationId: getEmployer
+      summary: Indeed Retrieve an Employer
+      description: Retrieves the details of an existing employer by their unique identifier.
+      tags:
+      - Employers
+      parameters:
+      - name: employerId
+        in: path
+        required: true
+        description: The unique identifier of the employer.
+        schema:
+          type: string
+        example: ats-partner_employer-12345
+      responses:
+        '200':
+          description: Employer retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employer'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to access this employer.
+        '404':
+          description: Employer not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateEmployer
+      summary: Indeed Update an Employer
+      description: Updates an existing employer entity on Indeed. Only the fields included in the request body are modified. The employer name is optional when updating.
+      tags:
+      - Employers
+      parameters:
+      - name: employerId
+        in: path
+        required: true
+        description: The unique identifier of the employer to update.
+        schema:
+          type: string
+        example: ats-partner_employer-12345
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchEmployerInput'
+      responses:
+        '200':
+          description: Employer updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '400':
+          description: Invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchEmployerPayload'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: Insufficient permissions to update this employer.
+        '404':
+          description: Employer not found.
+        '429':
+          description: Rate limit exceeded.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/employers/{employerId}/registration:
+    put:
+      operationId: registerEmployerForCandidateSync
+      summary: Indeed Register Employer for Candidate Sync
+      description: Registers an employer for Candidate Sync integration, enabling the retrieval of candidate data and disposition synchronization between the ATS and Indeed.
+      tags:
+      - Employers
+      parameters:
+      - name: employerId
+        in: path
+        required: true
+        description: The unique identifier of the employer to register.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                features:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - RETRIEVE_CANDIDATES
+                    - DISPOSITION_SYNC
+                    - INDEED_APPLY
+      responses:
+        '200':
+          description: Employer registration updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerRegistration'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: Employer not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    LocaleSpecificAttributes:
+      type: object
+      description: Locale-specific employer attributes for multilingual support.
+      properties:
+        locale:
+          type: string
+          description: IETF BCP 47 language tag.
+          example: en-US
+        employerName:
+          type: string
+          description: Localized employer name.
+          example: example_value
+        employerDescription:
+          type: string
+          description: Localized employer description.
+          example: example_value
+    Address:
+      type: object
+      description: A physical address.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address line.
+          example: 123 Main Street
+        streetAddress2:
+          type: string
+          description: Additional street address information.
+          example: Suite 400
+        city:
+          type: string
+          description: City name.
+          example: Austin
+        state:
+          type: string
+          description: State, province, or region.
+          example: TX
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+          example: '78701'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: US
+    PatchEmployerInput:
+      type: object
+      description: Input for creating or updating an employer on Indeed.
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A globally unique employer identifier composed of the ATS identifier and the employer's ID within that system.
+          example: ats-partner_employer-12345
+        employerName:
+          type: string
+          description: The employer's display name. Required when creating a new employer, optional when updating an existing one.
+          example: Acme Corporation
+        employerAttributes:
+          $ref: '#/components/schemas/EmployerAttributes'
+    Employer:
+      type: object
+      description: An employer entity on Indeed representing a company or organization that posts jobs and manages candidates.
+      required:
+      - id
+      - employerName
+      properties:
+        id:
+          type: string
+          description: A globally unique employer identifier. For ATS partners, this typically combines the ATS system identifier with the employer's internal ID.
+          example: ats-partner_employer-12345
+        employerName:
+          type: string
+          description: The display name of the employer as it appears on Indeed job listings and company pages.
+          example: Acme Corporation
+        employerType:
+          type: string
+          description: The type of employer entity.
+          enum:
+          - DIRECT_EMPLOYER
+          - STAFFING_AGENCY
+          - RECRUITING_FIRM
+          example: DIRECT_EMPLOYER
+        employerAttributes:
+          $ref: '#/components/schemas/EmployerAttributes'
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the employer was created on Indeed.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the employer was last updated.
+          example: '2026-01-15T10:30:00Z'
+    EmployerRegistration:
+      type: object
+      description: Registration of an employer for Candidate Sync integration, enabling candidate data synchronization between the ATS and Indeed.
+      properties:
+        employerId:
+          type: string
+          description: The employer's unique identifier.
+          example: '500123'
+        registrationStatus:
+          type: string
+          description: The current registration status.
+          enum:
+          - ACTIVE
+          - PENDING
+          - INACTIVE
+          example: ACTIVE
+        features:
+          type: array
+          description: Enabled Candidate Sync features for this employer.
+          items:
+            type: string
+            enum:
+            - RETRIEVE_CANDIDATES
+            - DISPOSITION_SYNC
+            - INDEED_APPLY
+          example: []
+        registeredAt:
+          type: string
+          format: date-time
+          description: When the employer was registered for Candidate Sync.
+          example: '2026-01-15T10:30:00Z'
+    EmployerAttributes:
+      type: object
+      description: Additional attributes for an employer, including both global and country-specific settings.
+      properties:
+        employerType:
+          type: string
+          description: The type classification of the employer.
+          enum:
+          - DIRECT_EMPLOYER
+          - STAFFING_AGENCY
+          - RECRUITING_FIRM
+          example: DIRECT_EMPLOYER
+        countrySpecificAttributes:
+          type: array
+          description: Attributes that vary by country, such as website URLs, phone numbers, and locale-specific information.
+          items:
+            $ref: '#/components/schemas/CountrySpecificAttributes'
+          example: []
+        localeSpecificAttributes:
+          type: array
+          description: Locale-specific employer attributes.
+          items:
+            $ref: '#/components/schemas/LocaleSpecificAttributes'
+          example: []
+    PatchEmployerPayload:
+      type: object
+      description: Response payload from a successful employer create or update operation.
+      properties:
+        employer:
+          $ref: '#/components/schemas/Employer'
+        success:
+          type: boolean
+          description: Whether the operation succeeded.
+          example: true
+        errors:
+          type: array
+          description: Any errors encountered during the operation.
+          items:
+            $ref: '#/components/schemas/ApiError'
+          example: []
+    ApiError:
+      type: object
+      description: An error returned by the Indeed API.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: INVALID_INPUT
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: The employer name field is required.
+        field:
+          type: string
+          description: The field that caused the error, if applicable.
+          example: employerName
+    CountrySpecificAttributes:
+      type: object
+      description: Country-scoped employer attributes. Provide an ISO 3166-1 two-letter country code to specify the country.
+      required:
+      - country
+      properties:
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          pattern: ^[A-Z]{2}$
+          example: US
+        websiteUrl:
+          type: string
+          format: uri
+          description: The employer's website URL for this country.
+          example: https://www.acmecorp.com
+        phoneNumber:
+          type: string
+          description: The employer's contact phone number for this country.
+          example: +1-555-123-4567
+        address:
+          $ref: '#/components/schemas/Address'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer Token authentication. Obtain access tokens through the Indeed OAuth 2.0 authorization flow using your partner client credentials.
+    OAuth2:
+      type: oauth2
+      description: Indeed OAuth 2.0 authentication for partner applications.
+      flows:
+        clientCredentials:
+          tokenUrl: https://apis.indeed.com/oauth/v2/tokens
+          scopes:
+            employer_access: Access and manage employer data
+            candidate_read: Read candidate and application data
+            job_posting_write: Create and manage job postings
+externalDocs:
+  description: Indeed Partner Documentation
+  url: https://docs.indeed.com/
