@@ -1,0 +1,1393 @@
+{
+  "info": {
+    "_postman_id": "eb53cad5-172b-4679-bd01-a77e2d1e9022",
+    "name": "Indeed Employer Candidates Jobs API",
+    "description": "The Indeed Employer API provides a RESTful interface for managing employers, candidates, and job postings on the Indeed platform. This API enables ATS partners and hiring platforms to programmatically create and update employer profiles, retrieve and manage candidate applications, and synchronize job postings with Indeed's employment ecosystem.\n\nIndeed's native APIs use GraphQL via the `https://apis.indeed.com/graphql` endpoint. This OpenAPI specification represents a RESTful abstraction of the key employer-facing operations available through Indeed's partner APIs, covering the Employer Data API, Retrieve Candidates API, and Job Sync API.\n\n**Authentication**: All API requests require OAuth 2.0 Bearer Token authentication. Partners must register through the Indeed Partner Console to obtain client credentials.\n\n**Rate Limits**: API calls are subject to rate limiting. Consult the Indeed Partner documentation for current rate limit policies.\n\nContact Support:\n Name: Indeed API Support\n Email: opensource@indeed.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:27.000Z",
+    "updatedAt": "2026-07-28T01:57:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-eb53cad5-172b-4679-bd01-a77e2d1e9022"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "jobs",
+          "item": [
+            {
+              "name": "{jobPostingId}",
+              "item": [
+                {
+                  "name": "Indeed Retrieve a Job Posting",
+                  "id": "316d6e86-fc3b-4608-8512-9bdce72c0e89",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs",
+                        ":jobPostingId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The source name to scope the job posting lookup. Required when job posting IDs are not globally unique.",
+                          "key": "sourceName",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "fe9c162a-97c7-46b9-8e47-b912554ef309",
+                          "key": "jobPostingId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the job posting."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of a specific job posting by its unique identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "bd0b2172-127e-47dc-87bc-b41898a53b4f",
+                      "name": "Job posting retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "query": [
+                            {
+                              "description": "The source name to scope the job posting lookup. Required when job posting IDs are not globally unique.",
+                              "key": "sourceName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-bd0b2172-127e-47dc-87bc-b41898a53b4f"
+                    },
+                    {
+                      "id": "f753ea46-ac06-47ac-93a6-da51efc71551",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "query": [
+                            {
+                              "description": "The source name to scope the job posting lookup. Required when job posting IDs are not globally unique.",
+                              "key": "sourceName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-f753ea46-ac06-47ac-93a6-da51efc71551"
+                    },
+                    {
+                      "id": "41b274a3-d4e3-448a-962c-095f2a5682ac",
+                      "name": "Job posting not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "query": [
+                            {
+                              "description": "The source name to scope the job posting lookup. Required when job posting IDs are not globally unique.",
+                              "key": "sourceName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-41b274a3-d4e3-448a-962c-095f2a5682ac"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-316d6e86-fc3b-4608-8512-9bdce72c0e89"
+                },
+                {
+                  "name": "Indeed Update a Job Posting",
+                  "id": "ecd5646d-8411-42f4-bf23-09fe32bf9daf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs/:jobPostingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs",
+                        ":jobPostingId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7c13d042-b8cc-47d7-afd0-3d0df257fc2f",
+                          "key": "jobPostingId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the job posting to update."
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing job posting on Indeed. The same jobPostingId and sourceName that were used during creation must be provided. Uses the createSourcedJobPostings mutation with updated fields."
+                  },
+                  "response": [
+                    {
+                      "id": "89e0416d-7528-4e9c-b63e-cdc69e282a17",
+                      "name": "Job posting updated successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-89e0416d-7528-4e9c-b63e-cdc69e282a17"
+                    },
+                    {
+                      "id": "299b8789-73f2-4443-97e8-14cf9c11b241",
+                      "name": "Invalid input.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-299b8789-73f2-4443-97e8-14cf9c11b241"
+                    },
+                    {
+                      "id": "932e6981-c7a5-4608-9540-3cf43cf67d8f",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-932e6981-c7a5-4608-9540-3cf43cf67d8f"
+                    },
+                    {
+                      "id": "930f27d6-66b1-42cd-a39b-affd531ad76a",
+                      "name": "Job posting not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-930f27d6-66b1-42cd-a39b-affd531ad76a"
+                    },
+                    {
+                      "id": "6d922295-cfa7-471c-85cd-d3ae4b681123",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"WEEKLY\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"PAID_TIME_OFF\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"VISION_INSURANCE\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"LICENSE\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"ROTATING\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"ON_SITE\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"TEXT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"MULTI_SELECT\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"PAUSED\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-6d922295-cfa7-471c-85cd-d3ae4b681123"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-ecd5646d-8411-42f4-bf23-09fe32bf9daf"
+                },
+                {
+                  "name": "Indeed Expire a Job Posting",
+                  "id": "cb8e7717-74ab-4f67-9f78-2319f34ee514",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs",
+                        ":jobPostingId"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The source name used when the job posting was created.",
+                          "key": "sourceName",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "60a8e2eb-048b-46b2-9945-cfd00267799d",
+                          "key": "jobPostingId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the job posting to expire."
+                        }
+                      ]
+                    },
+                    "description": "Expires (closes) a job posting on Indeed, removing it from active search results. This operation cannot be undone; a new job posting must be created to relist the position."
+                  },
+                  "response": [
+                    {
+                      "id": "95c949ac-c5ec-479a-bcc2-43addc88e821",
+                      "name": "Job posting expired successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The source name used when the job posting was created.",
+                              "key": "sourceName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-95c949ac-c5ec-479a-bcc2-43addc88e821"
+                    },
+                    {
+                      "id": "ac5e4963-1e92-4d6a-8fa8-9be995b58bd6",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The source name used when the job posting was created.",
+                              "key": "sourceName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-ac5e4963-1e92-4d6a-8fa8-9be995b58bd6"
+                    },
+                    {
+                      "id": "26c2591f-d627-420a-8d43-eef593f4e577",
+                      "name": "Job posting not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The source name used when the job posting was created.",
+                              "key": "sourceName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-26c2591f-d627-420a-8d43-eef593f4e577"
+                    },
+                    {
+                      "id": "b35885f4-4863-4d6e-879a-dccad0e5181f",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/jobs/:jobPostingId?sourceName=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "jobs",
+                            ":jobPostingId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The source name used when the job posting was created.",
+                              "key": "sourceName",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobPostingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-b35885f4-4863-4d6e-879a-dccad0e5181f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-cb8e7717-74ab-4f67-9f78-2319f34ee514"
+                }
+              ],
+              "id": "6d70db18-f81d-4cbf-9675-ac0c3bdc1645",
+              "createdAt": "2026-07-28T01:57:27.000Z",
+              "updatedAt": "2026-07-28T01:57:27.000Z",
+              "uid": "35240-6d70db18-f81d-4cbf-9675-ac0c3bdc1645"
+            },
+            {
+              "name": "Indeed Create Job Postings",
+              "id": "f1b3c2f3-7522-422d-9109-6c9c2e96b0ba",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"MONTHLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"RETIREMENT_401K\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"DAY\"\n      },\n      \"employmentType\": \"PART_TIME\",\n      \"remoteWorkPolicy\": \"HYBRID\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"BIWEEKLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"EMPLOYEE_DISCOUNT\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"ROTATING\"\n      },\n      \"employmentType\": \"INTERNSHIP\",\n      \"remoteWorkPolicy\": \"REMOTE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"SINGLE_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"MULTI_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"CLOSED\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ]
+                },
+                "description": "Creates one or more job postings on Indeed. Requires a job title, description, location, benefits, and job source details. The underlying Indeed API uses the createSourcedJobPostings GraphQL mutation. To update an existing job posting, submit the same jobPostingId and sourceName values that were used at creation time."
+              },
+              "response": [
+                {
+                  "id": "1e22b44c-a99d-49f9-91cf-59b38ccc0a3c",
+                  "name": "Job postings created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"MONTHLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"RETIREMENT_401K\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"DAY\"\n      },\n      \"employmentType\": \"PART_TIME\",\n      \"remoteWorkPolicy\": \"HYBRID\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"BIWEEKLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"EMPLOYEE_DISCOUNT\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"ROTATING\"\n      },\n      \"employmentType\": \"INTERNSHIP\",\n      \"remoteWorkPolicy\": \"REMOTE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"SINGLE_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"MULTI_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"CLOSED\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"results\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"status\": \"UPDATED\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"status\": \"CREATED\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"totalCreated\": \"<integer>\",\n  \"totalFailed\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-1e22b44c-a99d-49f9-91cf-59b38ccc0a3c"
+                },
+                {
+                  "id": "aa01b000-e33b-4cf9-9c88-7fef1384bccb",
+                  "name": "Invalid input. One or more job postings failed validation.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"MONTHLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"RETIREMENT_401K\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"DAY\"\n      },\n      \"employmentType\": \"PART_TIME\",\n      \"remoteWorkPolicy\": \"HYBRID\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"BIWEEKLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"EMPLOYEE_DISCOUNT\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"ROTATING\"\n      },\n      \"employmentType\": \"INTERNSHIP\",\n      \"remoteWorkPolicy\": \"REMOTE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"SINGLE_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"MULTI_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"CLOSED\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"results\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"status\": \"UPDATED\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"status\": \"CREATED\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\",\n          \"field\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"totalCreated\": \"<integer>\",\n  \"totalFailed\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-aa01b000-e33b-4cf9-9c88-7fef1384bccb"
+                },
+                {
+                  "id": "17ae7ae9-314d-4e20-81e0-393172fc9e65",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"MONTHLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"RETIREMENT_401K\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"DAY\"\n      },\n      \"employmentType\": \"PART_TIME\",\n      \"remoteWorkPolicy\": \"HYBRID\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"BIWEEKLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"EMPLOYEE_DISCOUNT\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"ROTATING\"\n      },\n      \"employmentType\": \"INTERNSHIP\",\n      \"remoteWorkPolicy\": \"REMOTE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"SINGLE_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"MULTI_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"CLOSED\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-17ae7ae9-314d-4e20-81e0-393172fc9e65"
+                },
+                {
+                  "id": "7776433f-fae3-4b94-ac79-da990d5d036b",
+                  "name": "Insufficient permissions to create job postings.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"MONTHLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"RETIREMENT_401K\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"DAY\"\n      },\n      \"employmentType\": \"PART_TIME\",\n      \"remoteWorkPolicy\": \"HYBRID\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"BIWEEKLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"EMPLOYEE_DISCOUNT\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"ROTATING\"\n      },\n      \"employmentType\": \"INTERNSHIP\",\n      \"remoteWorkPolicy\": \"REMOTE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"SINGLE_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"MULTI_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"CLOSED\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-7776433f-fae3-4b94-ac79-da990d5d036b"
+                },
+                {
+                  "id": "c0fb7f37-af31-4ffe-943b-5f7a35608ae6",
+                  "name": "Rate limit exceeded.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"MONTHLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"RETIREMENT_401K\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"LICENSE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"DAY\"\n      },\n      \"employmentType\": \"PART_TIME\",\n      \"remoteWorkPolicy\": \"HYBRID\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"BIWEEKLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"EMPLOYEE_DISCOUNT\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"ROTATING\"\n      },\n      \"employmentType\": \"INTERNSHIP\",\n      \"remoteWorkPolicy\": \"REMOTE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"SINGLE_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"MULTI_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"CLOSED\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-c0fb7f37-af31-4ffe-943b-5f7a35608ae6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:27.000Z",
+              "updatedAt": "2026-07-28T01:57:27.000Z",
+              "uid": "35240-f1b3c2f3-7522-422d-9109-6c9c2e96b0ba"
+            }
+          ],
+          "id": "3af7037c-cc1d-4854-95ce-352c1b5e72ad",
+          "createdAt": "2026-07-28T01:57:27.000Z",
+          "updatedAt": "2026-07-28T01:57:27.000Z",
+          "uid": "35240-3af7037c-cc1d-4854-95ce-352c1b5e72ad"
+        },
+        {
+          "name": "employers",
+          "item": [
+            {
+              "name": "{employerId}",
+              "item": [
+                {
+                  "name": "jobs",
+                  "item": [
+                    {
+                      "name": "Indeed List Job Postings for an Employer",
+                      "id": "dbffab3b-b5dd-4e0f-b825-f6ea768924bc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId/jobs?status=EXPIRED&after=<string>&first=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId",
+                            "jobs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter job postings by status.",
+                              "key": "status",
+                              "value": "EXPIRED"
+                            },
+                            {
+                              "description": "Cursor for forward pagination.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of job postings to return (max 100).",
+                              "key": "first",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "086827fc-0022-4c81-9fbe-dccdc9237c75",
+                              "key": "employerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the employer."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a paginated list of job postings associated with a specific employer."
+                      },
+                      "response": [
+                        {
+                          "id": "5b8c465b-ae18-402e-a788-0d3fe37f89c9",
+                          "name": "Job postings retrieved successfully.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/jobs?status=EXPIRED&after=<string>&first=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter job postings by status.",
+                                  "key": "status",
+                                  "value": "EXPIRED"
+                                },
+                                {
+                                  "description": "Cursor for forward pagination.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of job postings to return (max 100).",
+                                  "key": "first",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"BIWEEKLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"FLEXIBLE_SCHEDULE\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"ROTATING\"\n      },\n      \"employmentType\": \"TEMPORARY\",\n      \"remoteWorkPolicy\": \"REMOTE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"TEXT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"BOOLEAN\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"HOURLY\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"COMMUTER_BENEFITS\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"SKILL\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"EVENING\"\n      },\n      \"employmentType\": \"TEMPORARY\",\n      \"remoteWorkPolicy\": \"ON_SITE\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"SINGLE_SELECT\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"NUMERIC\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"ACTIVE\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"pageInfo\": {\n    \"hasNextPage\": \"<boolean>\",\n    \"hasPreviousPage\": \"<boolean>\",\n    \"startCursor\": \"<string>\",\n    \"endCursor\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:57:27.000Z",
+                          "updatedAt": "2026-07-28T01:57:27.000Z",
+                          "uid": "35240-5b8c465b-ae18-402e-a788-0d3fe37f89c9"
+                        },
+                        {
+                          "id": "04732c27-c25e-4306-9ffd-bd5e73a186df",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/jobs?status=EXPIRED&after=<string>&first=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter job postings by status.",
+                                  "key": "status",
+                                  "value": "EXPIRED"
+                                },
+                                {
+                                  "description": "Cursor for forward pagination.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of job postings to return (max 100).",
+                                  "key": "first",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:27.000Z",
+                          "updatedAt": "2026-07-28T01:57:27.000Z",
+                          "uid": "35240-04732c27-c25e-4306-9ffd-bd5e73a186df"
+                        },
+                        {
+                          "id": "2ba66089-596b-4464-9982-380ae9f04281",
+                          "name": "Employer not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/jobs?status=EXPIRED&after=<string>&first=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "jobs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter job postings by status.",
+                                  "key": "status",
+                                  "value": "EXPIRED"
+                                },
+                                {
+                                  "description": "Cursor for forward pagination.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of job postings to return (max 100).",
+                                  "key": "first",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:27.000Z",
+                          "updatedAt": "2026-07-28T01:57:27.000Z",
+                          "uid": "35240-2ba66089-596b-4464-9982-380ae9f04281"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:27.000Z",
+                      "updatedAt": "2026-07-28T01:57:27.000Z",
+                      "uid": "35240-dbffab3b-b5dd-4e0f-b825-f6ea768924bc"
+                    }
+                  ],
+                  "id": "fce615d9-2a99-425f-9b80-78c71dbd17d1",
+                  "createdAt": "2026-07-28T01:57:27.000Z",
+                  "updatedAt": "2026-07-28T01:57:27.000Z",
+                  "uid": "35240-fce615d9-2a99-425f-9b80-78c71dbd17d1"
+                }
+              ],
+              "id": "6c66e35a-4f0f-4c02-9858-e4a3b092747f",
+              "createdAt": "2026-07-28T01:57:27.000Z",
+              "updatedAt": "2026-07-28T01:57:27.000Z",
+              "uid": "35240-6c66e35a-4f0f-4c02-9858-e4a3b092747f"
+            }
+          ],
+          "id": "e1e29362-31cf-4ed5-b2d1-ae2de970cac8",
+          "createdAt": "2026-07-28T01:57:27.000Z",
+          "updatedAt": "2026-07-28T01:57:27.000Z",
+          "uid": "35240-e1e29362-31cf-4ed5-b2d1-ae2de970cac8"
+        }
+      ],
+      "id": "9922dff5-f886-4c74-a5cd-5d5cd4460d55",
+      "createdAt": "2026-07-28T01:57:27.000Z",
+      "updatedAt": "2026-07-28T01:57:27.000Z",
+      "uid": "35240-9922dff5-f886-4c74-a5cd-5d5cd4460d55"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://apis.indeed.com"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "provider": "indeed",
+  "sources": [
+    "indeed-candidates-api-openapi.yml",
+    "indeed-employers-api-openapi.yml",
+    "indeed-jobs-api-openapi.yml"
+  ],
+  "outputs": [
+    "indeed-candidates-api-openapi.yml",
+    "indeed-employers-api-openapi.yml",
+    "indeed-jobs-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

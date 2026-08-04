@@ -1,0 +1,972 @@
+{
+  "info": {
+    "_postman_id": "3068630a-b79f-46a9-9386-a6fcd762e7d8",
+    "name": "Indeed Employer Candidates API",
+    "description": "The Indeed Employer API provides a RESTful interface for managing employers, candidates, and job postings on the Indeed platform. This API enables ATS partners and hiring platforms to programmatically create and update employer profiles, retrieve and manage candidate applications, and synchronize job postings with Indeed's employment ecosystem.\n\nIndeed's native APIs use GraphQL via the `https://apis.indeed.com/graphql` endpoint. This OpenAPI specification represents a RESTful abstraction of the key employer-facing operations available through Indeed's partner APIs, covering the Employer Data API, Retrieve Candidates API, and Job Sync API.\n\n**Authentication**: All API requests require OAuth 2.0 Bearer Token authentication. Partners must register through the Indeed Partner Console to obtain client credentials.\n\n**Rate Limits**: API calls are subject to rate limiting. Consult the Indeed Partner documentation for current rate limit policies.\n\nContact Support:\n Name: Indeed API Support\n Email: opensource@indeed.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:25.000Z",
+    "updatedAt": "2026-07-28T01:57:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3068630a-b79f-46a9-9386-a6fcd762e7d8"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "employers",
+          "item": [
+            {
+              "name": "{employerId}",
+              "item": [
+                {
+                  "name": "candidates",
+                  "item": [
+                    {
+                      "name": "{candidateId}",
+                      "item": [
+                        {
+                          "name": "disposition",
+                          "item": [
+                            {
+                              "name": "Indeed Update Candidate Disposition",
+                              "id": "1d6aeeae-3782-4e55-a231-bb479043d2ba",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"applicationId\": \"<string>\",\n  \"status\": \"HIRED\",\n  \"statusUpdatedAt\": \"<dateTime>\",\n  \"rejectionReason\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId/disposition",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "employers",
+                                    ":employerId",
+                                    "candidates",
+                                    ":candidateId",
+                                    "disposition"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "deaa1bff-01ea-4172-95bd-35ec31b19b69",
+                                      "key": "employerId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the employer."
+                                    },
+                                    {
+                                      "id": "85c1a439-667d-4ab8-99dd-81693231cf1f",
+                                      "key": "candidateId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the candidate application."
+                                    }
+                                  ]
+                                },
+                                "description": "Updates the disposition (application status) of a candidate for a specific job posting. This syncs the hiring pipeline status from the ATS back to Indeed, enabling accurate reporting and analytics."
+                              },
+                              "response": [
+                                {
+                                  "id": "89fea2a8-5b53-47dc-9968-313ad55d7bba",
+                                  "name": "Disposition updated successfully.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"applicationId\": \"<string>\",\n  \"status\": \"HIRED\",\n  \"statusUpdatedAt\": \"<dateTime>\",\n  \"rejectionReason\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId/disposition",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "employers",
+                                        ":employerId",
+                                        "candidates",
+                                        ":candidateId",
+                                        "disposition"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "employerId"
+                                        },
+                                        {
+                                          "key": "candidateId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:57:25.000Z",
+                                  "updatedAt": "2026-07-28T01:57:25.000Z",
+                                  "uid": "35240-89fea2a8-5b53-47dc-9968-313ad55d7bba"
+                                },
+                                {
+                                  "id": "c8fb7e57-0068-41e5-81ce-a237ab624648",
+                                  "name": "Invalid disposition status.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"applicationId\": \"<string>\",\n  \"status\": \"HIRED\",\n  \"statusUpdatedAt\": \"<dateTime>\",\n  \"rejectionReason\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId/disposition",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "employers",
+                                        ":employerId",
+                                        "candidates",
+                                        ":candidateId",
+                                        "disposition"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "employerId"
+                                        },
+                                        {
+                                          "key": "candidateId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:57:25.000Z",
+                                  "updatedAt": "2026-07-28T01:57:25.000Z",
+                                  "uid": "35240-c8fb7e57-0068-41e5-81ce-a237ab624648"
+                                },
+                                {
+                                  "id": "0075dd09-e0a3-4d2b-9717-eea4a22133e1",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"applicationId\": \"<string>\",\n  \"status\": \"HIRED\",\n  \"statusUpdatedAt\": \"<dateTime>\",\n  \"rejectionReason\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId/disposition",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "employers",
+                                        ":employerId",
+                                        "candidates",
+                                        ":candidateId",
+                                        "disposition"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "employerId"
+                                        },
+                                        {
+                                          "key": "candidateId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:57:25.000Z",
+                                  "updatedAt": "2026-07-28T01:57:25.000Z",
+                                  "uid": "35240-0075dd09-e0a3-4d2b-9717-eea4a22133e1"
+                                },
+                                {
+                                  "id": "61e1d8ee-53f8-4400-af63-87719929d7d6",
+                                  "name": "Candidate or employer not found.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"applicationId\": \"<string>\",\n  \"status\": \"HIRED\",\n  \"statusUpdatedAt\": \"<dateTime>\",\n  \"rejectionReason\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId/disposition",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "employers",
+                                        ":employerId",
+                                        "candidates",
+                                        ":candidateId",
+                                        "disposition"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "employerId"
+                                        },
+                                        {
+                                          "key": "candidateId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:57:25.000Z",
+                                  "updatedAt": "2026-07-28T01:57:25.000Z",
+                                  "uid": "35240-61e1d8ee-53f8-4400-af63-87719929d7d6"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:57:25.000Z",
+                              "updatedAt": "2026-07-28T01:57:25.000Z",
+                              "uid": "35240-1d6aeeae-3782-4e55-a231-bb479043d2ba"
+                            }
+                          ],
+                          "id": "2fa3efe7-ca45-4f45-b18d-703c7c397b33",
+                          "createdAt": "2026-07-28T01:57:25.000Z",
+                          "updatedAt": "2026-07-28T01:57:25.000Z",
+                          "uid": "35240-2fa3efe7-ca45-4f45-b18d-703c7c397b33"
+                        },
+                        {
+                          "name": "Indeed Retrieve a Candidate",
+                          "id": "a15e3c40-aab2-44eb-bd7e-617a9b4bc5ef",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "candidates",
+                                ":candidateId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ce409d76-c6b5-4bf5-8125-2306e12418e6",
+                                  "key": "employerId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the employer."
+                                },
+                                {
+                                  "id": "b16a3766-4419-4f67-b140-3205aca1866b",
+                                  "key": "candidateId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the candidate application."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the full details of a specific candidate application, including personal information, resume, screener question responses, and EEO data if applicable."
+                          },
+                          "response": [
+                            {
+                              "id": "2bad8b24-59cd-4358-b1d1-51f10acd58cf",
+                              "name": "Candidate retrieved successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "employers",
+                                    ":employerId",
+                                    "candidates",
+                                    ":candidateId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "employerId"
+                                    },
+                                    {
+                                      "key": "candidateId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"location\": \"<string>\",\n  \"resume\": {\n    \"file\": {\n      \"fileName\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"data\": \"<string>\"\n    },\n    \"text\": \"<string>\",\n    \"html\": \"<string>\",\n    \"json\": {\n      \"Excepteur_4\": 60599721,\n      \"velit36\": \"fugiat voluptate Lorem minim laborum\",\n      \"ut_ea_\": -19685978\n    }\n  },\n  \"coverLetter\": \"<string>\",\n  \"applicationStatus\": \"REJECTED\",\n  \"screenerQuestionResponses\": [\n    {\n      \"questionId\": \"<string>\",\n      \"question\": \"<string>\",\n      \"answer\": \"<string>\"\n    },\n    {\n      \"questionId\": \"<string>\",\n      \"question\": \"<string>\",\n      \"answer\": \"<string>\"\n    }\n  ],\n  \"eeoResponses\": {\n    \"gender\": \"<string>\",\n    \"race\": \"<string>\",\n    \"veteranStatus\": \"<string>\",\n    \"disabilityStatus\": \"<string>\"\n  },\n  \"appliedAt\": \"<dateTime>\",\n  \"source\": \"<string>\",\n  \"jobPostingId\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:25.000Z",
+                              "updatedAt": "2026-07-28T01:57:25.000Z",
+                              "uid": "35240-2bad8b24-59cd-4358-b1d1-51f10acd58cf"
+                            },
+                            {
+                              "id": "1c5823b6-c746-415e-aefa-66faed15312f",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "employers",
+                                    ":employerId",
+                                    "candidates",
+                                    ":candidateId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "employerId"
+                                    },
+                                    {
+                                      "key": "candidateId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:57:25.000Z",
+                              "updatedAt": "2026-07-28T01:57:25.000Z",
+                              "uid": "35240-1c5823b6-c746-415e-aefa-66faed15312f"
+                            },
+                            {
+                              "id": "7b82acd5-fb82-4ccf-8a05-5f32ccdfc222",
+                              "name": "Insufficient permissions to access this candidate.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "employers",
+                                    ":employerId",
+                                    "candidates",
+                                    ":candidateId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "employerId"
+                                    },
+                                    {
+                                      "key": "candidateId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:57:25.000Z",
+                              "updatedAt": "2026-07-28T01:57:25.000Z",
+                              "uid": "35240-7b82acd5-fb82-4ccf-8a05-5f32ccdfc222"
+                            },
+                            {
+                              "id": "15bbdcd2-bb49-4667-83b3-89864343ec30",
+                              "name": "Candidate or employer not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/employers/:employerId/candidates/:candidateId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "employers",
+                                    ":employerId",
+                                    "candidates",
+                                    ":candidateId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "employerId"
+                                    },
+                                    {
+                                      "key": "candidateId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:57:25.000Z",
+                              "updatedAt": "2026-07-28T01:57:25.000Z",
+                              "uid": "35240-15bbdcd2-bb49-4667-83b3-89864343ec30"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:57:25.000Z",
+                          "updatedAt": "2026-07-28T01:57:25.000Z",
+                          "uid": "35240-a15e3c40-aab2-44eb-bd7e-617a9b4bc5ef"
+                        }
+                      ],
+                      "id": "33514b43-3990-4538-8585-99151fe30618",
+                      "createdAt": "2026-07-28T01:57:25.000Z",
+                      "updatedAt": "2026-07-28T01:57:25.000Z",
+                      "uid": "35240-33514b43-3990-4538-8585-99151fe30618"
+                    },
+                    {
+                      "name": "Indeed List Candidates for an Employer",
+                      "id": "74b373d3-d92c-4b38-b1f9-81d8ee37f19e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId/candidates?status=INTERVIEWED&jobPostingId=<string>&after=<string>&first=25&since=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId",
+                            "candidates"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter candidates by application status.",
+                              "key": "status",
+                              "value": "INTERVIEWED"
+                            },
+                            {
+                              "description": "Filter candidates by job posting ID.",
+                              "key": "jobPostingId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Cursor for forward pagination.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of candidates to return (max 100).",
+                              "key": "first",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Return only candidates who applied after this timestamp.",
+                              "key": "since",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "a94d7fd2-986c-4cca-9ead-9ef970e4a5f0",
+                              "key": "employerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the employer."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a paginated list of candidates who have applied to jobs posted by the specified employer. Part of the Candidate Sync APIs, this endpoint returns candidate and application information including the most recent unacknowledged applications."
+                      },
+                      "response": [
+                        {
+                          "id": "6404316a-f7f6-4be7-8498-07d7fdbaa188",
+                          "name": "Candidates retrieved successfully.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/candidates?status=INTERVIEWED&jobPostingId=<string>&after=<string>&first=25&since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "candidates"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter candidates by application status.",
+                                  "key": "status",
+                                  "value": "INTERVIEWED"
+                                },
+                                {
+                                  "description": "Filter candidates by job posting ID.",
+                                  "key": "jobPostingId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor for forward pagination.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of candidates to return (max 100).",
+                                  "key": "first",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Return only candidates who applied after this timestamp.",
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"candidates\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"location\": \"<string>\",\n      \"resume\": {\n        \"file\": {\n          \"fileName\": \"<string>\",\n          \"contentType\": \"<string>\",\n          \"data\": \"<string>\"\n        },\n        \"text\": \"<string>\",\n        \"html\": \"<string>\",\n        \"json\": {\n          \"ipsum6\": 38940175\n        }\n      },\n      \"coverLetter\": \"<string>\",\n      \"applicationStatus\": \"CONTACTED\",\n      \"screenerQuestionResponses\": [\n        {\n          \"questionId\": \"<string>\",\n          \"question\": \"<string>\",\n          \"answer\": \"<string>\"\n        },\n        {\n          \"questionId\": \"<string>\",\n          \"question\": \"<string>\",\n          \"answer\": \"<string>\"\n        }\n      ],\n      \"eeoResponses\": {\n        \"gender\": \"<string>\",\n        \"race\": \"<string>\",\n        \"veteranStatus\": \"<string>\",\n        \"disabilityStatus\": \"<string>\"\n      },\n      \"appliedAt\": \"<dateTime>\",\n      \"source\": \"<string>\",\n      \"jobPostingId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"location\": \"<string>\",\n      \"resume\": {\n        \"file\": {\n          \"fileName\": \"<string>\",\n          \"contentType\": \"<string>\",\n          \"data\": \"<string>\"\n        },\n        \"text\": \"<string>\",\n        \"html\": \"<string>\",\n        \"json\": {\n          \"ex__0\": 97560037.35512757\n        }\n      },\n      \"coverLetter\": \"<string>\",\n      \"applicationStatus\": \"INTERVIEWED\",\n      \"screenerQuestionResponses\": [\n        {\n          \"questionId\": \"<string>\",\n          \"question\": \"<string>\",\n          \"answer\": \"<string>\"\n        },\n        {\n          \"questionId\": \"<string>\",\n          \"question\": \"<string>\",\n          \"answer\": \"<string>\"\n        }\n      ],\n      \"eeoResponses\": {\n        \"gender\": \"<string>\",\n        \"race\": \"<string>\",\n        \"veteranStatus\": \"<string>\",\n        \"disabilityStatus\": \"<string>\"\n      },\n      \"appliedAt\": \"<dateTime>\",\n      \"source\": \"<string>\",\n      \"jobPostingId\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"pageInfo\": {\n    \"hasNextPage\": \"<boolean>\",\n    \"hasPreviousPage\": \"<boolean>\",\n    \"startCursor\": \"<string>\",\n    \"endCursor\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:57:25.000Z",
+                          "updatedAt": "2026-07-28T01:57:25.000Z",
+                          "uid": "35240-6404316a-f7f6-4be7-8498-07d7fdbaa188"
+                        },
+                        {
+                          "id": "93e4a510-8753-4c8a-a1fb-ee35c419c22e",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/candidates?status=INTERVIEWED&jobPostingId=<string>&after=<string>&first=25&since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "candidates"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter candidates by application status.",
+                                  "key": "status",
+                                  "value": "INTERVIEWED"
+                                },
+                                {
+                                  "description": "Filter candidates by job posting ID.",
+                                  "key": "jobPostingId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor for forward pagination.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of candidates to return (max 100).",
+                                  "key": "first",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Return only candidates who applied after this timestamp.",
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:25.000Z",
+                          "updatedAt": "2026-07-28T01:57:25.000Z",
+                          "uid": "35240-93e4a510-8753-4c8a-a1fb-ee35c419c22e"
+                        },
+                        {
+                          "id": "147cf759-d692-41fa-83b2-b2ac05d0a4a0",
+                          "name": "Insufficient permissions. The employer may not be registered for Candidate Sync.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/candidates?status=INTERVIEWED&jobPostingId=<string>&after=<string>&first=25&since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "candidates"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter candidates by application status.",
+                                  "key": "status",
+                                  "value": "INTERVIEWED"
+                                },
+                                {
+                                  "description": "Filter candidates by job posting ID.",
+                                  "key": "jobPostingId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor for forward pagination.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of candidates to return (max 100).",
+                                  "key": "first",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Return only candidates who applied after this timestamp.",
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:25.000Z",
+                          "updatedAt": "2026-07-28T01:57:25.000Z",
+                          "uid": "35240-147cf759-d692-41fa-83b2-b2ac05d0a4a0"
+                        },
+                        {
+                          "id": "558dd655-6d76-4b87-905e-10efe6a682a1",
+                          "name": "Employer not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/candidates?status=INTERVIEWED&jobPostingId=<string>&after=<string>&first=25&since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "candidates"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter candidates by application status.",
+                                  "key": "status",
+                                  "value": "INTERVIEWED"
+                                },
+                                {
+                                  "description": "Filter candidates by job posting ID.",
+                                  "key": "jobPostingId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Cursor for forward pagination.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Number of candidates to return (max 100).",
+                                  "key": "first",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Return only candidates who applied after this timestamp.",
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:25.000Z",
+                          "updatedAt": "2026-07-28T01:57:25.000Z",
+                          "uid": "35240-558dd655-6d76-4b87-905e-10efe6a682a1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:25.000Z",
+                      "updatedAt": "2026-07-28T01:57:25.000Z",
+                      "uid": "35240-74b373d3-d92c-4b38-b1f9-81d8ee37f19e"
+                    }
+                  ],
+                  "id": "86c1c061-50be-4500-ae26-4c874369b69c",
+                  "createdAt": "2026-07-28T01:57:25.000Z",
+                  "updatedAt": "2026-07-28T01:57:25.000Z",
+                  "uid": "35240-86c1c061-50be-4500-ae26-4c874369b69c"
+                }
+              ],
+              "id": "92b17b84-bd0a-4ce1-922c-70949ebbd880",
+              "createdAt": "2026-07-28T01:57:25.000Z",
+              "updatedAt": "2026-07-28T01:57:25.000Z",
+              "uid": "35240-92b17b84-bd0a-4ce1-922c-70949ebbd880"
+            }
+          ],
+          "id": "72861d13-345f-4591-87b5-d65d5ea197f8",
+          "createdAt": "2026-07-28T01:57:25.000Z",
+          "updatedAt": "2026-07-28T01:57:25.000Z",
+          "uid": "35240-72861d13-345f-4591-87b5-d65d5ea197f8"
+        }
+      ],
+      "id": "148bb585-c4be-4601-b48b-6dbff3980454",
+      "createdAt": "2026-07-28T01:57:25.000Z",
+      "updatedAt": "2026-07-28T01:57:25.000Z",
+      "uid": "35240-148bb585-c4be-4601-b48b-6dbff3980454"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://apis.indeed.com"
+    }
+  ]
+}

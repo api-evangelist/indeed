@@ -1,0 +1,1255 @@
+{
+  "info": {
+    "_postman_id": "7849b51a-b0f2-43bd-bc3c-68b8168b2ed3",
+    "name": "Indeed Employer Candidates Employers API",
+    "description": "The Indeed Employer API provides a RESTful interface for managing employers, candidates, and job postings on the Indeed platform. This API enables ATS partners and hiring platforms to programmatically create and update employer profiles, retrieve and manage candidate applications, and synchronize job postings with Indeed's employment ecosystem.\n\nIndeed's native APIs use GraphQL via the `https://apis.indeed.com/graphql` endpoint. This OpenAPI specification represents a RESTful abstraction of the key employer-facing operations available through Indeed's partner APIs, covering the Employer Data API, Retrieve Candidates API, and Job Sync API.\n\n**Authentication**: All API requests require OAuth 2.0 Bearer Token authentication. Partners must register through the Indeed Partner Console to obtain client credentials.\n\n**Rate Limits**: API calls are subject to rate limiting. Consult the Indeed Partner documentation for current rate limit policies.\n\nContact Support:\n Name: Indeed API Support\n Email: opensource@indeed.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:25.000Z",
+    "updatedAt": "2026-07-28T01:57:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7849b51a-b0f2-43bd-bc3c-68b8168b2ed3"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "employers",
+          "item": [
+            {
+              "name": "{employerId}",
+              "item": [
+                {
+                  "name": "registration",
+                  "item": [
+                    {
+                      "name": "Indeed Register Employer for Candidate Sync",
+                      "id": "b22afd3d-a9c5-4de3-a167-9755a71c4612",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"features\": [\n    \"RETRIEVE_CANDIDATES\",\n    \"DISPOSITION_SYNC\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId/registration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId",
+                            "registration"
+                          ],
+                          "variable": [
+                            {
+                              "id": "83f8de51-7656-40de-a6bc-6c64fc839328",
+                              "key": "employerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the employer to register."
+                            }
+                          ]
+                        },
+                        "description": "Registers an employer for Candidate Sync integration, enabling the retrieval of candidate data and disposition synchronization between the ATS and Indeed."
+                      },
+                      "response": [
+                        {
+                          "id": "a10e406c-7354-4469-af35-f02c25a2bea4",
+                          "name": "Employer registration updated successfully.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"features\": [\n    \"RETRIEVE_CANDIDATES\",\n    \"DISPOSITION_SYNC\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/registration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "registration"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"employerId\": \"<string>\",\n  \"registrationStatus\": \"INACTIVE\",\n  \"features\": [\n    \"DISPOSITION_SYNC\",\n    \"INDEED_APPLY\"\n  ],\n  \"registeredAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T01:57:26.000Z",
+                          "updatedAt": "2026-07-28T01:57:26.000Z",
+                          "uid": "35240-a10e406c-7354-4469-af35-f02c25a2bea4"
+                        },
+                        {
+                          "id": "0de2483f-ef52-49de-8bc8-980788fd7ab6",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"features\": [\n    \"RETRIEVE_CANDIDATES\",\n    \"DISPOSITION_SYNC\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/registration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "registration"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:26.000Z",
+                          "updatedAt": "2026-07-28T01:57:26.000Z",
+                          "uid": "35240-0de2483f-ef52-49de-8bc8-980788fd7ab6"
+                        },
+                        {
+                          "id": "4196d141-cfb8-4c83-b967-41ed991f6496",
+                          "name": "Employer not found.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"features\": [\n    \"RETRIEVE_CANDIDATES\",\n    \"DISPOSITION_SYNC\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/employers/:employerId/registration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "employers",
+                                ":employerId",
+                                "registration"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:26.000Z",
+                          "updatedAt": "2026-07-28T01:57:26.000Z",
+                          "uid": "35240-4196d141-cfb8-4c83-b967-41ed991f6496"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-b22afd3d-a9c5-4de3-a167-9755a71c4612"
+                    }
+                  ],
+                  "id": "98de44af-9e9d-4cf3-8298-0b5605415670",
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-98de44af-9e9d-4cf3-8298-0b5605415670"
+                },
+                {
+                  "name": "Indeed Retrieve an Employer",
+                  "id": "fbc03b0f-ef96-46c8-9850-39ac50ec5ee2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers/:employerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers",
+                        ":employerId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "70c7656a-22f0-4699-a727-4b54e4fc4162",
+                          "key": "employerId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the employer."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the details of an existing employer by their unique identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "e2281dba-274e-4dca-b127-855c1916e784",
+                      "name": "Employer retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerType\": \"RECRUITING_FIRM\",\n  \"employerAttributes\": {\n    \"employerType\": \"RECRUITING_FIRM\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"WF\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"HR\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-e2281dba-274e-4dca-b127-855c1916e784"
+                    },
+                    {
+                      "id": "56a8c557-ca3b-4c05-84bb-8e68ee4b3859",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-56a8c557-ca3b-4c05-84bb-8e68ee4b3859"
+                    },
+                    {
+                      "id": "ac98d3ce-dd95-4d44-9578-224b0a260217",
+                      "name": "Insufficient permissions to access this employer.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-ac98d3ce-dd95-4d44-9578-224b0a260217"
+                    },
+                    {
+                      "id": "e71f0cb5-3a4c-4b2c-8450-a6291286bcaf",
+                      "name": "Employer not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-e71f0cb5-3a4c-4b2c-8450-a6291286bcaf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-fbc03b0f-ef96-46c8-9850-39ac50ec5ee2"
+                },
+                {
+                  "name": "Indeed Update an Employer",
+                  "id": "672d5d64-1137-4160-babc-322efe1703e6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers/:employerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers",
+                        ":employerId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d0449dba-4696-43d2-b795-1271e1b97946",
+                          "key": "employerId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the employer to update."
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing employer entity on Indeed. Only the fields included in the request body are modified. The employer name is optional when updating."
+                  },
+                  "response": [
+                    {
+                      "id": "e70f2eb4-4a4b-40d2-977e-4a6e2833bcd8",
+                      "name": "Employer updated successfully.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\",\n    \"employerType\": \"STAFFING_AGENCY\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\",\n      \"countrySpecificAttributes\": [\n        {\n          \"country\": \"EE\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        },\n        {\n          \"country\": \"RB\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        }\n      ],\n      \"localeSpecificAttributes\": [\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        },\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        }\n      ]\n    },\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"success\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-e70f2eb4-4a4b-40d2-977e-4a6e2833bcd8"
+                    },
+                    {
+                      "id": "fbd7150e-7b24-449d-a299-1695130878e9",
+                      "name": "Invalid input.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\",\n    \"employerType\": \"STAFFING_AGENCY\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\",\n      \"countrySpecificAttributes\": [\n        {\n          \"country\": \"EE\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        },\n        {\n          \"country\": \"RB\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        }\n      ],\n      \"localeSpecificAttributes\": [\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        },\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        }\n      ]\n    },\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"success\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-fbd7150e-7b24-449d-a299-1695130878e9"
+                    },
+                    {
+                      "id": "efcd1a82-1750-4c55-81c1-ba714261a9e1",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-efcd1a82-1750-4c55-81c1-ba714261a9e1"
+                    },
+                    {
+                      "id": "1b9cc1fb-857b-472b-b151-cf2df8f1de3a",
+                      "name": "Insufficient permissions to update this employer.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-1b9cc1fb-857b-472b-b151-cf2df8f1de3a"
+                    },
+                    {
+                      "id": "67e21d5b-1315-421b-9587-ff04f187049d",
+                      "name": "Employer not found.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-67e21d5b-1315-421b-9587-ff04f187049d"
+                    },
+                    {
+                      "id": "c4d07dfd-8fac-4197-ab59-066202cc2dbf",
+                      "name": "Rate limit exceeded.",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/employers/:employerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "employers",
+                            ":employerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:26.000Z",
+                      "updatedAt": "2026-07-28T01:57:26.000Z",
+                      "uid": "35240-c4d07dfd-8fac-4197-ab59-066202cc2dbf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-672d5d64-1137-4160-babc-322efe1703e6"
+                }
+              ],
+              "id": "7f6623cf-b282-449f-9819-35db7e80755c",
+              "createdAt": "2026-07-28T01:57:26.000Z",
+              "updatedAt": "2026-07-28T01:57:26.000Z",
+              "uid": "35240-7f6623cf-b282-449f-9819-35db7e80755c"
+            },
+            {
+              "name": "Indeed Create an Employer",
+              "id": "ffb76e61-5249-45fc-8916-81c88c1d215e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/employers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "employers"
+                  ]
+                },
+                "description": "Creates a new employer entity on Indeed. The employer name is required when creating a new employer. An employer must be created before job postings can be associated with it. Uses the patchEmployer mutation internally."
+              },
+              "response": [
+                {
+                  "id": "33cf8b1d-501c-4d93-898a-c14af8213cda",
+                  "name": "Employer created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\",\n    \"employerType\": \"STAFFING_AGENCY\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\",\n      \"countrySpecificAttributes\": [\n        {\n          \"country\": \"EE\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        },\n        {\n          \"country\": \"RB\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        }\n      ],\n      \"localeSpecificAttributes\": [\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        },\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        }\n      ]\n    },\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"success\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-33cf8b1d-501c-4d93-898a-c14af8213cda"
+                },
+                {
+                  "id": "ff062fc9-1699-4dd0-a458-edd8a894a504",
+                  "name": "Invalid input. Check the errors array for details.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\",\n    \"employerType\": \"STAFFING_AGENCY\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\",\n      \"countrySpecificAttributes\": [\n        {\n          \"country\": \"EE\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        },\n        {\n          \"country\": \"RB\",\n          \"websiteUrl\": \"<uri>\",\n          \"phoneNumber\": \"<string>\",\n          \"address\": {\n            \"streetAddress\": \"<string>\",\n            \"streetAddress2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"postalCode\": \"<string>\",\n            \"country\": \"<string>\"\n          }\n        }\n      ],\n      \"localeSpecificAttributes\": [\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        },\n        {\n          \"locale\": \"<string>\",\n          \"employerName\": \"<string>\",\n          \"employerDescription\": \"<string>\"\n        }\n      ]\n    },\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  \"success\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-ff062fc9-1699-4dd0-a458-edd8a894a504"
+                },
+                {
+                  "id": "9518a261-1a2b-45e7-909a-aa01efb499ba",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-9518a261-1a2b-45e7-909a-aa01efb499ba"
+                },
+                {
+                  "id": "088cbdd1-1f81-48e3-9a46-940788b2cc52",
+                  "name": "Insufficient permissions to create employers.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-088cbdd1-1f81-48e3-9a46-940788b2cc52"
+                },
+                {
+                  "id": "082484fd-1f69-4d14-b552-e1e9c14d8ac0",
+                  "name": "An employer with the given ID already exists.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-082484fd-1f69-4d14-b552-e1e9c14d8ac0"
+                },
+                {
+                  "id": "829863ba-5ba0-442c-8736-dda057e5f28e",
+                  "name": "Rate limit exceeded. Retry after the specified delay.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"LD\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"VG\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/employers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "employers"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:57:26.000Z",
+                  "updatedAt": "2026-07-28T01:57:26.000Z",
+                  "uid": "35240-829863ba-5ba0-442c-8736-dda057e5f28e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:26.000Z",
+              "updatedAt": "2026-07-28T01:57:26.000Z",
+              "uid": "35240-ffb76e61-5249-45fc-8916-81c88c1d215e"
+            }
+          ],
+          "id": "1f7a7945-0ec6-4ac6-8b46-977f78e9163e",
+          "createdAt": "2026-07-28T01:57:26.000Z",
+          "updatedAt": "2026-07-28T01:57:26.000Z",
+          "uid": "35240-1f7a7945-0ec6-4ac6-8b46-977f78e9163e"
+        }
+      ],
+      "id": "2251a590-2d0d-4871-9b14-30ca4fd718a2",
+      "createdAt": "2026-07-28T01:57:26.000Z",
+      "updatedAt": "2026-07-28T01:57:26.000Z",
+      "uid": "35240-2251a590-2d0d-4871-9b14-30ca4fd718a2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://apis.indeed.com"
+    }
+  ]
+}
