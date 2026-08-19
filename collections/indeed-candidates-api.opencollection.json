@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indeed Employer Candidates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Candidates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Indeed List Candidates for an Employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.indeed.com/v1/employers/:employerId/candidates",
+            "params": [
+              {
+                "name": "employerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the employer."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter candidates by application status."
+              },
+              {
+                "name": "jobPostingId",
+                "value": "",
+                "type": "query",
+                "description": "Filter candidates by job posting ID."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination."
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Number of candidates to return (max 100)."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return only candidates who applied after this timestamp."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of candidates who have applied to jobs posted by the specified employer. Part of the Candidate Sync APIs, this endpoint returns candidate and application information including the most recent unacknowledged applications."
+        },
+        {
+          "info": {
+            "name": "Indeed Retrieve a Candidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.indeed.com/v1/employers/:employerId/candidates/:candidateId",
+            "params": [
+              {
+                "name": "employerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the employer."
+              },
+              {
+                "name": "candidateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the candidate application."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific candidate application, including personal information, resume, screener question responses, and EEO data if applicable."
+        },
+        {
+          "info": {
+            "name": "Indeed Update Candidate Disposition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.indeed.com/v1/employers/:employerId/candidates/:candidateId/disposition",
+            "params": [
+              {
+                "name": "employerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the employer."
+              },
+              {
+                "name": "candidateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the candidate application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the disposition (application status) of a candidate for a specific job posting. This syncs the hiring pipeline status from the ATS back to Indeed, enabling accurate reporting and analytics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

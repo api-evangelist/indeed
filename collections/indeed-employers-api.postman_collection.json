@@ -1,0 +1,1276 @@
+{
+  "item": [
+    {
+      "id": "f8a1e8be-d575-44f1-b644-363187213907",
+      "name": "Employers",
+      "description": {
+        "content": "Operations for creating and managing employer profiles on Indeed. Employer entities must be created before job postings can be associated with them. Supports global attributes such as employer name and type, as well as country-specific attributes like website URL and phone number.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5eb4814a-3439-46e1-81d3-07b6b50dad78",
+          "name": "Indeed Create an Employer",
+          "request": {
+            "name": "Indeed Create an Employer",
+            "description": {
+              "content": "Creates a new employer entity on Indeed. The employer name is required when creating a new employer. An employer must be created before job postings can be associated with it. Uses the patchEmployer mutation internally.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"<string>\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16475f42-b0a8-4209-a50e-0061cc1098f3",
+              "name": "Employer created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3d41e8e-4e6e-492d-a20c-830a48bf360d",
+              "name": "Invalid input. Check the errors array for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb9f8347-10e3-4fc0-b2ff-4260d6832773",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94247843-51fa-4fbe-82d2-cb6ca34b9abb",
+              "name": "Insufficient permissions to create employers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d5746bbe-cd24-48a0-814a-e83f024d02e1",
+              "name": "An employer with the given ID already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8b21a0d-bd00-4600-9cbb-a9db3f5b23e9",
+              "name": "Rate limit exceeded. Retry after the specified delay.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"US\",\n        \"websiteUrl\": \"https://www.acmecorp.com\",\n        \"phoneNumber\": \"+1-555-123-4567\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a27cc7dc-aacb-4cb9-a553-4e87de1186d0",
+          "name": "Indeed Retrieve an Employer",
+          "request": {
+            "name": "Indeed Retrieve an Employer",
+            "description": {
+              "content": "Retrieves the details of an existing employer by their unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93986cb2-ca23-4dc3-a147-b09009d2fbf2",
+              "name": "Employer retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerType\": \"DIRECT_EMPLOYER\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  },\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a43533b1-d925-4227-bc38-5a878b53b09d",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d50ef72-2680-47c0-8d50-d4b8d25dda5c",
+              "name": "Insufficient permissions to access this employer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ac5cd16-ad99-4d77-b086-6e27a8826af8",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e403b69-2838-4499-a377-6849856d7c79",
+          "name": "Indeed Update an Employer",
+          "request": {
+            "name": "Indeed Update an Employer",
+            "description": {
+              "content": "Updates an existing employer entity on Indeed. Only the fields included in the request body are modified. The employer name is optional when updating.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"employerName\": \"<string>\",\n  \"employerAttributes\": {\n    \"employerType\": \"<string>\",\n    \"countrySpecificAttributes\": [\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"country\": \"<string>\",\n        \"websiteUrl\": \"<uri>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"streetAddress\": \"<string>\",\n          \"streetAddress2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"localeSpecificAttributes\": [\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      },\n      {\n        \"locale\": \"<string>\",\n        \"employerName\": \"<string>\",\n        \"employerDescription\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "860d5b3b-29e2-4414-ac8b-77c4eaabb2e1",
+              "name": "Employer updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1133e2a-d11b-41bc-b37d-ede7ca9e2b96",
+              "name": "Invalid input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employer\": {\n    \"id\": \"ats-partner_employer-12345\",\n    \"employerName\": \"Acme Corporation\",\n    \"employerType\": \"DIRECT_EMPLOYER\",\n    \"employerAttributes\": {\n      \"employerType\": \"DIRECT_EMPLOYER\"\n    },\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d8ed24d-ffea-4f5e-aa05-02c85580ff97",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "308c3da0-cd9b-43dc-8a30-3f1fe2270758",
+              "name": "Insufficient permissions to update this employer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e405397-0431-45ae-a8ed-0f7b98e8aad7",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19459e80-7f86-4b66-aa39-87f89100279f",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"ats-partner_employer-12345\",\n  \"employerName\": \"Acme Corporation\",\n  \"employerAttributes\": {\n    \"employerType\": \"DIRECT_EMPLOYER\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d191eafe-97dd-41fb-b93d-a2e039c91aa1",
+          "name": "Indeed Register Employer for Candidate Sync",
+          "request": {
+            "name": "Indeed Register Employer for Candidate Sync",
+            "description": {
+              "content": "Registers an employer for Candidate Sync integration, enabling the retrieval of candidate data and disposition synchronization between the ATS and Indeed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId",
+                "registration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer to register."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ead711c-57d4-431f-bcc4-820272a31de0",
+              "name": "Employer registration updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to register."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employerId\": \"500123\",\n  \"registrationStatus\": \"ACTIVE\",\n  \"registeredAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2020fa8-9212-4644-b599-83a446ec19e8",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to register."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b02cd933-29e7-4c98-9aa3-fd44ee5edf6e",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer to register."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.indeed.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e15fc5d0-e66c-4a54-a39e-45f00488887b",
+    "name": "Indeed Employer Candidates Employers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Indeed Employer API provides a RESTful interface for managing employers, candidates, and job postings on the Indeed platform. This API enables ATS partners and hiring platforms to programmatically create and update employer profiles, retrieve and manage candidate applications, and synchronize job postings with Indeed's employment ecosystem.\n\nIndeed's native APIs use GraphQL via the `https://apis.indeed.com/graphql` endpoint. This OpenAPI specification represents a RESTful abstraction of the key employer-facing operations available through Indeed's partner APIs, covering the Employer Data API, Retrieve Candidates API, and Job Sync API.\n\n**Authentication**: All API requests require OAuth 2.0 Bearer Token authentication. Partners must register through the Indeed Partner Console to obtain client credentials.\n\n**Rate Limits**: API calls are subject to rate limiting. Consult the Indeed Partner documentation for current rate limit policies.\n\nContact Support:\n Name: Indeed API Support\n Email: opensource@indeed.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1423 @@
+{
+  "item": [
+    {
+      "id": "7d7780e9-f283-4f1b-8cfe-2d157bbd6a52",
+      "name": "Jobs",
+      "description": {
+        "content": "Operations for creating, updating, expiring, and retrieving job postings on Indeed. Supports qualifications, working hours, salary, benefits, employer information, and Indeed Apply configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d6ac2ae-6c59-48fc-8288-657b9e288fe2",
+          "name": "Indeed Create Job Postings",
+          "request": {
+            "name": "Indeed Create Job Postings",
+            "description": {
+              "content": "Creates one or more job postings on Indeed. Requires a job title, description, location, benefits, and job source details. The underlying Indeed API uses the createSourcedJobPostings GraphQL mutation. To update an existing job posting, submit the same jobPostingId and sourceName values that were used at creation time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"<string>\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"<string>\"\n      },\n      \"employmentType\": \"<string>\",\n      \"remoteWorkPolicy\": \"<string>\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"<string>\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    },\n    {\n      \"jobPostingId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"location\": {\n        \"streetAddress\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"formattedAddress\": \"<string>\"\n      },\n      \"salary\": {\n        \"minimumAmount\": \"<double>\",\n        \"maximumAmount\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"period\": \"<string>\"\n      },\n      \"benefits\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"description\": \"<string>\",\n          \"required\": \"<boolean>\"\n        }\n      ],\n      \"workingHours\": {\n        \"hoursPerWeek\": \"<double>\",\n        \"schedule\": \"<string>\",\n        \"shiftType\": \"<string>\"\n      },\n      \"employmentType\": \"<string>\",\n      \"remoteWorkPolicy\": \"<string>\",\n      \"employer\": {\n        \"id\": \"<string>\",\n        \"employerName\": \"<string>\"\n      },\n      \"source\": {\n        \"sourceName\": \"<string>\",\n        \"sourceUrl\": \"<uri>\"\n      },\n      \"indeedApply\": {\n        \"enabled\": \"<boolean>\",\n        \"postUrl\": \"<uri>\",\n        \"screenerQuestions\": [\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": \"<string>\",\n            \"question\": \"<string>\",\n            \"type\": \"<string>\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"eeoEnabled\": \"<boolean>\"\n      },\n      \"status\": \"<string>\",\n      \"applicationUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"expiresAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4bbd8ce-14af-4a3e-955a-691b243159d3",
+              "name": "Job postings created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCreated\": 10,\n  \"totalFailed\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6628fca0-7f07-47c5-8bce-3b7cd7b10b02",
+              "name": "Invalid input. One or more job postings failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCreated\": 10,\n  \"totalFailed\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ffc7aef-3a4d-4d21-a4b0-34eb0ab1a476",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be7e18b4-8fc2-455e-9e17-754ec70a1418",
+              "name": "Insufficient permissions to create job postings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "491ec050-07f1-4f01-a748-078414bb738d",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostings\": [\n    {\n      \"jobPostingId\": \"JOB-2024-001\",\n      \"title\": \"Senior Software Engineer\",\n      \"description\": \"We are looking for a Senior Software Engineer with 5+ years of experience in distributed systems...\",\n      \"location\": {\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"country\": \"US\"\n      },\n      \"salary\": {\n        \"minimumAmount\": 120000,\n        \"maximumAmount\": 180000,\n        \"currency\": \"USD\",\n        \"period\": \"YEARLY\"\n      },\n      \"employmentType\": \"FULL_TIME\",\n      \"benefits\": [\n        {\n          \"type\": \"HEALTH_INSURANCE\"\n        },\n        {\n          \"type\": \"PAID_TIME_OFF\"\n        },\n        {\n          \"type\": \"RETIREMENT_401K\"\n        }\n      ],\n      \"qualifications\": [\n        {\n          \"type\": \"EXPERIENCE\",\n          \"description\": \"5+ years of software development experience\",\n          \"required\": true\n        },\n        {\n          \"type\": \"EDUCATION\",\n          \"description\": \"Bachelor's degree in Computer Science or related field\",\n          \"required\": false\n        }\n      ],\n      \"source\": {\n        \"sourceName\": \"my-ats-platform\"\n      },\n      \"employer\": {\n        \"id\": \"ats-partner_employer-12345\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6010362a-ec64-4754-a460-e9e0796ae516",
+          "name": "Indeed Retrieve a Job Posting",
+          "request": {
+            "name": "Indeed Retrieve a Job Posting",
+            "description": {
+              "content": "Retrieves the details of a specific job posting by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":jobPostingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sourceName",
+                  "value": "<string>",
+                  "description": "The source name to scope the job posting lookup. Required when job posting IDs are not globally unique."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobPostingId",
+                  "description": "(Required) The unique identifier of the job posting."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e73fed34-e48f-491f-a067-844ed9ddf570",
+              "name": "Job posting retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"string\",\n    \"employerName\": \"string\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10cca406-36a7-4400-8d44-95dfff0e179b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97ad56cb-b861-4d5c-9aa9-daf03c0ae8da",
+              "name": "Job posting not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd5000d7-c63c-4b5c-a9db-f5620813b9ba",
+          "name": "Indeed Update a Job Posting",
+          "request": {
+            "name": "Indeed Update a Job Posting",
+            "description": {
+              "content": "Updates an existing job posting on Indeed. The same jobPostingId and sourceName that were used during creation must be provided. Uses the createSourcedJobPostings mutation with updated fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":jobPostingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobPostingId",
+                  "description": "(Required) The unique identifier of the job posting to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobPostingId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"location\": {\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"formattedAddress\": \"<string>\"\n  },\n  \"salary\": {\n    \"minimumAmount\": \"<double>\",\n    \"maximumAmount\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"period\": \"<string>\"\n  },\n  \"benefits\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"qualifications\": [\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"workingHours\": {\n    \"hoursPerWeek\": \"<double>\",\n    \"schedule\": \"<string>\",\n    \"shiftType\": \"<string>\"\n  },\n  \"employmentType\": \"<string>\",\n  \"remoteWorkPolicy\": \"<string>\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"<string>\",\n    \"sourceUrl\": \"<uri>\"\n  },\n  \"indeedApply\": {\n    \"enabled\": \"<boolean>\",\n    \"postUrl\": \"<uri>\",\n    \"screenerQuestions\": [\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"question\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"options\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"eeoEnabled\": \"<boolean>\"\n  },\n  \"status\": \"<string>\",\n  \"applicationUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9eb9325-9bdb-4b70-adca-8411ab672b58",
+              "name": "Job posting updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"string\",\n    \"employerName\": \"string\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4a70e84-7d50-48fb-8420-6439095d8a47",
+              "name": "Invalid input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "612ff55c-d901-40ad-a796-929618cfe835",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f0e45ab-ac19-4851-b9da-c3e7d0dcc50c",
+              "name": "Job posting not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f9df464-a658-4ff7-9917-36c4b9c18d9a",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobPostingId\": \"JOB-2024-001\",\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our growing team...\",\n  \"location\": {\n    \"streetAddress\": \"example_value\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postalCode\": \"78701\",\n    \"country\": \"US\",\n    \"formattedAddress\": \"Austin, TX 78701, US\"\n  },\n  \"salary\": {\n    \"minimumAmount\": 120000,\n    \"maximumAmount\": 180000,\n    \"currency\": \"USD\",\n    \"period\": \"YEARLY\"\n  },\n  \"workingHours\": {\n    \"hoursPerWeek\": 40,\n    \"schedule\": \"Monday through Friday, 9 AM to 5 PM\",\n    \"shiftType\": \"DAY\"\n  },\n  \"employmentType\": \"FULL_TIME\",\n  \"remoteWorkPolicy\": \"HYBRID\",\n  \"employer\": {\n    \"id\": \"<string>\",\n    \"employerName\": \"<string>\"\n  },\n  \"source\": {\n    \"sourceName\": \"my-ats-platform\",\n    \"sourceUrl\": \"https://www.example.com\"\n  },\n  \"indeedApply\": {\n    \"enabled\": true,\n    \"postUrl\": \"https://www.example.com\",\n    \"eeoEnabled\": true\n  },\n  \"status\": \"ACTIVE\",\n  \"applicationUrl\": \"https://www.example.com\",\n  \"createdAt\": \"2026-01-15T10:30:00Z\",\n  \"updatedAt\": \"2026-01-15T10:30:00Z\",\n  \"expiresAt\": \"2026-01-15T10:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5180e2cf-0209-4743-ae57-5573cbef0be3",
+          "name": "Indeed Expire a Job Posting",
+          "request": {
+            "name": "Indeed Expire a Job Posting",
+            "description": {
+              "content": "Expires (closes) a job posting on Indeed, removing it from active search results. This operation cannot be undone; a new job posting must be created to relist the position.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "jobs",
+                ":jobPostingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sourceName",
+                  "value": "<string>",
+                  "description": "(Required) The source name used when the job posting was created."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobPostingId",
+                  "description": "(Required) The unique identifier of the job posting to expire."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a300a6c8-809f-4f91-befa-462da7dd18b4",
+              "name": "Job posting expired successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "224ab474-a25b-49c9-8912-fc8d165be670",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a944a35a-6072-42c9-82ea-b99a5397ff0d",
+              "name": "Job posting not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "becb003b-dfe6-411d-8caa-c8e7a071bab3",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "jobs",
+                    ":jobPostingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobPostingId",
+                      "description": "(Required) The unique identifier of the job posting to expire."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7eba2737-0cfe-458f-a79a-8201a9c66a2a",
+          "name": "Indeed List Job Postings for an Employer",
+          "request": {
+            "name": "Indeed List Job Postings for an Employer",
+            "description": {
+              "content": "Retrieves a paginated list of job postings associated with a specific employer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employers",
+                ":employerId",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter job postings by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Cursor for forward pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "25",
+                  "description": "Number of job postings to return (max 100)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employerId",
+                  "description": "(Required) The unique identifier of the employer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ccdbf521-5929-41df-b66a-ceb34f36a9ac",
+              "name": "Job postings retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 10,\n  \"pageInfo\": {\n    \"hasNextPage\": true,\n    \"hasPreviousPage\": true,\n    \"startCursor\": \"example_value\",\n    \"endCursor\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6640f490-8bce-496c-9842-8d8fa43d806d",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65289169-7f15-4f93-89d7-9c03b01bd206",
+              "name": "Employer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employers",
+                    ":employerId",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employerId",
+                      "description": "(Required) The unique identifier of the employer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apis.indeed.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc9c8ce8-1b8e-4940-9289-74943de06e59",
+    "name": "Indeed Employer Candidates Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Indeed Employer API provides a RESTful interface for managing employers, candidates, and job postings on the Indeed platform. This API enables ATS partners and hiring platforms to programmatically create and update employer profiles, retrieve and manage candidate applications, and synchronize job postings with Indeed's employment ecosystem.\n\nIndeed's native APIs use GraphQL via the `https://apis.indeed.com/graphql` endpoint. This OpenAPI specification represents a RESTful abstraction of the key employer-facing operations available through Indeed's partner APIs, covering the Employer Data API, Retrieve Candidates API, and Job Sync API.\n\n**Authentication**: All API requests require OAuth 2.0 Bearer Token authentication. Partners must register through the Indeed Partner Console to obtain client credentials.\n\n**Rate Limits**: API calls are subject to rate limiting. Consult the Indeed Partner documentation for current rate limit policies.\n\nContact Support:\n Name: Indeed API Support\n Email: opensource@indeed.com",
+      "type": "text/plain"
+    }
+  }
+}

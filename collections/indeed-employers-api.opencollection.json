@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indeed Employer Candidates Employers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Indeed Create an Employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.indeed.com/v1/employers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new employer entity on Indeed. The employer name is required when creating a new employer. An employer must be created before job postings can be associated with it. Uses the patchEmployer mutation internally."
+        },
+        {
+          "info": {
+            "name": "Indeed Retrieve an Employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.indeed.com/v1/employers/:employerId",
+            "params": [
+              {
+                "name": "employerId",
+                "value": "ats-partner_employer-12345",
+                "type": "path",
+                "description": "The unique identifier of the employer."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of an existing employer by their unique identifier."
+        },
+        {
+          "info": {
+            "name": "Indeed Update an Employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://apis.indeed.com/v1/employers/:employerId",
+            "params": [
+              {
+                "name": "employerId",
+                "value": "ats-partner_employer-12345",
+                "type": "path",
+                "description": "The unique identifier of the employer to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing employer entity on Indeed. Only the fields included in the request body are modified. The employer name is optional when updating."
+        },
+        {
+          "info": {
+            "name": "Indeed Register Employer for Candidate Sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.indeed.com/v1/employers/:employerId/registration",
+            "params": [
+              {
+                "name": "employerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the employer to register."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers an employer for Candidate Sync integration, enabling the retrieval of candidate data and disposition synchronization between the ATS and Indeed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

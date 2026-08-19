@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Indeed Employer Candidates Jobs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Indeed Create Job Postings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apis.indeed.com/v1/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more job postings on Indeed. Requires a job title, description, location, benefits, and job source details. The underlying Indeed API uses the createSourcedJobPostings GraphQL mutation. To update an existing job posting, submit the same jobPostingId and sourceName values that were used at creation time."
+        },
+        {
+          "info": {
+            "name": "Indeed Retrieve a Job Posting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.indeed.com/v1/jobs/:jobPostingId",
+            "params": [
+              {
+                "name": "jobPostingId",
+                "value": "JOB-2024-001",
+                "type": "path",
+                "description": "The unique identifier of the job posting."
+              },
+              {
+                "name": "sourceName",
+                "value": "",
+                "type": "query",
+                "description": "The source name to scope the job posting lookup. Required when job posting IDs are not globally unique."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific job posting by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Indeed Update a Job Posting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://apis.indeed.com/v1/jobs/:jobPostingId",
+            "params": [
+              {
+                "name": "jobPostingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the job posting to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing job posting on Indeed. The same jobPostingId and sourceName that were used during creation must be provided. Uses the createSourcedJobPostings mutation with updated fields."
+        },
+        {
+          "info": {
+            "name": "Indeed Expire a Job Posting",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://apis.indeed.com/v1/jobs/:jobPostingId",
+            "params": [
+              {
+                "name": "jobPostingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the job posting to expire."
+              },
+              {
+                "name": "sourceName",
+                "value": "",
+                "type": "query",
+                "description": "The source name used when the job posting was created."
+              }
+            ]
+          },
+          "docs": "Expires (closes) a job posting on Indeed, removing it from active search results. This operation cannot be undone; a new job posting must be created to relist the position."
+        },
+        {
+          "info": {
+            "name": "Indeed List Job Postings for an Employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apis.indeed.com/v1/employers/:employerId/jobs",
+            "params": [
+              {
+                "name": "employerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the employer."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter job postings by status."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for forward pagination."
+              },
+              {
+                "name": "first",
+                "value": "",
+                "type": "query",
+                "description": "Number of job postings to return (max 100)."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of job postings associated with a specific employer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
