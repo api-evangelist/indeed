@@ -29,6 +29,13 @@ tags:
 - Employment
 - Hiring
 - Job Search
+- Job
+- Recruiting
+tags_raw:
+- Careers
+- Employment
+- Hiring
+- Job Search
 - Jobs
 - Recruiting
 apis:
@@ -41,6 +48,11 @@ apis:
   humanURL: https://developer.indeed.com/docs/publisher-jobs/job-search
   baseURL: https://api.indeed.com
   tags:
+  - Deprecated
+  - Job
+  - Listings
+  - Search
+  tags_raw:
   - Deprecated
   - Jobs
   - Listings
@@ -62,6 +74,10 @@ apis:
   tags:
   - Advertising
   - Monetization
+  - Publishers
+  tags_raw:
+  - Advertising
+  - Monetization
   - Publisher
   properties:
   - type: Documentation
@@ -77,6 +93,10 @@ apis:
   humanURL: https://docs.indeed.com/indeed-apply
   baseURL: https://api.indeed.com/apply
   tags:
+  - Application
+  - Apply
+  - Hiring
+  tags_raw:
   - Applications
   - Apply
   - Hiring
@@ -94,6 +114,12 @@ apis:
   humanURL: https://docs.indeed.com/disposition-sync-api/
   baseURL: https://apis.indeed.com/graphql
   tags:
+  - Application
+  - ATS
+  - Disposition
+  - GraphQL
+  - Tracking
+  tags_raw:
   - Applications
   - ATS
   - Disposition
@@ -134,6 +160,11 @@ apis:
   baseURL: https://apis.indeed.com/graphql
   tags:
   - GraphQL
+  - Job
+  - Updates
+  - Webhook
+  tags_raw:
+  - GraphQL
   - Jobs
   - Updates
   - Webhooks
@@ -149,6 +180,11 @@ apis:
   humanURL: https://docs.indeed.com/real-time-api/get-started
   baseURL: https://apis.indeed.com
   tags:
+  - Event
+  - Real-Time
+  - SSE
+  - Streaming
+  tags_raw:
   - Events
   - Real-Time
   - SSE
@@ -240,6 +276,11 @@ apis:
   humanURL: https://docs.indeed.com/candidate-sync-apis/retrieve-candidates-api/
   baseURL: https://apis.indeed.com/graphql
   tags:
+  - Application
+  - ATS
+  - Candidate Sync
+  - Candidates
+  tags_raw:
   - Applications
   - ATS
   - Candidate Sync
@@ -317,6 +358,8 @@ apis:
   humanURL: https://developer.indeed.com/docs/publisher-jobs/job-search
   baseURL: https://api.indeed.com
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
