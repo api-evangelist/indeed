@@ -4,6 +4,18 @@ description: >-
   Indeed is the world's largest job site, connecting millions of job seekers with employers across industries and
   locations worldwide. Indeed offers a suite of APIs for applicant tracking systems, job boards, and hiring platforms to
   integrate with its employment ecosystem.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
