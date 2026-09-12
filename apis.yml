@@ -393,6 +393,8 @@ apis:
   - type: JSONSchema
     url: json-schema/indeed-candidate-schema.json
 common:
+- type: Website
+  url: https://www.indeed.com/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/indeed/overview
 - type: AgenticAccess
