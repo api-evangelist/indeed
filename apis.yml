@@ -127,7 +127,7 @@ apis:
   baseURL: https://apis.indeed.com/graphql
   tags:
   - Application
-  - ATS
+  - Applicant Tracking
   - Disposition
   - GraphQL
   - Tracking
@@ -235,6 +235,10 @@ apis:
   humanURL: https://docs.indeed.com/employers/operations/create-employer
   baseURL: https://apis.indeed.com/graphql
   tags:
+  - Applicant Tracking
+  - Employers
+  - GraphQL
+  tags_raw:
   - ATS
   - Employers
   - GraphQL
@@ -272,6 +276,11 @@ apis:
   humanURL: https://docs.indeed.com/candidate-sync-apis/employer-registration-api/
   baseURL: https://apis.indeed.com/graphql
   tags:
+  - Applicant Tracking
+  - Candidate Sync
+  - Employers
+  - Registration
+  tags_raw:
   - ATS
   - Candidate Sync
   - Employers
@@ -289,7 +298,7 @@ apis:
   baseURL: https://apis.indeed.com/graphql
   tags:
   - Application
-  - ATS
+  - Applicant Tracking
   - Candidate Sync
   - Candidates
   tags_raw:

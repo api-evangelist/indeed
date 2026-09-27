@@ -188,159 +188,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    LocaleSpecificAttributes:
+    PatchEmployerPayload:
       type: object
-      description: Locale-specific employer attributes for multilingual support.
+      description: Response payload from a successful employer create or update operation.
       properties:
-        locale:
-          type: string
-          description: IETF BCP 47 language tag.
-          example: en-US
-        employerName:
-          type: string
-          description: Localized employer name.
-          example: example_value
-        employerDescription:
-          type: string
-          description: Localized employer description.
-          example: example_value
-    EmployerRegistration:
-      type: object
-      description: Registration of an employer for Candidate Sync integration, enabling candidate data synchronization between the ATS and Indeed.
-      properties:
-        employerId:
-          type: string
-          description: The employer's unique identifier.
-          example: '500123'
-        registrationStatus:
-          type: string
-          description: The current registration status.
-          enum:
-          - ACTIVE
-          - PENDING
-          - INACTIVE
-          example: ACTIVE
-        features:
+        employer:
+          $ref: '#/components/schemas/Employer'
+        success:
+          type: boolean
+          description: Whether the operation succeeded.
+          example: true
+        errors:
           type: array
-          description: Enabled Candidate Sync features for this employer.
+          description: Any errors encountered during the operation.
           items:
-            type: string
-            enum:
-            - RETRIEVE_CANDIDATES
-            - DISPOSITION_SYNC
-            - INDEED_APPLY
+            $ref: '#/components/schemas/ApiError'
           example: []
-        registeredAt:
-          type: string
-          format: date-time
-          description: When the employer was registered for Candidate Sync.
-          example: '2026-01-15T10:30:00Z'
-    ApiError:
-      type: object
-      description: An error returned by the Indeed API.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: INVALID_INPUT
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: The employer name field is required.
-        field:
-          type: string
-          description: The field that caused the error, if applicable.
-          example: employerName
-    EmployerAttributes:
-      type: object
-      description: Additional attributes for an employer, including both global and country-specific settings.
-      properties:
-        employerType:
-          type: string
-          description: The type classification of the employer.
-          enum:
-          - DIRECT_EMPLOYER
-          - STAFFING_AGENCY
-          - RECRUITING_FIRM
-          example: DIRECT_EMPLOYER
-        countrySpecificAttributes:
-          type: array
-          description: Attributes that vary by country, such as website URLs, phone numbers, and locale-specific information.
-          items:
-            $ref: '#/components/schemas/CountrySpecificAttributes'
-          example: []
-        localeSpecificAttributes:
-          type: array
-          description: Locale-specific employer attributes.
-          items:
-            $ref: '#/components/schemas/LocaleSpecificAttributes'
-          example: []
-    PatchEmployerInput:
-      type: object
-      description: Input for creating or updating an employer on Indeed.
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: A globally unique employer identifier composed of the ATS identifier and the employer's ID within that system.
-          example: ats-partner_employer-12345
-        employerName:
-          type: string
-          description: The employer's display name. Required when creating a new employer, optional when updating an existing one.
-          example: Acme Corporation
-        employerAttributes:
-          $ref: '#/components/schemas/EmployerAttributes'
-    Address:
-      type: object
-      description: A physical address.
-      properties:
-        streetAddress:
-          type: string
-          description: Street address line.
-          example: 123 Main Street
-        streetAddress2:
-          type: string
-          description: Additional street address information.
-          example: Suite 400
-        city:
-          type: string
-          description: City name.
-          example: Austin
-        state:
-          type: string
-          description: State, province, or region.
-          example: TX
-        postalCode:
-          type: string
-          description: Postal or ZIP code.
-          example: '78701'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: US
-    CountrySpecificAttributes:
-      type: object
-      description: Country-scoped employer attributes. Provide an ISO 3166-1 two-letter country code to specify the country.
-      required:
-      - country
-      properties:
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          pattern: ^[A-Z]{2}$
-          example: US
-        websiteUrl:
-          type: string
-          format: uri
-          description: The employer's website URL for this country.
-          example: https://www.acmecorp.com
-        phoneNumber:
-          type: string
-          description: The employer's contact phone number for this country.
-          example: +1-555-123-4567
-        address:
-          $ref: '#/components/schemas/Address'
     Employer:
       type: object
       description: An employer entity on Indeed representing a company or organization that posts jobs and manages candidates.
@@ -376,22 +239,159 @@ components:
           format: date-time
           description: The timestamp when the employer was last updated.
           example: '2026-01-15T10:30:00Z'
-    PatchEmployerPayload:
+    PatchEmployerInput:
       type: object
-      description: Response payload from a successful employer create or update operation.
+      description: Input for creating or updating an employer on Indeed.
+      required:
+      - id
       properties:
-        employer:
-          $ref: '#/components/schemas/Employer'
-        success:
-          type: boolean
-          description: Whether the operation succeeded.
-          example: true
-        errors:
+        id:
+          type: string
+          description: A globally unique employer identifier composed of the ATS identifier and the employer's ID within that system.
+          example: ats-partner_employer-12345
+        employerName:
+          type: string
+          description: The employer's display name. Required when creating a new employer, optional when updating an existing one.
+          example: Acme Corporation
+        employerAttributes:
+          $ref: '#/components/schemas/EmployerAttributes'
+    LocaleSpecificAttributes:
+      type: object
+      description: Locale-specific employer attributes for multilingual support.
+      properties:
+        locale:
+          type: string
+          description: IETF BCP 47 language tag.
+          example: en-US
+        employerName:
+          type: string
+          description: Localized employer name.
+          example: example_value
+        employerDescription:
+          type: string
+          description: Localized employer description.
+          example: example_value
+    Address:
+      type: object
+      description: A physical address.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address line.
+          example: 123 Main Street
+        streetAddress2:
+          type: string
+          description: Additional street address information.
+          example: Suite 400
+        city:
+          type: string
+          description: City name.
+          example: Austin
+        state:
+          type: string
+          description: State, province, or region.
+          example: TX
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+          example: '78701'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: US
+    EmployerAttributes:
+      type: object
+      description: Additional attributes for an employer, including both global and country-specific settings.
+      properties:
+        employerType:
+          type: string
+          description: The type classification of the employer.
+          enum:
+          - DIRECT_EMPLOYER
+          - STAFFING_AGENCY
+          - RECRUITING_FIRM
+          example: DIRECT_EMPLOYER
+        countrySpecificAttributes:
           type: array
-          description: Any errors encountered during the operation.
+          description: Attributes that vary by country, such as website URLs, phone numbers, and locale-specific information.
           items:
-            $ref: '#/components/schemas/ApiError'
+            $ref: '#/components/schemas/CountrySpecificAttributes'
           example: []
+        localeSpecificAttributes:
+          type: array
+          description: Locale-specific employer attributes.
+          items:
+            $ref: '#/components/schemas/LocaleSpecificAttributes'
+          example: []
+    CountrySpecificAttributes:
+      type: object
+      description: Country-scoped employer attributes. Provide an ISO 3166-1 two-letter country code to specify the country.
+      required:
+      - country
+      properties:
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          pattern: ^[A-Z]{2}$
+          example: US
+        websiteUrl:
+          type: string
+          format: uri
+          description: The employer's website URL for this country.
+          example: https://www.acmecorp.com
+        phoneNumber:
+          type: string
+          description: The employer's contact phone number for this country.
+          example: +1-555-123-4567
+        address:
+          $ref: '#/components/schemas/Address'
+    ApiError:
+      type: object
+      description: An error returned by the Indeed API.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: INVALID_INPUT
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: The employer name field is required.
+        field:
+          type: string
+          description: The field that caused the error, if applicable.
+          example: employerName
+    EmployerRegistration:
+      type: object
+      description: Registration of an employer for Candidate Sync integration, enabling candidate data synchronization between the ATS and Indeed.
+      properties:
+        employerId:
+          type: string
+          description: The employer's unique identifier.
+          example: '500123'
+        registrationStatus:
+          type: string
+          description: The current registration status.
+          enum:
+          - ACTIVE
+          - PENDING
+          - INACTIVE
+          example: ACTIVE
+        features:
+          type: array
+          description: Enabled Candidate Sync features for this employer.
+          items:
+            type: string
+            enum:
+            - RETRIEVE_CANDIDATES
+            - DISPOSITION_SYNC
+            - INDEED_APPLY
+          example: []
+        registeredAt:
+          type: string
+          format: date-time
+          description: When the employer was registered for Candidate Sync.
+          example: '2026-01-15T10:30:00Z'
   securitySchemes:
     BearerAuth:
       type: http

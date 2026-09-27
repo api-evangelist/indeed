@@ -246,6 +246,33 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CreateJobPostingInput:
+      type: object
+      description: Input for creating one or more job postings on Indeed via the Job Sync API.
+      required:
+      - jobPostings
+      properties:
+        jobPostings:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobPosting'
+          description: Array of job posting objects to create.
+          example: []
+    JobSource:
+      type: object
+      description: Information about the source system for the job posting, used to identify the originating ATS or job board.
+      required:
+      - sourceName
+      properties:
+        sourceName:
+          type: string
+          description: The name of the source system. Must remain consistent across all job postings from the same source.
+          example: my-ats-platform
+        sourceUrl:
+          type: string
+          format: uri
+          description: The URL of the original job posting on the source system.
+          example: https://www.example.com
     Salary:
       type: object
       description: Salary or compensation details for the job posting.
@@ -275,117 +302,6 @@ components:
           - MONTHLY
           - YEARLY
           example: YEARLY
-    CreateJobPostingInput:
-      type: object
-      description: Input for creating one or more job postings on Indeed via the Job Sync API.
-      required:
-      - jobPostings
-      properties:
-        jobPostings:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobPosting'
-          description: Array of job posting objects to create.
-          example: []
-    ApiError:
-      type: object
-      description: An error returned by the Indeed API.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: INVALID_INPUT
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: The employer name field is required.
-        field:
-          type: string
-          description: The field that caused the error, if applicable.
-          example: employerName
-    ScreenerQuestion:
-      type: object
-      description: A screener question configured on a job posting.
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the screener question.
-          example: abc123
-        question:
-          type: string
-          description: The text of the question.
-          example: Are you authorized to work in the United States?
-        type:
-          type: string
-          description: The type of expected response.
-          enum:
-          - TEXT
-          - BOOLEAN
-          - SINGLE_SELECT
-          - MULTI_SELECT
-          - NUMERIC
-          example: BOOLEAN
-        required:
-          type: boolean
-          description: Whether the candidate must answer this question.
-          example: true
-        options:
-          type: array
-          description: Available options for select-type questions.
-          items:
-            type: string
-          example: []
-    JobLocation:
-      type: object
-      description: The location of the job.
-      properties:
-        streetAddress:
-          type: string
-          description: Street address of the job location.
-          example: example_value
-        city:
-          type: string
-          description: City where the job is located.
-          example: Austin
-        state:
-          type: string
-          description: State, province, or region.
-          example: TX
-        postalCode:
-          type: string
-          description: Postal or ZIP code.
-          example: '78701'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: US
-        formattedAddress:
-          type: string
-          description: A human-readable formatted address string.
-          example: Austin, TX 78701, US
-    WorkingHours:
-      type: object
-      description: Working hours and schedule information for the position.
-      properties:
-        hoursPerWeek:
-          type: number
-          format: double
-          description: Expected number of hours per week.
-          example: 40
-        schedule:
-          type: string
-          description: Description of the work schedule.
-          example: Monday through Friday, 9 AM to 5 PM
-        shiftType:
-          type: string
-          description: The type of shift.
-          enum:
-          - DAY
-          - NIGHT
-          - EVENING
-          - ROTATING
-          - FLEXIBLE
-          example: DAY
     JobPosting:
       type: object
       description: A job posting on Indeed with all associated metadata including title, description, location, salary, benefits, qualifications, and application configuration.
@@ -491,95 +407,6 @@ components:
           format: date-time
           description: The timestamp when the job posting expires.
           example: '2026-01-15T10:30:00Z'
-    JobSource:
-      type: object
-      description: Information about the source system for the job posting, used to identify the originating ATS or job board.
-      required:
-      - sourceName
-      properties:
-        sourceName:
-          type: string
-          description: The name of the source system. Must remain consistent across all job postings from the same source.
-          example: my-ats-platform
-        sourceUrl:
-          type: string
-          format: uri
-          description: The URL of the original job posting on the source system.
-          example: https://www.example.com
-    PageInfo:
-      type: object
-      description: Pagination information for list responses.
-      properties:
-        hasNextPage:
-          type: boolean
-          description: Whether there are more results available.
-          example: true
-        hasPreviousPage:
-          type: boolean
-          description: Whether there are previous results available.
-          example: true
-        startCursor:
-          type: string
-          description: Cursor for the first item in the current page.
-          example: example_value
-        endCursor:
-          type: string
-          description: Cursor for the last item in the current page.
-          example: example_value
-    CreateJobPostingPayload:
-      type: object
-      description: Response payload from a job posting creation operation.
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              jobPostingId:
-                type: string
-                description: The ID of the created or updated job posting.
-              status:
-                type: string
-                enum:
-                - CREATED
-                - UPDATED
-                - FAILED
-              errors:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ApiError'
-          example: []
-        totalCreated:
-          type: integer
-          description: Total number of job postings successfully created.
-          example: 10
-        totalFailed:
-          type: integer
-          description: Total number of job postings that failed to create.
-          example: 10
-    IndeedApplyConfig:
-      type: object
-      description: Configuration for Indeed Apply integration on the job posting.
-      properties:
-        enabled:
-          type: boolean
-          description: Whether Indeed Apply is enabled for this job posting.
-          example: true
-        postUrl:
-          type: string
-          format: uri
-          description: The URL where Indeed sends application data when a candidate applies through Indeed Apply.
-          example: https://www.example.com
-        screenerQuestions:
-          type: array
-          description: Screener questions to present to candidates during application.
-          items:
-            $ref: '#/components/schemas/ScreenerQuestion'
-          example: []
-        eeoEnabled:
-          type: boolean
-          description: Whether EEO compliance questions are enabled. Available for US employers only.
-          example: true
     Benefit:
       type: object
       description: A benefit offered with the job position.
@@ -608,6 +435,61 @@ components:
           type: string
           description: Additional details about the benefit.
           example: A sample description.
+    IndeedApplyConfig:
+      type: object
+      description: Configuration for Indeed Apply integration on the job posting.
+      properties:
+        enabled:
+          type: boolean
+          description: Whether Indeed Apply is enabled for this job posting.
+          example: true
+        postUrl:
+          type: string
+          format: uri
+          description: The URL where Indeed sends application data when a candidate applies through Indeed Apply.
+          example: https://www.example.com
+        screenerQuestions:
+          type: array
+          description: Screener questions to present to candidates during application.
+          items:
+            $ref: '#/components/schemas/ScreenerQuestion'
+          example: []
+        eeoEnabled:
+          type: boolean
+          description: Whether EEO compliance questions are enabled. Available for US employers only.
+          example: true
+    ScreenerQuestion:
+      type: object
+      description: A screener question configured on a job posting.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the screener question.
+          example: abc123
+        question:
+          type: string
+          description: The text of the question.
+          example: Are you authorized to work in the United States?
+        type:
+          type: string
+          description: The type of expected response.
+          enum:
+          - TEXT
+          - BOOLEAN
+          - SINGLE_SELECT
+          - MULTI_SELECT
+          - NUMERIC
+          example: BOOLEAN
+        required:
+          type: boolean
+          description: Whether the candidate must answer this question.
+          example: true
+        options:
+          type: array
+          description: Available options for select-type questions.
+          items:
+            type: string
+          example: []
     JobPostingList:
       type: object
       description: A paginated list of job postings.
@@ -645,6 +527,124 @@ components:
           type: boolean
           description: Whether this qualification is required or preferred.
           example: true
+    WorkingHours:
+      type: object
+      description: Working hours and schedule information for the position.
+      properties:
+        hoursPerWeek:
+          type: number
+          format: double
+          description: Expected number of hours per week.
+          example: 40
+        schedule:
+          type: string
+          description: Description of the work schedule.
+          example: Monday through Friday, 9 AM to 5 PM
+        shiftType:
+          type: string
+          description: The type of shift.
+          enum:
+          - DAY
+          - NIGHT
+          - EVENING
+          - ROTATING
+          - FLEXIBLE
+          example: DAY
+    JobLocation:
+      type: object
+      description: The location of the job.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address of the job location.
+          example: example_value
+        city:
+          type: string
+          description: City where the job is located.
+          example: Austin
+        state:
+          type: string
+          description: State, province, or region.
+          example: TX
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+          example: '78701'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: US
+        formattedAddress:
+          type: string
+          description: A human-readable formatted address string.
+          example: Austin, TX 78701, US
+    PageInfo:
+      type: object
+      description: Pagination information for list responses.
+      properties:
+        hasNextPage:
+          type: boolean
+          description: Whether there are more results available.
+          example: true
+        hasPreviousPage:
+          type: boolean
+          description: Whether there are previous results available.
+          example: true
+        startCursor:
+          type: string
+          description: Cursor for the first item in the current page.
+          example: example_value
+        endCursor:
+          type: string
+          description: Cursor for the last item in the current page.
+          example: example_value
+    ApiError:
+      type: object
+      description: An error returned by the Indeed API.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: INVALID_INPUT
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: The employer name field is required.
+        field:
+          type: string
+          description: The field that caused the error, if applicable.
+          example: employerName
+    CreateJobPostingPayload:
+      type: object
+      description: Response payload from a job posting creation operation.
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              jobPostingId:
+                type: string
+                description: The ID of the created or updated job posting.
+              status:
+                type: string
+                enum:
+                - CREATED
+                - UPDATED
+                - FAILED
+              errors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiError'
+          example: []
+        totalCreated:
+          type: integer
+          description: Total number of job postings successfully created.
+          example: 10
+        totalFailed:
+          type: integer
+          description: Total number of job postings that failed to create.
+          example: 10
   securitySchemes:
     BearerAuth:
       type: http

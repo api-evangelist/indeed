@@ -173,40 +173,37 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Resume:
+    DispositionUpdate:
       type: object
-      description: A candidate's resume in multiple formats. The file field contains the uploaded resume document, while text, html, and json fields provide parsed representations.
+      description: An update to the disposition (application status) of a candidate for a specific job posting. Used to sync hiring pipeline status changes back to Indeed.
+      required:
+      - applicationId
+      - status
       properties:
-        file:
-          $ref: '#/components/schemas/ResumeFile'
-        text:
+        applicationId:
           type: string
-          description: Plain text representation of the resume content.
-          example: example_value
-        html:
+          description: The unique identifier for the application.
+          example: '500123'
+        status:
           type: string
-          description: HTML-formatted representation of the resume content.
+          description: The new disposition status for the application. Must be one of Indeed's predefined categories.
+          enum:
+          - NEW
+          - CONTACTED
+          - INTERVIEWED
+          - OFFERED
+          - HIRED
+          - REJECTED
+          example: NEW
+        statusUpdatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the status change occurred.
+          example: '2026-01-15T10:30:00Z'
+        rejectionReason:
+          type: string
+          description: The reason for rejection, if the status is REJECTED.
           example: example_value
-        json:
-          type: object
-          description: Structured JSON representation of the parsed resume, including sections for work experience, education, skills, and other fields.
-          additionalProperties: true
-          example: example_value
-    CandidateList:
-      type: object
-      description: A paginated list of candidates.
-      properties:
-        candidates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Candidate'
-          example: []
-        totalCount:
-          type: integer
-          description: Total number of candidates matching the query.
-          example: 42
-        pageInfo:
-          $ref: '#/components/schemas/PageInfo'
     Candidate:
       type: object
       description: A job candidate with personal details, resume information, and application data retrieved from Indeed.
@@ -282,22 +279,38 @@ components:
           type: string
           description: The identifier of the job posting the candidate applied to.
           example: '500123'
-    ScreenerQuestionResponse:
+    CandidateList:
       type: object
-      description: A candidate's response to a screener question on the job posting.
+      description: A paginated list of candidates.
       properties:
-        questionId:
+        candidates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Candidate'
+          example: []
+        totalCount:
+          type: integer
+          description: Total number of candidates matching the query.
+          example: 42
+        pageInfo:
+          $ref: '#/components/schemas/PageInfo'
+    ResumeFile:
+      type: object
+      description: An uploaded resume file.
+      properties:
+        fileName:
           type: string
-          description: The unique identifier of the screener question.
-          example: '500123'
-        question:
+          description: The original filename of the uploaded resume.
+          example: jane_smith_resume.pdf
+        contentType:
           type: string
-          description: The text of the screener question.
-          example: Do you have a valid driver's license?
-        answer:
+          description: The MIME type of the resume file.
+          example: application/pdf
+        data:
           type: string
-          description: The candidate's answer to the question.
-          example: 'Yes'
+          format: byte
+          description: The raw binary content of the resume file, Base64-encoded.
+          example: example_value
     EeoResponses:
       type: object
       description: Equal Employment Opportunity (EEO) compliance responses provided by the candidate. Available only for US employers with EEO questions enabled.
@@ -317,23 +330,6 @@ components:
         disabilityStatus:
           type: string
           description: The candidate's disability status.
-          example: example_value
-    ResumeFile:
-      type: object
-      description: An uploaded resume file.
-      properties:
-        fileName:
-          type: string
-          description: The original filename of the uploaded resume.
-          example: jane_smith_resume.pdf
-        contentType:
-          type: string
-          description: The MIME type of the resume file.
-          example: application/pdf
-        data:
-          type: string
-          format: byte
-          description: The raw binary content of the resume file, Base64-encoded.
           example: example_value
     PageInfo:
       type: object
@@ -355,36 +351,40 @@ components:
           type: string
           description: Cursor for the last item in the current page.
           example: example_value
-    DispositionUpdate:
+    ScreenerQuestionResponse:
       type: object
-      description: An update to the disposition (application status) of a candidate for a specific job posting. Used to sync hiring pipeline status changes back to Indeed.
-      required:
-      - applicationId
-      - status
+      description: A candidate's response to a screener question on the job posting.
       properties:
-        applicationId:
+        questionId:
           type: string
-          description: The unique identifier for the application.
+          description: The unique identifier of the screener question.
           example: '500123'
-        status:
+        question:
           type: string
-          description: The new disposition status for the application. Must be one of Indeed's predefined categories.
-          enum:
-          - NEW
-          - CONTACTED
-          - INTERVIEWED
-          - OFFERED
-          - HIRED
-          - REJECTED
-          example: NEW
-        statusUpdatedAt:
+          description: The text of the screener question.
+          example: Do you have a valid driver's license?
+        answer:
           type: string
-          format: date-time
-          description: The timestamp when the status change occurred.
-          example: '2026-01-15T10:30:00Z'
-        rejectionReason:
+          description: The candidate's answer to the question.
+          example: 'Yes'
+    Resume:
+      type: object
+      description: A candidate's resume in multiple formats. The file field contains the uploaded resume document, while text, html, and json fields provide parsed representations.
+      properties:
+        file:
+          $ref: '#/components/schemas/ResumeFile'
+        text:
           type: string
-          description: The reason for rejection, if the status is REJECTED.
+          description: Plain text representation of the resume content.
+          example: example_value
+        html:
+          type: string
+          description: HTML-formatted representation of the resume content.
+          example: example_value
+        json:
+          type: object
+          description: Structured JSON representation of the parsed resume, including sections for work experience, education, skills, and other fields.
+          additionalProperties: true
           example: example_value
   securitySchemes:
     BearerAuth:
