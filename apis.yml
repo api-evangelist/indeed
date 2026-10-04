@@ -36,6 +36,9 @@ modified: '2026-05-19'
 specificationVersion: '0.23'
 type: Index
 access: 3rd-Party
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Careers
 - Employment
@@ -402,6 +405,9 @@ apis:
   - type: JSONSchema
     url: json-schema/indeed-candidate-schema.json
 common:
+- type: CapabilityMap
+  url: capabilities/indeed-capability-edges.yml
+  name: Indeed Business Capability Map
 - type: Website
   url: https://www.indeed.com/
 - type: PostmanWorkspace
