@@ -204,148 +204,6 @@ components:
           type: string
           description: Localized employer description.
           example: example_value
-    PatchEmployerPayload:
-      type: object
-      description: Response payload from a successful employer create or update operation.
-      properties:
-        employer:
-          $ref: '#/components/schemas/Employer'
-        success:
-          type: boolean
-          description: Whether the operation succeeded.
-          example: true
-        errors:
-          type: array
-          description: Any errors encountered during the operation.
-          items:
-            $ref: '#/components/schemas/ApiError'
-          example: []
-    ApiError:
-      type: object
-      description: An error returned by the Indeed API.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: INVALID_INPUT
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: The employer name field is required.
-        field:
-          type: string
-          description: The field that caused the error, if applicable.
-          example: employerName
-    PatchEmployerInput:
-      type: object
-      description: Input for creating or updating an employer on Indeed.
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: A globally unique employer identifier composed of the ATS identifier and the employer's ID within that system.
-          example: ats-partner_employer-12345
-        employerName:
-          type: string
-          description: The employer's display name. Required when creating a new employer, optional when updating an existing one.
-          example: Acme Corporation
-        employerAttributes:
-          $ref: '#/components/schemas/EmployerAttributes'
-    Address:
-      type: object
-      description: A physical address.
-      properties:
-        streetAddress:
-          type: string
-          description: Street address line.
-          example: 123 Main Street
-        streetAddress2:
-          type: string
-          description: Additional street address information.
-          example: Suite 400
-        city:
-          type: string
-          description: City name.
-          example: Austin
-        state:
-          type: string
-          description: State, province, or region.
-          example: TX
-        postalCode:
-          type: string
-          description: Postal or ZIP code.
-          example: '78701'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: US
-    EmployerRegistration:
-      type: object
-      description: Registration of an employer for Candidate Sync integration, enabling candidate data synchronization between the ATS and Indeed.
-      properties:
-        employerId:
-          type: string
-          description: The employer's unique identifier.
-          example: '500123'
-        registrationStatus:
-          type: string
-          description: The current registration status.
-          enum:
-          - ACTIVE
-          - PENDING
-          - INACTIVE
-          example: ACTIVE
-        features:
-          type: array
-          description: Enabled Candidate Sync features for this employer.
-          items:
-            type: string
-            enum:
-            - RETRIEVE_CANDIDATES
-            - DISPOSITION_SYNC
-            - INDEED_APPLY
-          example: []
-        registeredAt:
-          type: string
-          format: date-time
-          description: When the employer was registered for Candidate Sync.
-          example: '2026-01-15T10:30:00Z'
-    Employer:
-      type: object
-      description: An employer entity on Indeed representing a company or organization that posts jobs and manages candidates.
-      required:
-      - id
-      - employerName
-      properties:
-        id:
-          type: string
-          description: A globally unique employer identifier. For ATS partners, this typically combines the ATS system identifier with the employer's internal ID.
-          example: ats-partner_employer-12345
-        employerName:
-          type: string
-          description: The display name of the employer as it appears on Indeed job listings and company pages.
-          example: Acme Corporation
-        employerType:
-          type: string
-          description: The type of employer entity.
-          enum:
-          - DIRECT_EMPLOYER
-          - STAFFING_AGENCY
-          - RECRUITING_FIRM
-          example: DIRECT_EMPLOYER
-        employerAttributes:
-          $ref: '#/components/schemas/EmployerAttributes'
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp when the employer was created on Indeed.
-          example: '2026-01-15T10:30:00Z'
-        updatedAt:
-          type: string
-          format: date-time
-          description: The timestamp when the employer was last updated.
-          example: '2026-01-15T10:30:00Z'
     EmployerAttributes:
       type: object
       description: Additional attributes for an employer, including both global and country-specific settings.
@@ -392,6 +250,148 @@ components:
           example: +1-555-123-4567
         address:
           $ref: '#/components/schemas/Address'
+    ApiError:
+      type: object
+      description: An error returned by the Indeed API.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: INVALID_INPUT
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: The employer name field is required.
+        field:
+          type: string
+          description: The field that caused the error, if applicable.
+          example: employerName
+    Employer:
+      type: object
+      description: An employer entity on Indeed representing a company or organization that posts jobs and manages candidates.
+      required:
+      - id
+      - employerName
+      properties:
+        id:
+          type: string
+          description: A globally unique employer identifier. For ATS partners, this typically combines the ATS system identifier with the employer's internal ID.
+          example: ats-partner_employer-12345
+        employerName:
+          type: string
+          description: The display name of the employer as it appears on Indeed job listings and company pages.
+          example: Acme Corporation
+        employerType:
+          type: string
+          description: The type of employer entity.
+          enum:
+          - DIRECT_EMPLOYER
+          - STAFFING_AGENCY
+          - RECRUITING_FIRM
+          example: DIRECT_EMPLOYER
+        employerAttributes:
+          $ref: '#/components/schemas/EmployerAttributes'
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the employer was created on Indeed.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the employer was last updated.
+          example: '2026-01-15T10:30:00Z'
+    PatchEmployerPayload:
+      type: object
+      description: Response payload from a successful employer create or update operation.
+      properties:
+        employer:
+          $ref: '#/components/schemas/Employer'
+        success:
+          type: boolean
+          description: Whether the operation succeeded.
+          example: true
+        errors:
+          type: array
+          description: Any errors encountered during the operation.
+          items:
+            $ref: '#/components/schemas/ApiError'
+          example: []
+    Address:
+      type: object
+      description: A physical address.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address line.
+          example: 123 Main Street
+        streetAddress2:
+          type: string
+          description: Additional street address information.
+          example: Suite 400
+        city:
+          type: string
+          description: City name.
+          example: Austin
+        state:
+          type: string
+          description: State, province, or region.
+          example: TX
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+          example: '78701'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: US
+    PatchEmployerInput:
+      type: object
+      description: Input for creating or updating an employer on Indeed.
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: A globally unique employer identifier composed of the ATS identifier and the employer's ID within that system.
+          example: ats-partner_employer-12345
+        employerName:
+          type: string
+          description: The employer's display name. Required when creating a new employer, optional when updating an existing one.
+          example: Acme Corporation
+        employerAttributes:
+          $ref: '#/components/schemas/EmployerAttributes'
+    EmployerRegistration:
+      type: object
+      description: Registration of an employer for Candidate Sync integration, enabling candidate data synchronization between the ATS and Indeed.
+      properties:
+        employerId:
+          type: string
+          description: The employer's unique identifier.
+          example: '500123'
+        registrationStatus:
+          type: string
+          description: The current registration status.
+          enum:
+          - ACTIVE
+          - PENDING
+          - INACTIVE
+          example: ACTIVE
+        features:
+          type: array
+          description: Enabled Candidate Sync features for this employer.
+          items:
+            type: string
+            enum:
+            - RETRIEVE_CANDIDATES
+            - DISPOSITION_SYNC
+            - INDEED_APPLY
+          example: []
+        registeredAt:
+          type: string
+          format: date-time
+          description: When the employer was registered for Candidate Sync.
+          example: '2026-01-15T10:30:00Z'
   securitySchemes:
     BearerAuth:
       type: http
