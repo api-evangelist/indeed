@@ -1,0 +1,36 @@
+slug: indeed
+provider: Indeed
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Candidates
+  spec_file: indeed-candidates-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.95
+  evidence: GET /v1/employers/{employerId}/candidates 'Indeed List Candidates for an Employer'; 'Indeed
+    Update Candidate Disposition'; schemas Resume, ScreenerQuestionResponse, EeoResponses
+  reason: Operations retrieve job applicants with resumes, screener responses and EEO data and update
+    hiring disposition for an employer — squarely recruiting/applicant tracking, i.e. Talent Acquisition
+    Management.
+- tag: Jobs
+  spec_file: indeed-jobs-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.9
+  evidence: POST /v1/jobs createJobPostings 'Create Job Postings'; DELETE 'Expire a Job Posting'; schemas
+    JobPosting, ScreenerQuestion, Qualification, Salary, IndeedApplyConfig
+  reason: Operations create, update, expire and list job postings with screener questions and qualifications
+    — this is job advertising and sourcing, squarely Talent Acquisition Management.
