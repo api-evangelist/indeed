@@ -137,10 +137,8 @@ apis:
 unitEconomics:
   - name: Cost per Applicant
     metric: sponsored_spend / sponsored_applicants
-    target: TBD
   - name: Cost per Hire
     metric: sponsored_spend / hires
-    target: TBD
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
