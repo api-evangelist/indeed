@@ -405,6 +405,10 @@ apis:
   - type: JSONSchema
     url: json-schema/indeed-candidate-schema.json
 common:
+- type: Plans
+  url: plans/indeed-plans-pricing.yml
+- type: FinOps
+  url: finops/indeed-finops.yml
 - type: CapabilityMap
   url: capabilities/indeed-capability-edges.yml
   name: Indeed Business Capability Map
