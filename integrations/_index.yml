@@ -26,3 +26,28 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
+- slug: indeed-bamboohr-own
+  label: BambooHR (own)
+  partner: bamboohr
+  partner_name: BambooHR (own)
+  category: Job Boards & Sourcing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bamboohr.com/integrations/listings/indeed
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: indeed-greenhouse-own
+  label: Greenhouse (own)
+  partner: greenhouse
+  partner_name: Greenhouse (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://integrations.greenhouse.com/partners/indeed-apply
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

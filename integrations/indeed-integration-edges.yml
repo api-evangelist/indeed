@@ -1,6 +1,8 @@
 generated: '2026-10-14'
 method: searched
 checked:
+- bamboohr/integrations/bamboohr-integration-edges.yml
+- greenhouse/integrations/greenhouse-integration-edges.yml
 - https://storage.googleapis.com/tcfac/additional-consent-providers.csv
 marketplace_apps: []
 edges:
@@ -27,3 +29,40 @@ edges:
     detected: '2026-10-14'
   detected_by: sweep-adtech.py
   detected: '2026-10-14'
+- partner_name: BambooHR (own)
+  partner: bamboohr
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bamboohr.com/integrations/listings/indeed
+  mirror_of: bamboohr/integrations/bamboohr-integration-edges.yml
+  apps:
+  - Indeed
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Job Boards & Sourcing
+- partner_name: Greenhouse (own)
+  partner: greenhouse
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://integrations.greenhouse.com/partners/indeed-apply
+  mirror_of: greenhouse/integrations/greenhouse-integration-edges.yml
+  apps:
+  - Indeed Apply
+  - Indeed Candidate Sync
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+source:
+- bamboohr/integrations/bamboohr-integration-edges.yml
+- greenhouse/integrations/greenhouse-integration-edges.yml
