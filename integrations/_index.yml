@@ -74,19 +74,6 @@
     app_slug: indeed
     beta: false
     builder: unknown (not in the directory record)
-  status: pending-generation
-  arazzo: null
-- slug: indeed-wordpress-own
-  label: WordPress (own)
-  partner: wordpress
-  partner_name: WordPress (own)
-  category: WordPress plugin
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://wordpress.org/plugins/indeed-apply-shortcode/
-  source: edge
-  relationship: platform-app
   status: not-a-workflow
   arazzo: null
 - slug: indeed-uk-g-cloud-15-digital-marketplace
@@ -112,5 +99,18 @@
       of position shares
     detected_by: sweep-gov-cloud.py
     detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: indeed-wordpress-own
+  label: WordPress (own)
+  partner: wordpress
+  partner_name: WordPress (own)
+  category: WordPress plugin
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://wordpress.org/plugins/indeed-apply-shortcode/
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
