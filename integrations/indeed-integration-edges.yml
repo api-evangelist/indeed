@@ -4,6 +4,7 @@ checked:
 - bamboohr/integrations/bamboohr-integration-edges.yml
 - greenhouse/integrations/greenhouse-integration-edges.yml
 - https://storage.googleapis.com/tcfac/additional-consent-providers.csv
+- wordpress/integrations/wordpress-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Google Ad Tech Providers
@@ -63,6 +64,23 @@ edges:
   listing_count: 2
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/indeed-apply-shortcode/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Indeed Apply Shortcode
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 source:
 - bamboohr/integrations/bamboohr-integration-edges.yml
 - greenhouse/integrations/greenhouse-integration-edges.yml
