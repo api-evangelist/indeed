@@ -246,34 +246,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Benefit:
+    Qualification:
       type: object
-      description: A benefit offered with the job position.
+      description: A qualification required or preferred for the job position, such as education level, years of experience, certifications, or skills.
       properties:
         type:
           type: string
-          description: The type of benefit.
+          description: The category of the qualification.
           enum:
-          - HEALTH_INSURANCE
-          - DENTAL_INSURANCE
-          - VISION_INSURANCE
-          - RETIREMENT_401K
-          - PAID_TIME_OFF
-          - PARENTAL_LEAVE
-          - TUITION_REIMBURSEMENT
-          - LIFE_INSURANCE
-          - DISABILITY_INSURANCE
-          - FLEXIBLE_SCHEDULE
-          - REMOTE_WORK
-          - RELOCATION_ASSISTANCE
-          - EMPLOYEE_DISCOUNT
-          - COMMUTER_BENEFITS
-          - OTHER
-          example: HEALTH_INSURANCE
+          - EDUCATION
+          - EXPERIENCE
+          - CERTIFICATION
+          - SKILL
+          - LICENSE
+          example: EXPERIENCE
         description:
           type: string
-          description: Additional details about the benefit.
-          example: A sample description.
+          description: Description of the qualification.
+          example: 5+ years of software development experience
+        required:
+          type: boolean
+          description: Whether this qualification is required or preferred.
+          example: true
     JobPostingList:
       type: object
       description: A paginated list of job postings.
@@ -289,38 +283,29 @@ components:
           example: 10
         pageInfo:
           $ref: '#/components/schemas/PageInfo'
-    ScreenerQuestion:
+    WorkingHours:
       type: object
-      description: A screener question configured on a job posting.
+      description: Working hours and schedule information for the position.
       properties:
-        id:
+        hoursPerWeek:
+          type: number
+          format: double
+          description: Expected number of hours per week.
+          example: 40
+        schedule:
           type: string
-          description: Unique identifier for the screener question.
-          example: abc123
-        question:
+          description: Description of the work schedule.
+          example: Monday through Friday, 9 AM to 5 PM
+        shiftType:
           type: string
-          description: The text of the question.
-          example: Are you authorized to work in the United States?
-        type:
-          type: string
-          description: The type of expected response.
+          description: The type of shift.
           enum:
-          - TEXT
-          - BOOLEAN
-          - SINGLE_SELECT
-          - MULTI_SELECT
-          - NUMERIC
-          example: BOOLEAN
-        required:
-          type: boolean
-          description: Whether the candidate must answer this question.
-          example: true
-        options:
-          type: array
-          description: Available options for select-type questions.
-          items:
-            type: string
-          example: []
+          - DAY
+          - NIGHT
+          - EVENING
+          - ROTATING
+          - FLEXIBLE
+          example: DAY
     Salary:
       type: object
       description: Salary or compensation details for the job posting.
@@ -350,22 +335,6 @@ components:
           - MONTHLY
           - YEARLY
           example: YEARLY
-    ApiError:
-      type: object
-      description: An error returned by the Indeed API.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-          example: INVALID_INPUT
-        message:
-          type: string
-          description: A human-readable description of the error.
-          example: The employer name field is required.
-        field:
-          type: string
-          description: The field that caused the error, if applicable.
-          example: employerName
     CreateJobPostingPayload:
       type: object
       description: Response payload from a job posting creation operation.
@@ -397,6 +366,21 @@ components:
           type: integer
           description: Total number of job postings that failed to create.
           example: 10
+    JobSource:
+      type: object
+      description: Information about the source system for the job posting, used to identify the originating ATS or job board.
+      required:
+      - sourceName
+      properties:
+        sourceName:
+          type: string
+          description: The name of the source system. Must remain consistent across all job postings from the same source.
+          example: my-ats-platform
+        sourceUrl:
+          type: string
+          format: uri
+          description: The URL of the original job posting on the source system.
+          example: https://www.example.com
     JobPosting:
       type: object
       description: A job posting on Indeed with all associated metadata including title, description, location, salary, benefits, qualifications, and application configuration.
@@ -525,55 +509,54 @@ components:
           type: boolean
           description: Whether EEO compliance questions are enabled. Available for US employers only.
           example: true
-    CreateJobPostingInput:
+    ScreenerQuestion:
       type: object
-      description: Input for creating one or more job postings on Indeed via the Job Sync API.
-      required:
-      - jobPostings
+      description: A screener question configured on a job posting.
       properties:
-        jobPostings:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobPosting'
-          description: Array of job posting objects to create.
-          example: []
-    JobSource:
-      type: object
-      description: Information about the source system for the job posting, used to identify the originating ATS or job board.
-      required:
-      - sourceName
-      properties:
-        sourceName:
+        id:
           type: string
-          description: The name of the source system. Must remain consistent across all job postings from the same source.
-          example: my-ats-platform
-        sourceUrl:
+          description: Unique identifier for the screener question.
+          example: abc123
+        question:
           type: string
-          format: uri
-          description: The URL of the original job posting on the source system.
-          example: https://www.example.com
-    Qualification:
-      type: object
-      description: A qualification required or preferred for the job position, such as education level, years of experience, certifications, or skills.
-      properties:
+          description: The text of the question.
+          example: Are you authorized to work in the United States?
         type:
           type: string
-          description: The category of the qualification.
+          description: The type of expected response.
           enum:
-          - EDUCATION
-          - EXPERIENCE
-          - CERTIFICATION
-          - SKILL
-          - LICENSE
-          example: EXPERIENCE
-        description:
-          type: string
-          description: Description of the qualification.
-          example: 5+ years of software development experience
+          - TEXT
+          - BOOLEAN
+          - SINGLE_SELECT
+          - MULTI_SELECT
+          - NUMERIC
+          example: BOOLEAN
         required:
           type: boolean
-          description: Whether this qualification is required or preferred.
+          description: Whether the candidate must answer this question.
           example: true
+        options:
+          type: array
+          description: Available options for select-type questions.
+          items:
+            type: string
+          example: []
+    ApiError:
+      type: object
+      description: An error returned by the Indeed API.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          example: INVALID_INPUT
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: The employer name field is required.
+        field:
+          type: string
+          description: The field that caused the error, if applicable.
+          example: employerName
     JobLocation:
       type: object
       description: The location of the job.
@@ -602,6 +585,18 @@ components:
           type: string
           description: A human-readable formatted address string.
           example: Austin, TX 78701, US
+    CreateJobPostingInput:
+      type: object
+      description: Input for creating one or more job postings on Indeed via the Job Sync API.
+      required:
+      - jobPostings
+      properties:
+        jobPostings:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobPosting'
+          description: Array of job posting objects to create.
+          example: []
     PageInfo:
       type: object
       description: Pagination information for list responses.
@@ -622,29 +617,34 @@ components:
           type: string
           description: Cursor for the last item in the current page.
           example: example_value
-    WorkingHours:
+    Benefit:
       type: object
-      description: Working hours and schedule information for the position.
+      description: A benefit offered with the job position.
       properties:
-        hoursPerWeek:
-          type: number
-          format: double
-          description: Expected number of hours per week.
-          example: 40
-        schedule:
+        type:
           type: string
-          description: Description of the work schedule.
-          example: Monday through Friday, 9 AM to 5 PM
-        shiftType:
-          type: string
-          description: The type of shift.
+          description: The type of benefit.
           enum:
-          - DAY
-          - NIGHT
-          - EVENING
-          - ROTATING
-          - FLEXIBLE
-          example: DAY
+          - HEALTH_INSURANCE
+          - DENTAL_INSURANCE
+          - VISION_INSURANCE
+          - RETIREMENT_401K
+          - PAID_TIME_OFF
+          - PARENTAL_LEAVE
+          - TUITION_REIMBURSEMENT
+          - LIFE_INSURANCE
+          - DISABILITY_INSURANCE
+          - FLEXIBLE_SCHEDULE
+          - REMOTE_WORK
+          - RELOCATION_ASSISTANCE
+          - EMPLOYEE_DISCOUNT
+          - COMMUTER_BENEFITS
+          - OTHER
+          example: HEALTH_INSURANCE
+        description:
+          type: string
+          description: Additional details about the benefit.
+          example: A sample description.
   securitySchemes:
     BearerAuth:
       type: http
