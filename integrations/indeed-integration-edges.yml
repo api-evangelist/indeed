@@ -3,6 +3,7 @@ method: searched
 checked:
 - bamboohr/integrations/bamboohr-integration-edges.yml
 - greenhouse/integrations/greenhouse-integration-edges.yml
+- https://github.com/meltano/hub
 - https://govramp.org/program-participants
 - https://raw.githubusercontent.com/18F/fedramp-data/4b73d9247fd6360759960e4690e3ce4ca858e0fa/data/data.json
 - https://storage.googleapis.com/tcfac/additional-consent-providers.csv
@@ -135,6 +136,35 @@ edges:
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
   category: WordPress plugin
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-indeed--autoidm
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Indeed
+    matched_domain: indeed.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-indeed--autoidm
+    maintenance_status:
+    - active
+    quality:
+    - gold
+    builder: 'community (Meltano Hub variant maintainers: autoidm)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 source:
 - bamboohr/integrations/bamboohr-integration-edges.yml
 - greenhouse/integrations/greenhouse-integration-edges.yml
