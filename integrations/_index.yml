@@ -141,5 +141,5 @@
     quality:
     - gold
     builder: 'community (Meltano Hub variant maintainers: autoidm)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
