@@ -1,4 +1,4 @@
-# Indeed (indeed)
+# Indeed
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,350 +66,266 @@
 
 Indeed is the world's largest job site, connecting millions of job seekers with employers across industries and locations worldwide. Indeed offers a suite of APIs for applicant tracking systems, job boards, and hiring platforms to integrate with its employment ecosystem.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/indeed/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/indeed/refs/heads/main/apis.yml)
+**Areas:** Careers · Employment · Hiring · Job Search · Job · Recruiting
+
+## Indeed on APIs.io
+
+Everything profiled for Indeed is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/indeed/](https://apis.io/providers/indeed/)** — or go straight to one of the APIs or properties below.
+
+### APIs (15)
+
+- [Indeed Job Search API](https://apis.io/apis/indeed/job-search/) — Search for jobs by keyword, location, and other criteria. Returns job listings with details including title, company, location, and description. This API is…
+- [Indeed Publisher API](https://apis.io/apis/indeed/publisher/) — Monetize your website by displaying Indeed job listings. Earn revenue through cost-per-click advertising.
+- [Indeed Apply API](https://apis.io/apis/indeed/apply/) — Allow job seekers to apply to your jobs directly through Indeed with a streamlined application process. Supports screener questions, EEO compliance for US…
+- [Indeed Disposition Sync API](https://apis.io/apis/indeed/disposition-sync/) — A GraphQL API that enables ATS partners to send disposition data for Indeed Apply and non-Indeed Apply jobs to Indeed, tracking application status changes…
+- [Indeed Sponsored Jobs API](https://apis.io/apis/indeed/sponsored-jobs/) — A GraphQL API used to get information about and manage an employer's sponsored job campaigns on Indeed, including campaign creation, budget management, and…
+- [Indeed Job Update API](https://apis.io/apis/indeed/job-update/) — Allows partners to list and update job postings on Indeed, including adding metadata to ATS-sourced jobs for improved quality and sponsorship grouping, and…
+- [Indeed Real-time API](https://apis.io/apis/indeed/real-time/) — Stream real-time server-sent events (SSE) to enable front-end applications to update instantly, supporting event filtering, deduplication, and latency tracking.
+- [Indeed Interview API](https://apis.io/apis/indeed/interview/) — A GraphQL API for scheduling, updating, retrieving information about, and canceling virtual interview events with job candidates. This API is deprecated.
+- [Indeed Employer Data API](https://apis.io/apis/indeed/employer-data/) — A GraphQL API for creating and updating employer entities on Indeed and the Indeed PLUS platform.
+- [Indeed Conversion Tracking API](https://apis.io/apis/indeed/conversion-tracking/) — Tracks candidate events such as job application page visits and completed applications from Indeed to your site. Provides data for reporting, analytics…
+- [Indeed Employer Registration API](https://apis.io/apis/indeed/employer-registration/) — Part of the Candidate Sync APIs, this API allows ATS partners to register employers for Candidate Sync integration.
+- [Indeed Retrieve Candidates API](https://apis.io/apis/indeed/retrieve-candidates/) — Part of the Candidate Sync APIs, this API enables ATS partners to get candidate and application information from Indeed on behalf of employers.
+- [Indeed Candidates API](https://apis.io/apis/indeed/indeed-candidates-api/) — Operations for retrieving and managing candidate applications. Part of the Candidate Sync APIs, these endpoints enable ATS partners to fetch candidate and…
+- [Indeed Employers API](https://apis.io/apis/indeed/indeed-employers-api/) — Operations for creating and managing employer profiles on Indeed. Employer entities must be created before job postings can be associated with them.…
+- [Indeed Jobs API](https://apis.io/apis/indeed/indeed-jobs-api/) — Operations for creating, updating, expiring, and retrieving job postings on Indeed. Supports qualifications, working hours, salary, benefits, employer…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### GraphQL (1)
+
+GraphQL schemas.
+
+- [Indeed GraphQL API](https://apis.io/graphqls/indeed/indeed-graphql/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Indeed Agentic Access](https://apis.io/agentic-access/indeed/indeed-agentic-access/)
+
+#### JSON Schema (58)
+
+The data models the API reads and writes.
+
+- [Address](https://apis.io/schemas/indeed/indeed-address/)
+- [ApiError](https://apis.io/schemas/indeed/indeed-apierror/)
+- [Benefit](https://apis.io/schemas/indeed/indeed-benefit/)
+- [Indeed Candidate](https://apis.io/schemas/indeed/indeed-candidate/)
+- [CandidateList](https://apis.io/schemas/indeed/indeed-candidatelist/)
+- [CountrySpecificAttributes](https://apis.io/schemas/indeed/indeed-countryspecificattributes/)
+- [CreateJobPostingInput](https://apis.io/schemas/indeed/indeed-createjobpostinginput/)
+- [CreateJobPostingPayload](https://apis.io/schemas/indeed/indeed-createjobpostingpayload/)
+- [DispositionUpdate](https://apis.io/schemas/indeed/indeed-dispositionupdate/)
+- [EeoResponses](https://apis.io/schemas/indeed/indeed-eeoresponses/)
+- [Employer](https://apis.io/schemas/indeed/indeed-employer/)
+- [Address](https://apis.io/schemas/indeed/indeed-employer-address/)
+- [ApiError](https://apis.io/schemas/indeed/indeed-employer-api-error/)
+- [Benefit](https://apis.io/schemas/indeed/indeed-employer-benefit/)
+- [Candidate](https://apis.io/schemas/indeed/indeed-employer-candidate/)
+- [CandidateList](https://apis.io/schemas/indeed/indeed-employer-candidate-list/)
+- [CountrySpecificAttributes](https://apis.io/schemas/indeed/indeed-employer-country-specific-attributes/)
+- [CreateJobPostingInput](https://apis.io/schemas/indeed/indeed-employer-create-job-posting-input/)
+- [CreateJobPostingPayload](https://apis.io/schemas/indeed/indeed-employer-create-job-posting-payload/)
+- [DispositionUpdate](https://apis.io/schemas/indeed/indeed-employer-disposition-update/)
+- [EeoResponses](https://apis.io/schemas/indeed/indeed-employer-eeo-responses/)
+- [Employer](https://apis.io/schemas/indeed/indeed-employer-employer/)
+- [EmployerAttributes](https://apis.io/schemas/indeed/indeed-employer-employer-attributes/)
+- [EmployerRegistration](https://apis.io/schemas/indeed/indeed-employer-employer-registration/)
+- [IndeedApplyConfig](https://apis.io/schemas/indeed/indeed-employer-indeed-apply-config/)
+- …and 33 more published on APIs.io
+
+#### JSON Structure (30)
+
+Data models expressed in JSON Structure.
+
+- [Indeed Employer Address Structure](https://apis.io/json-structure/indeed/indeed-employer-address-structure/)
+- [Indeed Employer Api Error Structure](https://apis.io/json-structure/indeed/indeed-employer-api-error-structure/)
+- [Indeed Employer Benefit Structure](https://apis.io/json-structure/indeed/indeed-employer-benefit-structure/)
+- [Indeed Employer Candidate List Structure](https://apis.io/json-structure/indeed/indeed-employer-candidate-list-structure/)
+- [Indeed Employer Candidate Structure](https://apis.io/json-structure/indeed/indeed-employer-candidate-structure/)
+- [Indeed Employer Country Specific Attributes Structure](https://apis.io/json-structure/indeed/indeed-employer-country-specific-attributes-structure/)
+- [Indeed Employer Create Job Posting Input Structure](https://apis.io/json-structure/indeed/indeed-employer-create-job-posting-input-structure/)
+- [Indeed Employer Create Job Posting Payload Structure](https://apis.io/json-structure/indeed/indeed-employer-create-job-posting-payload-structure/)
+- [Indeed Employer Disposition Update Structure](https://apis.io/json-structure/indeed/indeed-employer-disposition-update-structure/)
+- [Indeed Employer Eeo Responses Structure](https://apis.io/json-structure/indeed/indeed-employer-eeo-responses-structure/)
+- [Indeed Employer Employer Attributes Structure](https://apis.io/json-structure/indeed/indeed-employer-employer-attributes-structure/)
+- [Indeed Employer Employer Registration Structure](https://apis.io/json-structure/indeed/indeed-employer-employer-registration-structure/)
+- [Indeed Employer Employer Structure](https://apis.io/json-structure/indeed/indeed-employer-employer-structure/)
+- [Indeed Employer Indeed Apply Config Structure](https://apis.io/json-structure/indeed/indeed-employer-indeed-apply-config-structure/)
+- [Indeed Employer Job Location Structure](https://apis.io/json-structure/indeed/indeed-employer-job-location-structure/)
+- [Indeed Employer Job Posting List Structure](https://apis.io/json-structure/indeed/indeed-employer-job-posting-list-structure/)
+- [Indeed Employer Job Posting Structure](https://apis.io/json-structure/indeed/indeed-employer-job-posting-structure/)
+- [Indeed Employer Job Source Structure](https://apis.io/json-structure/indeed/indeed-employer-job-source-structure/)
+- [Indeed Employer Locale Specific Attributes Structure](https://apis.io/json-structure/indeed/indeed-employer-locale-specific-attributes-structure/)
+- [Indeed Employer Page Info Structure](https://apis.io/json-structure/indeed/indeed-employer-page-info-structure/)
+- [Indeed Employer Patch Employer Input Structure](https://apis.io/json-structure/indeed/indeed-employer-patch-employer-input-structure/)
+- [Indeed Employer Patch Employer Payload Structure](https://apis.io/json-structure/indeed/indeed-employer-patch-employer-payload-structure/)
+- [Indeed Employer Qualification Structure](https://apis.io/json-structure/indeed/indeed-employer-qualification-structure/)
+- [Indeed Employer Resume File Structure](https://apis.io/json-structure/indeed/indeed-employer-resume-file-structure/)
+- [Indeed Employer Resume Structure](https://apis.io/json-structure/indeed/indeed-employer-resume-structure/)
+- …and 5 more published on APIs.io
 
-## Scope
+#### JSON-LD (2)
 
-- **Type:** Index
-- **Access:** 3rd-Party
+Linked-data contexts for the provider's vocabulary.
 
-## Tags
+- [Indeed Context](https://apis.io/jsonld/indeed/indeed-context/)
+- [Indeed Employer Context](https://apis.io/jsonld/indeed/indeed-employer-context/)
 
-- Careers
-- Employment
-- Hiring
-- Job Search
-- Jobs
-- Recruiting
+#### Vocabulary (1)
 
-## Timestamps
+The provider's domain terms, defined.
 
-- **Created:** 2025-01-01
-- **Modified:** 2026-05-19
+- [Indeed Domain Vocabulary](https://apis.io/vocabularies/indeed/indeed-vocabulary/)
 
-## APIs
+#### Examples (32)
 
-### Indeed Job Search API
+Example requests and responses.
 
-Search for jobs by keyword, location, and other criteria. Returns job listings with details including title, company, location, and description. This API is deprecated and not available for new integrations.
+- [Indeed Createemployer Example](https://apis.io/examples/indeed/indeed-createemployer-example/)
+- [Indeed Createjobpostings Example](https://apis.io/examples/indeed/indeed-createjobpostings-example/)
+- [Indeed Employer Address Example](https://apis.io/examples/indeed/indeed-employer-address-example/)
+- [Indeed Employer Api Error Example](https://apis.io/examples/indeed/indeed-employer-api-error-example/)
+- [Indeed Employer Benefit Example](https://apis.io/examples/indeed/indeed-employer-benefit-example/)
+- [Indeed Employer Candidate Example](https://apis.io/examples/indeed/indeed-employer-candidate-example/)
+- [Indeed Employer Candidate List Example](https://apis.io/examples/indeed/indeed-employer-candidate-list-example/)
+- [Indeed Employer Country Specific Attributes Example](https://apis.io/examples/indeed/indeed-employer-country-specific-attributes-example/)
+- [Indeed Employer Create Job Posting Input Example](https://apis.io/examples/indeed/indeed-employer-create-job-posting-input-example/)
+- [Indeed Employer Create Job Posting Payload Example](https://apis.io/examples/indeed/indeed-employer-create-job-posting-payload-example/)
+- [Indeed Employer Disposition Update Example](https://apis.io/examples/indeed/indeed-employer-disposition-update-example/)
+- [Indeed Employer Eeo Responses Example](https://apis.io/examples/indeed/indeed-employer-eeo-responses-example/)
+- [Indeed Employer Employer Attributes Example](https://apis.io/examples/indeed/indeed-employer-employer-attributes-example/)
+- [Indeed Employer Employer Example](https://apis.io/examples/indeed/indeed-employer-employer-example/)
+- [Indeed Employer Employer Registration Example](https://apis.io/examples/indeed/indeed-employer-employer-registration-example/)
+- [Indeed Employer Indeed Apply Config Example](https://apis.io/examples/indeed/indeed-employer-indeed-apply-config-example/)
+- [Indeed Employer Job Location Example](https://apis.io/examples/indeed/indeed-employer-job-location-example/)
+- [Indeed Employer Job Posting Example](https://apis.io/examples/indeed/indeed-employer-job-posting-example/)
+- [Indeed Employer Job Posting List Example](https://apis.io/examples/indeed/indeed-employer-job-posting-list-example/)
+- [Indeed Employer Job Source Example](https://apis.io/examples/indeed/indeed-employer-job-source-example/)
+- [Indeed Employer Locale Specific Attributes Example](https://apis.io/examples/indeed/indeed-employer-locale-specific-attributes-example/)
+- [Indeed Employer Page Info Example](https://apis.io/examples/indeed/indeed-employer-page-info-example/)
+- [Indeed Employer Patch Employer Input Example](https://apis.io/examples/indeed/indeed-employer-patch-employer-input-example/)
+- [Indeed Employer Patch Employer Payload Example](https://apis.io/examples/indeed/indeed-employer-patch-employer-payload-example/)
+- [Indeed Employer Qualification Example](https://apis.io/examples/indeed/indeed-employer-qualification-example/)
+- …and 7 more published on APIs.io
 
-- **Human URL:** [https://developer.indeed.com/docs/publisher-jobs/job-search](https://developer.indeed.com/docs/publisher-jobs/job-search)
-- **Base URL:** `https://api.indeed.com`
+#### Collections (7)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Deprecated
-- Jobs
-- Listings
-- Search
+- [Indeed Employer Candidates API](https://apis.io/collections/indeed/open-indeed-candidates-api/)
+- [Indeed Employer API](https://apis.io/collections/indeed/open-indeed-employer-api/)
+- [Indeed Employer Candidates Employers API](https://apis.io/collections/indeed/open-indeed-employers-api/)
+- [Indeed Employer Candidates Jobs API](https://apis.io/collections/indeed/open-indeed-jobs-api/)
+- [Indeed Employer Candidates API](https://apis.io/collections/indeed/postman-indeed-candidates-api/)
+- [Indeed Employer Candidates Employers API](https://apis.io/collections/indeed/postman-indeed-employers-api/)
+- [Indeed Employer Candidates Jobs API](https://apis.io/collections/indeed/postman-indeed-jobs-api/)
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://opensource.indeedeng.io/api-documentation/docs/job-search/)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Spectral rulesets for the provider's contracts.
 
-### Indeed Publisher API
+- [Indeed — jsonschema rules](https://apis.io/rules/indeed/indeed-jsonschema-spectral-rules/)
+- [Indeed API Rules](https://apis.io/rules/indeed/indeed-spectral-rules/)
 
-Monetize your website by displaying Indeed job listings. Earn revenue through cost-per-click advertising.
+#### Security (2)
 
-- **Human URL:** [https://www.indeed.com/publisher](https://www.indeed.com/publisher)
-- **Base URL:** `https://api.indeed.com/ads`
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Indeed Authentication](https://apis.io/security/indeed/indeed-authentication/)
+- [Indeed Domain Security](https://apis.io/security/indeed/indeed-domain-security/)
 
-- Advertising
-- Monetization
-- Publisher
+#### OAuth scopes (1)
 
-#### Properties
+The permissions the API asks for.
 
-- [Documentation](https://www.indeed.com/publisher/docs)
-- [Sign Up](https://www.indeed.com/publisher/signup)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Indeed Scopes](https://apis.io/scopes/indeed/indeed-scopes/)
 
-### Indeed Apply API
+#### Plans and pricing (1)
 
-Allow job seekers to apply to your jobs directly through Indeed with a streamlined application process. Supports screener questions, EEO compliance for US employers, and disposition data integration.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://docs.indeed.com/indeed-apply](https://docs.indeed.com/indeed-apply)
-- **Base URL:** `https://api.indeed.com/apply`
+- [Indeed Plans Pricing](https://apis.io/plans/indeed/indeed-plans-pricing/)
 
-#### Tags
+#### Rate limits (1)
 
-- Applications
-- Apply
-- Hiring
+Published request limits.
 
-#### Properties
+- [Indeed Rate Limits](https://apis.io/rate-limits/indeed/indeed-rate-limits/)
 
-- [Documentation](https://docs.indeed.com/indeed-apply)
-- [Getting Started](https://docs.indeed.com/indeed-apply/add-indeed-apply)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### FinOps (1)
 
-### Indeed Job Sync API
+What the API costs to run, by operation.
 
-A GraphQL API that enables ATS partners to create, upsert, expire, and get status for job postings on Indeed. Supports qualifications, working hours, salary, benefits, and employer information.
+- [Indeed Finops](https://apis.io/finops/indeed/indeed-finops/)
 
-- **Human URL:** [https://docs.indeed.com/job-sync-api/](https://docs.indeed.com/job-sync-api/)
-- **Base URL:** `https://apis.indeed.com/graphql`
+## Where to find this API
 
-#### Tags
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- ATS
-- GraphQL
-- Jobs
-- Postings
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/job-sync-api/)
-- [Getting Started](https://docs.indeed.com/job-sync-api/job-sync-api-guide)
-- [F A Q](https://docs.indeed.com/job-sync-api/reference/faq)
-- [Sandbox](https://docs.indeed.com/getstarted/simulated-graphql-environment)
-- [OpenAPI](openapi/indeed-employer-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON-LD](json-ld/indeed-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-### Indeed Disposition Sync API
-
-A GraphQL API that enables ATS partners to send disposition data for Indeed Apply and non-Indeed Apply jobs to Indeed, tracking application status changes through various stages of the hiring process.
-
-- **Human URL:** [https://docs.indeed.com/disposition-sync-api/](https://docs.indeed.com/disposition-sync-api/)
-- **Base URL:** `https://apis.indeed.com/graphql`
-
-#### Tags
-
-- Applications
-- ATS
-- Disposition
-- GraphQL
-- Tracking
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/disposition-sync-api/)
-- [Getting Started](https://docs.indeed.com/disposition-sync-api/disposition-sync-api-guide)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Sponsored Jobs API
-
-A GraphQL API used to get information about and manage an employer's sponsored job campaigns on Indeed, including campaign creation, budget management, and performance insights.
-
-- **Human URL:** [https://docs.indeed.com/sponsored-jobs-api/](https://docs.indeed.com/sponsored-jobs-api/)
-- **Base URL:** `https://apis.indeed.com/graphql`
-
-#### Tags
-
-- Advertising
-- Campaigns
-- GraphQL
-- Sponsored
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/sponsored-jobs-api/)
-- [Getting Started](https://docs.indeed.com/sponsored-jobs-api/sponsored-jobs-api-1-guides/get-started)
-- [API Reference](https://docs.indeed.com/api/sponsored-jobs-api/sponsored-jobs-api-reference)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Job Update API
-
-Allows partners to list and update job postings on Indeed, including adding metadata to ATS-sourced jobs for improved quality and sponsorship grouping, and subscribing to jobs lifecycle events via webhooks.
-
-- **Human URL:** [https://docs.indeed.com/job-update-api/](https://docs.indeed.com/job-update-api/)
-- **Base URL:** `https://apis.indeed.com/graphql`
-
-#### Tags
-
-- GraphQL
-- Jobs
-- Updates
-- Webhooks
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/job-update-api/)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Real-time API
-
-Stream real-time server-sent events (SSE) to enable front-end applications to update instantly, supporting event filtering, deduplication, and latency tracking.
-
-- **Human URL:** [https://docs.indeed.com/real-time-api/get-started](https://docs.indeed.com/real-time-api/get-started)
-- **Base URL:** `https://apis.indeed.com`
-
-#### Tags
-
-- Events
-- Real-Time
-- SSE
-- Streaming
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/api/real-time-api/indeed-real-time-api)
-- [Getting Started](https://docs.indeed.com/real-time-api/get-started)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Interview API
-
-A GraphQL API for scheduling, updating, retrieving information about, and canceling virtual interview events with job candidates. This API is deprecated.
-
-- **Human URL:** [https://docs.indeed.com/indeed-interview-api](https://docs.indeed.com/indeed-interview-api)
-- **Base URL:** `https://apis.indeed.com/graphql`
-
-#### Tags
-
-- Deprecated
-- GraphQL
-- Interviews
-- Scheduling
-- Virtual
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/indeed-interview-api)
-- [Getting Started](https://docs.indeed.com/indeed-interview-api/indeed-interview-api-guide)
-- [API Reference](https://docs.indeed.com/dev/reference/indeed-interview-api)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Employer API
-
-A RESTful abstraction of Indeed's employer-facing partner APIs, providing unified access to employer management, candidate retrieval, and job posting operations.
-
-- **Human URL:** [https://docs.indeed.com/employers/operations/create-employer](https://docs.indeed.com/employers/operations/create-employer)
-- **Base URL:** `https://apis.indeed.com`
-
-#### Tags
-
-- ATS
-- Candidates
-- Employers
-- Jobs
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/employers/operations/create-employer)
-- [OpenAPI](openapi/indeed-employer-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/indeed-candidate-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/indeed-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-
-### Indeed Employer Data API
-
-A GraphQL API for creating and updating employer entities on Indeed and the Indeed PLUS platform.
-
-- **Human URL:** [https://docs.indeed.com/employers/operations/create-employer](https://docs.indeed.com/employers/operations/create-employer)
-- **Base URL:** `https://apis.indeed.com/graphql`
-
-#### Tags
-
-- ATS
-- Employers
-- GraphQL
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/employers/operations/create-employer)
-- [API Reference](https://docs.indeed.com/api/employers-api/create-using-post)
-- [Sandbox](https://docs.indeed.com/getstarted/simulated-graphql-environment)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Conversion Tracking API
-
-Tracks candidate events such as job application page visits and completed applications from Indeed to your site. Provides data for reporting, analytics dashboards, and apply-based bidding algorithms.
-
-- **Human URL:** [https://docs.indeed.com/conversion-tracking-api/conversion-tracking-getting-started](https://docs.indeed.com/conversion-tracking-api/conversion-tracking-getting-started)
-- **Base URL:** `https://apis.indeed.com`
-
-#### Tags
-
-- Analytics
-- Conversion
-- Reporting
-- Tracking
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/conversion-tracking-api/conversion-tracking-getting-started)
-- [API Reference](https://docs.indeed.com/api/conversion-tracking-api/conversion-tracking-api)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Employer Registration API
-
-Part of the Candidate Sync APIs, this API allows ATS partners to register employers for Candidate Sync integration.
-
-- **Human URL:** [https://docs.indeed.com/candidate-sync-apis/employer-registration-api/](https://docs.indeed.com/candidate-sync-apis/employer-registration-api/)
-- **Base URL:** `https://apis.indeed.com/graphql`
-
-#### Tags
-
-- ATS
-- Candidate Sync
-- Employers
-- Registration
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/candidate-sync-apis/employer-registration-api/)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Indeed Retrieve Candidates API
-
-Part of the Candidate Sync APIs, this API enables ATS partners to get candidate and application information from Indeed on behalf of employers.
-
-- **Human URL:** [https://docs.indeed.com/candidate-sync-apis/retrieve-candidates-api/](https://docs.indeed.com/candidate-sync-apis/retrieve-candidates-api/)
-- **Base URL:** `https://apis.indeed.com/graphql`
-
-#### Tags
-
-- Applications
-- ATS
-- Candidate Sync
-- Candidates
-
-#### Properties
-
-- [Documentation](https://docs.indeed.com/candidate-sync-apis/retrieve-candidates-api/)
-- [JSON Schema](json-schema/indeed-candidate-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/indeed-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Postman Collection](collections/indeed-employer-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/indeed-employer-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Developer Portal](https://opensource.indeedeng.io/)
-- [Terms of Service](https://www.indeed.com/legal/terms-of-service)
-- [Privacy Policy](https://www.indeed.com/legal/privacy)
-- [Status Page](https://status.indeed.com)
+- [Website](https://www.indeed.com/)
+- [Getting started](https://docs.indeed.com/getstarted/)
 - [Support](https://support.indeed.com/hc/en-us)
 - [Blog](https://engineering.indeedblog.com/)
-- [GitHub Organization](https://github.com/indeedeng)
-- [X (Twitter)](https://twitter.com/indeedeng)
-- [Rate Limits](https://opensource.indeedeng.io/api-documentation/docs/rate-limits)
-- [Authentication](https://docs.indeed.com/authorization/)
-- [Getting Started](https://docs.indeed.com/getstarted/)
-- [Release Notes](https://docs.indeed.com/release-notes/)
-- [Sandbox](https://docs.indeed.com/getstarted/simulated-graphql-environment)
-- [LinkedIn](https://www.linkedin.com/company/indeed-com/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Terms of service](https://www.indeed.com/legal/terms-of-service)
+- [Privacy policy](https://www.indeed.com/legal/privacy)
+- [GitHub](https://github.com/indeedeng)
+- [Status](https://status.indeed.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 44.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 67.0 |
+| Contract governance | 13.6 |
+| Operational transparency | 31.6 |
+| Developer ergonomics | 56.0 |
+| Access clarity | 18.4 |
+
+**Agent readiness 29.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 26.5** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/indeed/](https://apis.io/providers/indeed/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Indeed: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/indeed/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
